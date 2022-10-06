@@ -55,6 +55,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
             if (binding.signInIdEt.text.toString() == idFromSignup &&
                 binding.signInPwEt.text.toString() == (pwFromSignup)
             ) {
+                showCustomToast("로그인에 성공했습니다")
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 homeIntent.putExtra("id", idFromSignup)
                 homeIntent.putExtra("pw", pwFromSignup)
