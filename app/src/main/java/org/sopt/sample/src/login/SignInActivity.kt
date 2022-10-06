@@ -8,6 +8,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import org.sopt.sample.R
+import org.sopt.sample.config.ApplicationClass
 import org.sopt.sample.config.BaseActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.src.HomeActivity
@@ -18,11 +19,10 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
     private var idFromSignup: String? = null
     private var pwFromSignup: String? = null
     private var mbtiFromSignup: String? = null
-
-
+    private val editor = ApplicationClass.sSharedPreferences.edit()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        autoLogin()//자동 로그인
         setResultSignUp() //회원가입 콜백
         signIn() //로그인
         signUp() //회원가입
@@ -47,7 +47,6 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                 }
             }
     }
-
     private fun signIn() {
         //로그인 버튼 클릭
         binding.signInLoginBtn.setOnClickListener {
@@ -56,6 +55,13 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                 binding.signInPwEt.text.toString() == (pwFromSignup)
             ) {
                 showCustomToast("로그인에 성공했습니다")
+
+                //로그인 성공 시 id,pw,mbti를 sp에 저장
+                editor.putString("id",idFromSignup)
+                editor.putString("pw",pwFromSignup)
+                editor.putString("mbti",mbtiFromSignup)
+                editor.commit()
+
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 homeIntent.putExtra("id", idFromSignup)
                 homeIntent.putExtra("pw", pwFromSignup)
@@ -69,13 +75,27 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
             }
         }
     }
-
     private fun signUp() {
         //회원가입 버튼
         val signupIntent = Intent(this, SignupActivity::class.java)
         binding.signInSignUpBtn.setOnClickListener {
             resultLauncher.launch(signupIntent) //데이터를 받아올 SignupActivity 실행
 
+        }
+    }
+    //자동 로그인
+    private fun autoLogin(){
+        val intent:Intent = Intent(this,HomeActivity::class.java)
+        //로그인 성공 했을 때 저장해놓은 정보를 HomeActivity에 보내면서 자동 로그인
+        val id = ApplicationClass.sSharedPreferences.getString("id",null)
+        val pw = ApplicationClass.sSharedPreferences.getString("pw",null)
+        val mbti = ApplicationClass.sSharedPreferences.getString("mbti",null)
+        if(id!=null && pw!=null){
+            intent.putExtra("id",id)
+            intent.putExtra("pw",pw)
+            intent.putExtra("mbti",mbti)
+            showCustomToast("자동 로그인 되었습니다.")
+            startActivity(intent)
         }
     }
 }
