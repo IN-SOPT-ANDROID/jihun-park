@@ -17,6 +17,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent> //회원가입 정보를 받아오기 위한 launcher
     private var idFromSignup: String? = null
     private var pwFromSignup: String? = null
+    private var mbtiFromSignup: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +36,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                 if (result.resultCode == Activity.RESULT_OK) {
                     idFromSignup = result.data?.getStringExtra("id").toString()
                     pwFromSignup = result.data?.getStringExtra("pw").toString()
+                    mbtiFromSignup = result.data?.getStringExtra("mbti").toString()
                     CustomSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
@@ -56,6 +58,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 homeIntent.putExtra("id", idFromSignup)
                 homeIntent.putExtra("pw", pwFromSignup)
+                homeIntent.putExtra("mbti", mbtiFromSignup)
                 startActivity(homeIntent)
             }
             //로그인 실패
