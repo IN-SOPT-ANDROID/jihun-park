@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="purple_Signup_btn">#6B00F7</color>
     <color name="purple_Signin_btn">#6B00F7</color>
+    <color name="transparent00">#00000000</color>
 </resources>
