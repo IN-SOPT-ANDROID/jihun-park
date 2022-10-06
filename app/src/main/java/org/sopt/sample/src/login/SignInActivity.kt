@@ -2,6 +2,7 @@ package org.sopt.sample.src.login
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
@@ -19,9 +20,12 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
     private var idFromSignup: String? = null
     private var pwFromSignup: String? = null
     private var mbtiFromSignup: String? = null
-    private val editor = ApplicationClass.sSharedPreferences.edit()
+    private lateinit var editor:SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+        editor = ApplicationClass.sSharedPreferences.edit()
+
         autoLogin()//자동 로그인
         setResultSignUp() //회원가입 콜백
         signIn() //로그인
