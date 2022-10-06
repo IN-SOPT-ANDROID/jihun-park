@@ -12,7 +12,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
         mbti = intent.getStringExtra("mbti").toString()
         binding.homeNameTv.text = getString(R.string.home_user_name)
         "MBTI: $mbti".also { binding.homeMbtiTv.text = it }
-        
+
 
     }
 }

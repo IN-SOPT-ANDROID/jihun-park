@@ -25,10 +25,11 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="60dp"
         android:text="@string/signup_id_tv"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUp_title_tv" />
+
     <TextView
         android:id="@+id/signUp_id_desc1_tv"
         android:layout_width="wrap_content"
@@ -36,9 +37,10 @@
         android:layout_marginStart="5dp"
         android:text="@string/signup_id_desc1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/signUp_id_tv"
         app:layout_constraintStart_toEndOf="@id/signUp_id_tv"
-        app:layout_constraintTop_toTopOf="@id/signUp_id_tv"
-        app:layout_constraintBottom_toBottomOf="@id/signUp_id_tv"/>
+        app:layout_constraintTop_toTopOf="@id/signUp_id_tv" />
+
     <EditText
         android:id="@+id/signUp_id_et"
         android:layout_width="0dp"
@@ -59,10 +61,11 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
         android:text="@string/signup_pw_tv"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUp_id_et" />
+
     <TextView
         android:id="@+id/signUp_pw_desc1_tv"
         android:layout_width="wrap_content"
@@ -70,9 +73,10 @@
         android:layout_marginStart="5dp"
         android:text="@string/signup_pw_desc1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/signUp_pw_tv"
         app:layout_constraintStart_toEndOf="@id/signUp_pw_tv"
-        app:layout_constraintTop_toTopOf="@id/signUp_pw_tv"
-        app:layout_constraintBottom_toBottomOf="@id/signUp_pw_tv"/>
+        app:layout_constraintTop_toTopOf="@id/signUp_pw_tv" />
+
     <EditText
         android:id="@+id/signUp_pw_et"
         android:layout_width="0dp"
@@ -93,8 +97,8 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
         android:text="@string/signup_mbti_tv"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUp_pw_et" />
 
@@ -105,9 +109,9 @@
         android:layout_marginStart="5dp"
         android:text="@string/signup_mbti_desc1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/signUp_mbti_tv"
         app:layout_constraintStart_toEndOf="@id/signUp_mbti_tv"
-        app:layout_constraintTop_toTopOf="@id/signUp_mbti_tv"
-        app:layout_constraintBottom_toBottomOf="@id/signUp_mbti_tv"/>
+        app:layout_constraintTop_toTopOf="@id/signUp_mbti_tv" />
 
     <EditText
         android:id="@+id/signUp_mbti_et"
