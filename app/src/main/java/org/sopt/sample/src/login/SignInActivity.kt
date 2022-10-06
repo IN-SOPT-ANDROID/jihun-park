@@ -15,18 +15,16 @@ import org.sopt.sample.src.HomeActivity
 
 class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding::inflate) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent> //회원가입 정보를 받아오기 위한 launcher
-    private lateinit var idFromSignup: String
-    private lateinit var pwFromSignup: String
+    private var idFromSignup: String? = null
+    private var pwFromSignup: String? = null
 
-    private val signupIntent = Intent(this, SignupActivity::class.java)
-    private val homeIntent = Intent(this, HomeActivity::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setResultSignUp() //회원가입 콜백
-        signIn(homeIntent) //로그인
-        signUp(signupIntent) //회원가입
+        signIn() //로그인
+        signUp() //회원가입
 
     }
 
@@ -37,23 +35,25 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                 if (result.resultCode == Activity.RESULT_OK) {
                     idFromSignup = result.data?.getStringExtra("id").toString()
                     pwFromSignup = result.data?.getStringExtra("pw").toString()
-                    CustomSnackBar(getString(R.string.signin_success_signup))
+                    CustomSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
+                        .show()
                 }
-                //로그인 실패
+                //회원가입 취소
                 else {
-                    CustomSnackBar(getString(R.string.signin_fail_id_or_pw)).setAnchorView(binding.signInLoginBtn)
+                    CustomSnackBar(getString(R.string.signin_fail_signup)).setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
             }
     }
 
-    private fun signIn(homeIntent: Intent) {
+    private fun signIn() {
         //로그인 버튼 클릭
         binding.signInLoginBtn.setOnClickListener {
             //SignUp에서 받아온 id/pw와 일치하는지 체크
             if (binding.signInIdEt.text.toString() == idFromSignup &&
                 binding.signInPwEt.text.toString() == (pwFromSignup)
             ) {
+                val homeIntent = Intent(this, HomeActivity::class.java)
                 homeIntent.putExtra("id", idFromSignup)
                 homeIntent.putExtra("pw", pwFromSignup)
                 startActivity(homeIntent)
@@ -66,10 +66,12 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
         }
     }
 
-    private fun signUp(signupIntent: Intent) {
+    private fun signUp() {
         //회원가입 버튼
+        val signupIntent = Intent(this, SignupActivity::class.java)
         binding.signInSignUpBtn.setOnClickListener {
             resultLauncher.launch(signupIntent) //데이터를 받아올 SignupActivity 실행
+
         }
     }
 }
