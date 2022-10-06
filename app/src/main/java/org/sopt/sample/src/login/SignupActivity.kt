@@ -11,29 +11,41 @@ import org.sopt.sample.databinding.ActivitySignupBinding
 class SignupActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val signInIntent = Intent(this, SignInActivity::class.java)
-
+        signUp()
+    }
+    private fun signUp(){
         binding.signUpCompleteBtn.setOnClickListener {
-            //ID CHECK - Length Success
-            if (binding.signUpIdEt.text.length in 6..10) {
-                //PW CHECK - Length Success
-                if (binding.signUpPwEt.text.length in 8..12) {
-                    //SignUp Success->HomeActivity
-                    signInIntent.putExtra("id",binding.signUpIdEt.text.toString())
-                    signInIntent.putExtra("pw",binding.signUpPwEt.text.toString())
-                    signInIntent.putExtra("mbti",binding.signUpMbtiEt.text.toString())
-                    setResult(RESULT_OK,signInIntent) //result code 및 intent 설정
-                    finish() //액티비티 종료
-                }
-                //PW CHECK - Length Fail
-                else {
-                    CustomSnackBar(getString(R.string.signup_fail_pw_length)).setAnchorView(binding.signUpPwEt).show()
-                }
-            }
-            //ID CHECK - Length Fail
-            else {
-                CustomSnackBar(getString(R.string.signup_fail_id_length)).setAnchorView(binding.signUpIdEt).show()
+            if (idValidCheck(binding.signUpIdEt.text.toString()) && pwValidCheck(binding.signUpPwEt.text.toString())) {
+                signupSuccess()
             }
         }
+    } //root func(idValidCheck,pwValidCheck,signupSuccess)
+    private fun idValidCheck(id: String): Boolean {
+        if (id.length in 6..10) {
+            return true
+        } else {
+            CustomSnackBar(getString(R.string.signup_fail_id_length)).setAnchorView(binding.signUpIdEt)
+                .show()
+            return false
+        }
     }
+    private fun pwValidCheck(pw: String): Boolean {
+        if (pw.length in 8..12) {
+            return true
+        } else {
+            CustomSnackBar(getString(R.string.signup_fail_pw_length)).setAnchorView(binding.signUpPwEt)
+                .show()
+            return false
+        }
+    }
+    private fun signupSuccess() {
+        //SignUp Success->HomeActivity
+        val signInIntent = Intent(this, SignInActivity::class.java)
+        signInIntent.putExtra("id", binding.signUpIdEt.text.toString())
+        signInIntent.putExtra("pw", binding.signUpPwEt.text.toString())
+        signInIntent.putExtra("mbti", binding.signUpMbtiEt.text.toString())
+        setResult(RESULT_OK, signInIntent) //result code 및 intent 설정
+        finish() //액티비티 종료
+    }
+
 }
