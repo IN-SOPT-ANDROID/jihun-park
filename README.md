@@ -20,3 +20,11 @@
         - Kotlin: 1.7.0
         - Compose: 1.2.1
     - 으로 맞춰놓겠습니다.
+
+ConstraintLayout - Chain의 속성
+  ![img_1.png](img_1.png)
+- Spread : 체인간의 일정한 거리를 유지한 채로 정렬된다.
+- Spread inside : start, end의 컴포넌트가 각각 부모쪽으로 붙으며 정렬된다.
+- Weighted : wieght만큼의 비율을 정해서 공간을 차지하도록 함. LinearLayout의 weight와 유사하다.
+- Packed : 컴포넌트들이 여백없이 붙어서 정렬된다.
+공식문서 참조(https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html#Chains)
