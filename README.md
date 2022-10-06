@@ -29,3 +29,4 @@ ConstraintLayout - Chain의 속성
 - Packed : 컴포넌트들이 여백없이 붙어서 정렬된다.
 
 공식문서 참조(https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html#Chains)
+
