@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.login.SignInActivity">
+
+    <TextView
+        android:id="@+id/signIn_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/signin_title_tv"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signIn_id_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/signin_id_tv"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signIn_title_tv" />
+
+    <EditText
+        android:id="@+id/signIn_id_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/signin_id_et"
+        android:inputType="text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/signIn_id_tv"
+        app:layout_constraintTop_toBottomOf="@id/signIn_id_tv" />
+
+    <TextView
+        android:id="@+id/signIn_pw_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/signup_pw_tv"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signIn_id_et" />
+
+    <EditText
+        android:id="@+id/signIn_pw_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/signin_pw_et"
+        android:inputType="textPassword"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/signIn_pw_tv"
+        app:layout_constraintTop_toBottomOf="@id/signIn_pw_tv" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signIn_login_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signin_btn_border"
+        android:text="@string/signin_login_btn"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signIn_signUp_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signin_btn_border"
+        android:text="@string/signin_signup_btn"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/signIn_btn_flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="signIn_login_btn,signIn_signUp_btn"
+        app:flow_horizontalGap="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signIn_pw_et">
+    </androidx.constraintlayout.helper.widget.Flow>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
