@@ -7,7 +7,7 @@
     <string name="signin_pw_tv">비밀번호</string>
     <string name="signin_pw_et">비밀번호를 입력하세요</string>
     <string name="signup_id_et">아이디를 입력하세요</string>
-    <string name="signup_pw_tv">비밀번호</string>
+    <string name="signup_pw_tv">Password</string>
     <string name="signup_pw_et">비밀번호를 입력하세요</string>
     <string name="signin_login_btn">Login</string>
     <string name="signup_login_success">회원가입 성공</string>
