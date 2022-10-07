@@ -1,6 +1,7 @@
 package org.sopt.sample.src
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import org.sopt.sample.R
 import org.sopt.sample.config.BaseActivity
 import org.sopt.sample.databinding.ActivityHomeBinding
@@ -12,5 +13,19 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
         mbti = intent.getStringExtra("mbti").toString()
         binding.homeNameTv.text = getString(R.string.home_user_name)
         "MBTI: $mbti".also { binding.homeMbtiTv.text = it }
+
+
+
+//        onBackPressedDispatcher.addCallback(
+//            this,
+//            object : OnBackPressedCallback(true) {
+//                override fun handleOnBackPressed() {
+//                    exitOnBackPressed()
+//                }
+//            })
     }
+//    private fun exitOnBackPressed(){
+//
+//    }
+
 }

@@ -70,6 +70,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                 homeIntent.putExtra("id", idFromSignup)
                 homeIntent.putExtra("pw", pwFromSignup)
                 homeIntent.putExtra("mbti", mbtiFromSignup)
+                homeIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(homeIntent)
             }
             //로그인 실패
@@ -98,6 +99,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
             intent.putExtra("id",id)
             intent.putExtra("pw",pw)
             intent.putExtra("mbti",mbti)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             showCustomToast("자동 로그인 되었습니다.")
             startActivity(intent)
         }
