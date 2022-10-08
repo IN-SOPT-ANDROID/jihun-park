@@ -1,5 +1,6 @@
 package org.sopt.sample.src.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -27,7 +28,7 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         signUp()
         showPw()
     }
-
+    @SuppressLint("ClickableViewAccessibility")
     private fun showPw() {
         Log.d("Signup","showPw touch 상태 ${binding.signUpPwEt.inputType}")
         binding.signupShowPw.setOnTouchListener { v, event ->

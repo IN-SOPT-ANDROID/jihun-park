@@ -1,5 +1,6 @@
 package org.sopt.sample.src.login
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
@@ -53,6 +54,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                 }
             }
     }
+    @SuppressLint("ClickableViewAccessibility")
     private fun showPw() {
         Log.d("Signup","showPw touch 상태 ${binding.signInPwEt.inputType}")
         binding.signInShowPw.setOnTouchListener { v, event ->
