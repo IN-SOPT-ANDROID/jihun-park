@@ -57,6 +57,8 @@
         android:textCursorDrawable="@color/signup_et_cursor"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        android:maxLines="1"
+
         app:layout_constraintStart_toStartOf="@id/signUp_id_tv"
         app:layout_constraintTop_toBottomOf="@id/signUp_id_tv" />
 
@@ -95,11 +97,23 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textStyle="bold"
+        android:maxLines="1"
         android:textCursorDrawable="@color/signup_et_cursor"
-
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/signup_show_pw"
         app:layout_constraintStart_toStartOf="@id/signUp_pw_tv"
-        app:layout_constraintTop_toBottomOf="@id/signUp_pw_tv" />
+        app:layout_constraintTop_toBottomOf="@id/signUp_pw_tv"
+        />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/signup_show_pw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/signUp_pw_et"
+        app:layout_constraintBottom_toBottomOf="@id/signUp_pw_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="0.05"
+        android:layout_marginBottom="5dp"
+        app:srcCompat="@drawable/show_password">
+    </androidx.appcompat.widget.AppCompatImageView>
 
     <TextView
         android:id="@+id/signUp_mbti_tv"
@@ -137,6 +151,8 @@
         android:textStyle="bold"
         android:textCursorDrawable="@color/signup_et_cursor"
         app:layout_constraintEnd_toEndOf="parent"
+        android:maxLines="1"
+
         app:layout_constraintStart_toStartOf="@id/signUp_mbti_tv"
         app:layout_constraintTop_toBottomOf="@id/signUp_mbti_tv" />
 

@@ -2,6 +2,10 @@ package org.sopt.sample.src.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import org.sopt.sample.R
 import org.sopt.sample.config.BaseActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
@@ -13,12 +17,36 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         "INFP", "INFJ", "INTP", "ISTP",
         "ISFP", "ISFJ", "ISTJ", "INTJ"
     )
+    companion object{
+        //inputType Password 값
+        const val INPUT_TYPE_PASSWORD = 129
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         signUp()
-
+        showPw()
     }
+
+    private fun showPw() {
+        Log.d("Signup","showPw touch 상태 ${binding.signUpPwEt.inputType}")
+        binding.signupShowPw.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.signUpPwEt.inputType = InputType.TYPE_CLASS_TEXT
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    binding.signUpPwEt.inputType = InputType.TYPE_CLASS_TEXT
+                }
+                MotionEvent.ACTION_UP -> {
+                    binding.signUpPwEt.inputType = INPUT_TYPE_PASSWORD
+                }
+
+            }
+            true
+        }
+    }
+
 
     private fun signUp() {
         binding.signUpCompleteBtn.setOnClickListener {
