@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
+import android.view.MotionEvent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,7 +32,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
         setResultSignUp() //회원가입 콜백
         signIn() //로그인
         signUp() //회원가입
-
+        showPw() //비밀번호 노출
     }
 
     //Signup Callback
@@ -50,6 +52,24 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                         .show()
                 }
             }
+    }
+    private fun showPw() {
+        Log.d("Signup","showPw touch 상태 ${binding.signInPwEt.inputType}")
+        binding.signInShowPw.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.signInPwEt.inputType = InputType.TYPE_CLASS_TEXT
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    binding.signInPwEt.inputType = InputType.TYPE_CLASS_TEXT
+                }
+                MotionEvent.ACTION_UP -> {
+                    binding.signInPwEt.inputType = SignupActivity.INPUT_TYPE_PASSWORD
+                }
+
+            }
+            true
+        }
     }
     private fun signIn() {
         //로그인 버튼 클릭
