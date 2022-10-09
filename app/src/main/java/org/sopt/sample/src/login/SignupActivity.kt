@@ -7,6 +7,9 @@ import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
 import org.sopt.sample.R
+import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_ID
+import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_MBTI
+import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_PW
 import org.sopt.sample.config.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
 import org.sopt.sample.util.extensions.makeSnackBar
@@ -93,12 +96,14 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
 
     private fun signupSuccess() {
         //SignUp Success->HomeActivity
-        val signInIntent = Intent(this, SignInActivity::class.java)
-        signInIntent.putExtra("id", binding.signUpIdEt.text.toString())
-        signInIntent.putExtra("pw", binding.signUpPwEt.text.toString())
-        signInIntent.putExtra("mbti", binding.signUpMbtiEt.text.toString())
-        setResult(RESULT_OK, signInIntent) //result code 및 intent 설정
-        finish() //액티비티 종료
+        Intent(this, SignInActivity::class.java).apply {
+            putExtra(USER_INFO_ID, binding.signUpIdEt.text.toString())
+            putExtra(USER_INFO_PW, binding.signUpPwEt.text.toString())
+            putExtra(USER_INFO_MBTI, binding.signUpMbtiEt.text.toString())
+        }.also {
+            setResult(RESULT_OK, it) //result code 및 intent 설정
+            finish() //액티비티 종료
+        }
     }
 
 }

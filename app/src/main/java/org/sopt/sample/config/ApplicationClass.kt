@@ -8,6 +8,9 @@ import org.sopt.sample.R
 class ApplicationClass: Application() {
     //전역변수
     companion object{
+        const val USER_INFO_ID = "id" //상수화 -> 가독성 및 유지보수
+        const val USER_INFO_PW = "pw" //상수화 -> 가독성 및 유지보수
+        const val USER_INFO_MBTI = "mbti" //상수화 -> 가독성 및 유지보수
         lateinit var sSharedPreferences: SharedPreferences
     }
     override fun onCreate() {

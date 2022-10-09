@@ -12,6 +12,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import org.sopt.sample.R
 import org.sopt.sample.config.*
+import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_ID
+import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_MBTI
+import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_PW
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.src.home.HomeActivity
 import org.sopt.sample.util.extensions.makeSnackBar
@@ -43,9 +46,9 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
                     //result.data에 대한 null체크
                     //toString()을 붙이면 null이 들어올 경우, 문자열 null로 바뀌어 들어올 수 있음.
                     result.data?.let {
-                        idFromSignup = it.getStringExtra("id")
-                        pwFromSignup = result.data?.getStringExtra("pw")
-                        mbtiFromSignup = result.data?.getStringExtra("mbti")
+                        idFromSignup = it.getStringExtra(USER_INFO_ID)
+                        pwFromSignup = result.data?.getStringExtra(USER_INFO_PW)
+                        mbtiFromSignup = result.data?.getStringExtra(USER_INFO_MBTI)
                     }
 
                     binding.root.makeSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
@@ -84,23 +87,23 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
             if (binding.signInIdEt.text.toString() == idFromSignup &&
                 binding.signInPwEt.text.toString() == (pwFromSignup)
             ) {
-                this.showToast("로그인에 성공했습니다")
+                this.showToast(getString(R.string.signin_login_complete))
 
                 //로그인 성공 시 id,pw,mbti를 sp에 저장
                 //apply를 활용하여 가독성 up!
                 editor.apply{
-                    putString("id",idFromSignup)
-                    putString("pw",pwFromSignup)
-                    putString("mbti",mbtiFromSignup)
+                    putString(USER_INFO_ID,idFromSignup)
+                    putString(USER_INFO_PW,pwFromSignup)
+                    putString(USER_INFO_MBTI,mbtiFromSignup)
                     commit()
                 }
 
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 //apply와 also를 활용하여 가독성 up!
                 homeIntent.apply {
-                    putExtra("id", idFromSignup)
-                    putExtra("pw", pwFromSignup)
-                    putExtra("mbti", mbtiFromSignup)
+                    putExtra(USER_INFO_ID, idFromSignup)
+                    putExtra(USER_INFO_PW, pwFromSignup)
+                    putExtra(USER_INFO_MBTI, mbtiFromSignup)
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }.also { //apply는 자기자신(T)을 반환하기 때문에, homeIntent.also{} 처럼 가능
                     startActivity(it) //자기자신(T)를 반환하는 also를 it으로 활용하여 startActivity(it) 호출
@@ -126,15 +129,15 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
     private fun autoLogin(){
         val intent:Intent = Intent(this, HomeActivity::class.java)
         //로그인 성공 했을 때 저장해놓은 정보를 HomeActivity에 보내면서 자동 로그인
-        val id = ApplicationClass.sSharedPreferences.getString("id",null)
-        val pw = ApplicationClass.sSharedPreferences.getString("pw",null)
-        val mbti = ApplicationClass.sSharedPreferences.getString("mbti",null)
+        val id = ApplicationClass.sSharedPreferences.getString(USER_INFO_ID,null)
+        val pw = ApplicationClass.sSharedPreferences.getString(USER_INFO_PW,null)
+        val mbti = ApplicationClass.sSharedPreferences.getString(USER_INFO_MBTI,null)
         if(id!=null && pw!=null){
-            intent.putExtra("id",id)
-            intent.putExtra("pw",pw)
-            intent.putExtra("mbti",mbti)
+            intent.putExtra(USER_INFO_ID,id)
+            intent.putExtra(USER_INFO_PW,pw)
+            intent.putExtra(USER_INFO_MBTI,mbti)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            this.showToast("자동 로그인 되었습니다.")
+            this.showToast(getString(R.string.signin_auto_login_complete))
             startActivity(intent)
         }
     }
