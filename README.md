@@ -21,7 +21,7 @@
         - Compose: 1.2.1
     - 으로 맞춰놓겠습니다.
 
-<img width="{80%} src="![Uploading Mirroid_recorder_20221009_202538_628.gif…]()"/>
+<img width="80%" src="![Uploading Mirroid_recorder_20221009_202538_628.gif…]()"/>
 
 
 ### ConstraintLayout - Chain의 속성
