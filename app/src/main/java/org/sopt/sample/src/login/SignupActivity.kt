@@ -9,7 +9,7 @@ import android.view.MotionEvent
 import org.sopt.sample.R
 import org.sopt.sample.config.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
-import org.sopt.sample.util.extensions.showSnackBar
+import org.sopt.sample.util.extensions.makeSnackBar
 
 class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
     private val mbtiList: List<String> = listOf(
@@ -64,7 +64,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         if (id.length in 6..10) {
             return true
         } else {
-            binding.root.showSnackBar(getString(R.string.signup_fail_id_length)).setAnchorView(binding.signUpIdEt)
+            binding.root.makeSnackBar(getString(R.string.signup_fail_id_length)).setAnchorView(binding.signUpIdEt)
                 .show()
             return false
         }
@@ -74,7 +74,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         if (pw.length in 8..12) {
             return true
         } else {
-            binding.root.showSnackBar(getString(R.string.signup_fail_pw_length)).setAnchorView(binding.signUpPwEt)
+            binding.root.makeSnackBar(getString(R.string.signup_fail_pw_length)).setAnchorView(binding.signUpPwEt)
                 .show()
             return false
         }
@@ -86,7 +86,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         ) {
             return true
         } else {
-            binding.root.showSnackBar("올바르지 않은 MBTI입니다.").setAnchorView(binding.signUpMbtiEt).show()
+            binding.root.makeSnackBar("올바르지 않은 MBTI입니다.").setAnchorView(binding.signUpMbtiEt).show()
             return false
         }
     }

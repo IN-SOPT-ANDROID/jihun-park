@@ -8,15 +8,13 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.R
 import org.sopt.sample.config.*
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.src.home.HomeActivity
-import org.sopt.sample.util.extensions.showSnackBar
+import org.sopt.sample.util.extensions.makeSnackBar
 import org.sopt.sample.util.extensions.showToast
 
 
@@ -46,12 +44,12 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
                     pwFromSignup = result.data?.getStringExtra("pw").toString()
                     mbtiFromSignup = result.data?.getStringExtra("mbti").toString()
 
-                    binding.root.showSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
+                    binding.root.makeSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
                 //회원가입 취소
                 else {
-                    binding.root.showSnackBar(getString(R.string.signin_fail_signup)).setAnchorView(binding.signInLoginBtn)
+                    binding.root.makeSnackBar(getString(R.string.signin_fail_signup)).setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
             }
@@ -100,7 +98,7 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
             //로그인 실패
             else {
 
-                binding.root.showSnackBar(getString(R.string.signin_fail_id_or_pw)).setAnchorView(binding.signInLoginBtn)
+                binding.root.makeSnackBar(getString(R.string.signin_fail_id_or_pw)).setAnchorView(binding.signInLoginBtn)
                     .show()
             }
         }
