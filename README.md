@@ -22,7 +22,7 @@
     - 으로 맞춰놓겠습니다.
 
 <p align="center">
-<img src ="https://user-images.githubusercontent.com/70442964/194756551-2619de6a-b0df-4082-ac33-2c30c60d7436.gif" width="200 height="400"
+<img src ="https://user-images.githubusercontent.com/70442964/194756551-2619de6a-b0df-4082-ac33-2c30c60d7436.gif" width="150 height="350"
 </p?
 
 
