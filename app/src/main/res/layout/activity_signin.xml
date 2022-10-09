@@ -27,10 +27,10 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="100dp"
         android:text="@string/signin_id_tv"
-        android:textColor="@color/white"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signIn_title_tv" />
+        app:layout_constraintTop_toBottomOf="@id/signIn_title_tv"
+        style="@style/SIGN_INPUT_TITLE"
+         />
 
     <EditText
         android:id="@+id/signIn_id_et"
@@ -55,9 +55,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
         android:text="@string/signup_pw_tv"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-
+        style="@style/SIGN_INPUT_TITLE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signIn_id_et" />
 
@@ -65,6 +63,7 @@
         android:id="@+id/signIn_pw_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/signin_et_underline"
@@ -72,27 +71,26 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signin_et_cursor"
+
         android:textStyle="bold"
 
         app:layout_constraintEnd_toStartOf="@id/signIn_show_pw"
-
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="15dp"
 
         app:layout_constraintTop_toBottomOf="@id/signIn_pw_tv" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/signIn_show_pw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/signIn_pw_et"
-        app:layout_constraintBottom_toBottomOf="@id/signIn_pw_et"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="0.05"
         android:layout_marginEnd="20dp"
-
         android:layout_marginBottom="5dp"
-        app:srcCompat="@drawable/show_password">
-    </androidx.appcompat.widget.AppCompatImageView>
+        app:layout_constraintBottom_toBottomOf="@id/signIn_pw_et"
+        app:layout_constraintDimensionRatio="0.05"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="@id/signIn_pw_et"
+        app:srcCompat="@drawable/show_password"></androidx.appcompat.widget.AppCompatImageView>
 
 
     <androidx.appcompat.widget.AppCompatButton
