@@ -28,10 +28,7 @@
 <img src ="https://user-images.githubusercontent.com/70442964/194756551-2619de6a-b0df-4082-ac33-2c30c60d7436.gif" height="800"
 </p?
 
-
-
-    
-    
+--
     
 ### ConstraintLayout - Chain의 속성
   ![img_1.png](img_1.png)
