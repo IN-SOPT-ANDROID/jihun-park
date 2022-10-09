@@ -40,9 +40,13 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    idFromSignup = result.data?.getStringExtra("id").toString()
-                    pwFromSignup = result.data?.getStringExtra("pw").toString()
-                    mbtiFromSignup = result.data?.getStringExtra("mbti").toString()
+                    //result.data에 대한 null체크
+                    //toString()을 붙이면 null이 들어올 경우, 문자열 null로 바뀌어 들어올 수 있음.
+                    result.data?.let {
+                        idFromSignup = it.getStringExtra("id")
+                        pwFromSignup = result.data?.getStringExtra("pw")
+                        mbtiFromSignup = result.data?.getStringExtra("mbti")
+                    }
 
                     binding.root.makeSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
                         .show()
