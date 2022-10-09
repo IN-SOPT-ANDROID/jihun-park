@@ -21,7 +21,10 @@
         - Compose: 1.2.1
     - 으로 맞춰놓겠습니다.
 
-<img width="80%" src="(https://user-images.githubusercontent.com/70442964/194756551-2619de6a-b0df-4082-ac33-2c30c60d7436.gif"/>
+<p align="center">
+<img src ="https://user-images.githubusercontent.com/70442964/194756551-2619de6a-b0df-4082-ac33-2c30c60d7436.gif"
+</p?
+
 
 
 ### ConstraintLayout - Chain의 속성
