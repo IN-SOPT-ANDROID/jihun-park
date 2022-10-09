@@ -6,12 +6,12 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
 import org.sopt.sample.R
-import org.sopt.sample.config.BaseActivity
+import org.sopt.sample.config.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
+import org.sopt.sample.util.extensions.showSnackBar
 
-class SignupActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
+class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
     private val mbtiList: List<String> = listOf(
         "ENFJ", "ENTJ", "ENFP", "ENTP",
         "ESFP", "ESFJ", "ESTP", "ESTJ",
@@ -64,7 +64,7 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         if (id.length in 6..10) {
             return true
         } else {
-            CustomSnackBar(getString(R.string.signup_fail_id_length)).setAnchorView(binding.signUpIdEt)
+            binding.root.showSnackBar(getString(R.string.signup_fail_id_length)).setAnchorView(binding.signUpIdEt)
                 .show()
             return false
         }
@@ -74,7 +74,7 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         if (pw.length in 8..12) {
             return true
         } else {
-            CustomSnackBar(getString(R.string.signup_fail_pw_length)).setAnchorView(binding.signUpPwEt)
+            binding.root.showSnackBar(getString(R.string.signup_fail_pw_length)).setAnchorView(binding.signUpPwEt)
                 .show()
             return false
         }
@@ -86,7 +86,7 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         ) {
             return true
         } else {
-            CustomSnackBar("올바르지 않은 MBTI입니다.").setAnchorView(binding.signUpMbtiEt).show()
+            binding.root.showSnackBar("올바르지 않은 MBTI입니다.").setAnchorView(binding.signUpMbtiEt).show()
             return false
         }
     }

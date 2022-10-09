@@ -22,7 +22,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".src.HomeActivity"
+            android:name=".src.home.HomeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

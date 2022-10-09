@@ -8,17 +8,19 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.R
-import org.sopt.sample.config.ApplicationClass
-import org.sopt.sample.config.BaseActivity
+import org.sopt.sample.config.*
 import org.sopt.sample.databinding.ActivitySigninBinding
-import org.sopt.sample.src.HomeActivity
+import org.sopt.sample.src.home.HomeActivity
+import org.sopt.sample.util.extensions.showSnackBar
+import org.sopt.sample.util.extensions.showToast
 
 
-class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding::inflate) {
+class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBinding::inflate) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent> //회원가입 정보를 받아오기 위한 launcher
     private var idFromSignup: String? = null
     private var pwFromSignup: String? = null
@@ -35,7 +37,6 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
         signUp() //회원가입
         showPw() //비밀번호 노출
     }
-
     //Signup Callback
     private fun setResultSignUp() {
         resultLauncher =
@@ -44,12 +45,13 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
                     idFromSignup = result.data?.getStringExtra("id").toString()
                     pwFromSignup = result.data?.getStringExtra("pw").toString()
                     mbtiFromSignup = result.data?.getStringExtra("mbti").toString()
-                    CustomSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
+
+                    binding.root.showSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
                 //회원가입 취소
                 else {
-                    CustomSnackBar(getString(R.string.signin_fail_signup)).setAnchorView(binding.signInLoginBtn)
+                    binding.root.showSnackBar(getString(R.string.signin_fail_signup)).setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
             }
@@ -80,7 +82,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
             if (binding.signInIdEt.text.toString() == idFromSignup &&
                 binding.signInPwEt.text.toString() == (pwFromSignup)
             ) {
-                showCustomToast("로그인에 성공했습니다")
+                this.showToast("로그인에 성공했습니다")
 
                 //로그인 성공 시 id,pw,mbti를 sp에 저장
                 editor.putString("id",idFromSignup)
@@ -97,7 +99,8 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
             }
             //로그인 실패
             else {
-                CustomSnackBar(getString(R.string.signin_fail_id_or_pw)).setAnchorView(binding.signInLoginBtn)
+
+                binding.root.showSnackBar(getString(R.string.signin_fail_id_or_pw)).setAnchorView(binding.signInLoginBtn)
                     .show()
             }
         }
@@ -112,7 +115,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
     }
     //자동 로그인
     private fun autoLogin(){
-        val intent:Intent = Intent(this,HomeActivity::class.java)
+        val intent:Intent = Intent(this, HomeActivity::class.java)
         //로그인 성공 했을 때 저장해놓은 정보를 HomeActivity에 보내면서 자동 로그인
         val id = ApplicationClass.sSharedPreferences.getString("id",null)
         val pw = ApplicationClass.sSharedPreferences.getString("pw",null)
@@ -122,7 +125,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(ActivitySigninBinding
             intent.putExtra("pw",pw)
             intent.putExtra("mbti",mbti)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            showCustomToast("자동 로그인 되었습니다.")
+            this.showToast("자동 로그인 되었습니다.")
             startActivity(intent)
         }
     }

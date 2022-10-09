@@ -1,16 +1,16 @@
-package org.sopt.sample.src
+package org.sopt.sample.src.home
 
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import org.sopt.sample.R
 import org.sopt.sample.config.ApplicationClass
-import org.sopt.sample.config.BaseActivity
+import org.sopt.sample.config.BindingActivity
 import org.sopt.sample.databinding.ActivityHomeBinding
 import org.sopt.sample.src.login.SignInActivity
+import org.sopt.sample.util.extensions.showToast
 
-class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::inflate) {
+class HomeActivity : BindingActivity<ActivityHomeBinding>(ActivityHomeBinding::inflate) {
     private lateinit var mbti:String
     private lateinit var prefs: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
     private fun logOut(){
         binding.homeLogoutBtn.setOnClickListener {
             prefs.edit().clear().commit() //모든 저장데이터 삭제
-            showCustomToast("로그아웃 되었습니다.")
+            this.showToast("로그아웃 되었습니다.")
             finish()
             val intent = Intent(this,SignInActivity::class.java)
             startActivity(intent)
