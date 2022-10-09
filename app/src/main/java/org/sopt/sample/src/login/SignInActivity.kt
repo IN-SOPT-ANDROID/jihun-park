@@ -87,17 +87,24 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
                 this.showToast("로그인에 성공했습니다")
 
                 //로그인 성공 시 id,pw,mbti를 sp에 저장
-                editor.putString("id",idFromSignup)
-                editor.putString("pw",pwFromSignup)
-                editor.putString("mbti",mbtiFromSignup)
-                editor.commit()
+                //apply를 활용하여 가독성 up!
+                editor.apply{
+                    putString("id",idFromSignup)
+                    putString("pw",pwFromSignup)
+                    putString("mbti",mbtiFromSignup)
+                    commit()
+                }
 
                 val homeIntent = Intent(this, HomeActivity::class.java)
-                homeIntent.putExtra("id", idFromSignup)
-                homeIntent.putExtra("pw", pwFromSignup)
-                homeIntent.putExtra("mbti", mbtiFromSignup)
-                homeIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(homeIntent)
+                //apply와 also를 활용하여 가독성 up!
+                homeIntent.apply {
+                    putExtra("id", idFromSignup)
+                    putExtra("pw", pwFromSignup)
+                    putExtra("mbti", mbtiFromSignup)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }.also { //apply는 자기자신(T)을 반환하기 때문에, homeIntent.also{} 처럼 가능
+                    startActivity(it) //자기자신(T)를 반환하는 also를 it으로 활용하여 startActivity(it) 호출
+                }
             }
             //로그인 실패
             else {
