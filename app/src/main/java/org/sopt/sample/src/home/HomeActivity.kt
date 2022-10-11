@@ -12,15 +12,11 @@ import org.sopt.sample.src.login.SignInActivity
 import org.sopt.sample.util.extensions.showToast
 
 class HomeActivity : BindingActivity<ActivityHomeBinding>(ActivityHomeBinding::inflate) {
-    private lateinit var mbti:String
-    private lateinit var prefs: SharedPreferences
-
-    companion object{
-    }
+    private lateinit var mbti: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        prefs = ApplicationClass.sSharedPreferences
+        ApplicationClass.sSharedPreferences
 
         mbti = intent.getStringExtra(USER_INFO_MBTI).toString()
         binding.homeNameTv.text = getString(R.string.home_user_name)
@@ -29,12 +25,12 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(ActivityHomeBinding::i
     }
 
     /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
-    private fun logOut(){
+    private fun logOut() {
         binding.homeLogoutBtn.setOnClickListener {
-            prefs.edit().clear().commit() //모든 저장데이터 삭제
+            ApplicationClass.sSharedPreferences.edit().clear().commit() //모든 저장데이터 삭제
             this.showToast("로그아웃 되었습니다.")
             finish()
-            val intent = Intent(this,SignInActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
     }
