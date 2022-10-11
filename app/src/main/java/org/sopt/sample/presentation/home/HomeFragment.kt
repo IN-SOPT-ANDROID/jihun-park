@@ -10,11 +10,10 @@ import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
 
 
-class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind) {
+class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind,R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.homeTitle.text = "aewwt"
     }
 
     companion object {

@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_fragment_container"
+    <FrameLayout
+        android:id="@+id/main_fragment_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/main_btm_navigation"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_btm_navigation"
