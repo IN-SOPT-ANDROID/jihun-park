@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/main_btm_navigation"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_btm_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/main_bottom_menu">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/main_bottom_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

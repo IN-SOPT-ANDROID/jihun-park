@@ -1,22 +1,25 @@
 package org.sopt.sample.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import org.sopt.sample.R
-import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivityMainBinding
-import org.sopt.sample.presentation.login.SignInActivity
-import org.sopt.sample.util.const.USER_INFO_MBTI
-import org.sopt.sample.util.extensions.showToast
+import org.sopt.sample.presentation.home.HomeFragment
 
 class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        logOutBtnListener()
-        val currentFragment = supportFragmentManager.findFragmentById()
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_container)
+        //현재 설정되어있는 Fragment가 없으면, HomeFragment를 초기화면으로 설정
+        if (currentFragment == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.main_fragment_container, HomeFragment.newInstance())
+                .commit()
+        }
+    }
 
-
+    private fun initBottomNavigation() {
     }
 
 
