@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.home
+package org.sopt.sample.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,18 +7,21 @@ import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivityHomeBinding
 import org.sopt.sample.presentation.login.SignInActivity
-import org.sopt.sample.util.const.user_info_const.Companion.USER_INFO_MBTI
+import org.sopt.sample.util.const.*
 import org.sopt.sample.util.extensions.showToast
 
-class HomeActivity : BindingActivity<ActivityHomeBinding>(ActivityHomeBinding::inflate) {
+class MainActivity : BindingActivity<ActivityHomeBinding>(ActivityHomeBinding::inflate) {
     private lateinit var mbti:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        init()
+        logOutBtnListener()
+    }
+    private fun init(){
         mbti = intent.getStringExtra(USER_INFO_MBTI).toString()
         binding.homeNameTv.text = getString(R.string.home_user_name)
         binding.homeMbtiTv.text = "${getString(R.string.home_mbti_tv)} $mbti"
-        logOutBtnListener()
+
     }
 
     /** 로그아웃 : sp를 초기화하고 SignInActivity Start */

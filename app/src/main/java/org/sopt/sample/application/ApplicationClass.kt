@@ -9,6 +9,7 @@ class ApplicationClass: Application() {
     //전역변수
 
     companion object{
+
         lateinit var sSharedPreferences: SharedPreferences
     }
     override fun onCreate() {

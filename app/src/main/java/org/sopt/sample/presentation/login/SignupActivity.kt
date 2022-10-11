@@ -7,11 +7,9 @@ import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
 import org.sopt.sample.R
-import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_ID
-import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_MBTI
-import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_PW
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
+import org.sopt.sample.util.const.*
 import org.sopt.sample.util.extensions.makeSnackBar
 
 class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
