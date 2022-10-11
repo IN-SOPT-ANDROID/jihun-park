@@ -24,4 +24,6 @@
     <string name="signup_logout">Logout</string>
     <string name="signin_auto_login_complete">자동 로그인 되었습니다.</string>
     <string name="signin_login_complete">로그인에 성공했습니다</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
