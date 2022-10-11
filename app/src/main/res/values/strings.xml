@@ -26,4 +26,7 @@
     <string name="signin_login_complete">로그인에 성공했습니다</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btm_menu_home">홈</string>
+    <string name="btm_menu_gallery">갤러리</string>
+    <string name="btm_menu_search">검색</string>
 </resources>
