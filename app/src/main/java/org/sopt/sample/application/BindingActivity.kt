@@ -1,11 +1,9 @@
-package org.sopt.sample.config
+package org.sopt.sample.application
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.snackbar.Snackbar
 
 abstract class BindingActivity<B : ViewBinding>(private val inflate: (LayoutInflater) -> B) :
     AppCompatActivity() {

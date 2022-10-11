@@ -4,9 +4,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import org.sopt.sample.R
-import org.sopt.sample.config.ApplicationClass
-import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_MBTI
-import org.sopt.sample.config.BindingActivity
+import org.sopt.sample.application.ApplicationClass
+import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_MBTI
+import org.sopt.sample.application.BindingActivity
 import org.sopt.sample.databinding.ActivityHomeBinding
 import org.sopt.sample.src.login.SignInActivity
 import org.sopt.sample.util.extensions.showToast

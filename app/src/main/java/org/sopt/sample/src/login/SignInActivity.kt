@@ -11,10 +11,10 @@ import android.view.MotionEvent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import org.sopt.sample.R
-import org.sopt.sample.config.*
-import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_ID
-import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_MBTI
-import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_PW
+import org.sopt.sample.application.*
+import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_ID
+import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_MBTI
+import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_PW
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.src.home.HomeActivity
 import org.sopt.sample.util.extensions.makeSnackBar

@@ -7,10 +7,10 @@ import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
 import org.sopt.sample.R
-import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_ID
-import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_MBTI
-import org.sopt.sample.config.ApplicationClass.Companion.USER_INFO_PW
-import org.sopt.sample.config.BindingActivity
+import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_ID
+import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_MBTI
+import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_PW
+import org.sopt.sample.application.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
 import org.sopt.sample.util.extensions.makeSnackBar
 
