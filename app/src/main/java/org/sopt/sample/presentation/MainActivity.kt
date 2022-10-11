@@ -5,12 +5,12 @@ import android.os.Bundle
 import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
-import org.sopt.sample.databinding.ActivityHomeBinding
+import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.presentation.login.SignInActivity
-import org.sopt.sample.util.const.*
+import org.sopt.sample.util.const.USER_INFO_MBTI
 import org.sopt.sample.util.extensions.showToast
 
-class MainActivity : BindingActivity<ActivityHomeBinding>(ActivityHomeBinding::inflate) {
+class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var mbti:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
