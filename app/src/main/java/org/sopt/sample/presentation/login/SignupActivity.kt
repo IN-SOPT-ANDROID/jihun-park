@@ -1,4 +1,4 @@
-package org.sopt.sample.src.login
+package org.sopt.sample.presentation.login
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,7 +10,7 @@ import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_ID
 import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_MBTI
 import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_PW
-import org.sopt.sample.application.BindingActivity
+import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
 import org.sopt.sample.util.extensions.makeSnackBar
 

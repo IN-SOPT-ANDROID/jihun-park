@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="SIGN_INPUT_TITLE">
+    <style name="sign_input_title">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>

@@ -15,21 +15,21 @@
 
         tools:targetApi="31">
         <activity
-            android:name=".src.login.SignupActivity"
+            android:name=".presentation.login.SignupActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".src.home.HomeActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".src.login.SignInActivity"
+            android:name=".presentation.login.SignInActivity"
             android:exported="true">
 
         <intent-filter>

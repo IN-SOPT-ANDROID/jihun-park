@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/signin_background"
-    tools:context=".src.login.SignupActivity">
+    tools:context=".presentation.login.SignupActivity">
 
     <TextView
         android:id="@+id/signUp_title_tv"
@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/signUp_id_tv"
-        style="@style/SIGN_INPUT_TITLE"
+        style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/signUp_id_desc1_tv"
-        style="@style/SIGN_INPUT_TITLE"
+        style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -64,7 +64,7 @@
 
     <TextView
         android:id="@+id/signUp_pw_tv"
-        style="@style/SIGN_INPUT_TITLE"
+        style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -76,7 +76,7 @@
 
     <TextView
         android:id="@+id/signUp_pw_desc1_tv"
-        style="@style/SIGN_INPUT_TITLE"
+        style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -118,7 +118,7 @@
 
     <TextView
         android:id="@+id/signUp_mbti_tv"
-        style="@style/SIGN_INPUT_TITLE"
+        style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -130,7 +130,7 @@
 
     <TextView
         android:id="@+id/signUp_mbti_desc1_tv"
-        style="@style/SIGN_INPUT_TITLE"
+        style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
