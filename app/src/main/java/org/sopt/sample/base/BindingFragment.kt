@@ -12,7 +12,7 @@ abstract class BindingFragment<B : ViewBinding>(
     private val bind: (View) -> B,
 ) : Fragment() {
     private var _binding: B? = null
-    private val binding
+    protected val binding
         get() = requireNotNull(_binding!!)
     override fun onCreateView(
         inflater: LayoutInflater,

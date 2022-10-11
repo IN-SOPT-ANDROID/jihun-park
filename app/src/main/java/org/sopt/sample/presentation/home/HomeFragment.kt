@@ -12,24 +12,14 @@ import org.sopt.sample.databinding.FragmentHomeBinding
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.homeTitle.text = "aewwt"
     }
 
-
-
     companion object {
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+        fun newInstance():HomeFragment{
+            return HomeFragment()
+        }
     }
 }
