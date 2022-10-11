@@ -114,9 +114,7 @@
         app:layout_constraintDimensionRatio="0.05"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/signUp_pw_et"
-        app:srcCompat="@drawable/show_password">
-
-    </androidx.appcompat.widget.AppCompatImageView>
+        app:srcCompat="@drawable/show_password" />
 
     <TextView
         android:id="@+id/signUp_mbti_tv"
