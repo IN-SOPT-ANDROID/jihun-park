@@ -1,14 +1,8 @@
 <resources>
     <string name="app_name">INSOPTAndroidPractice</string>
     <string name="login_info_sp">LoginSp</string>
-    <string name="signup_id_tv">ID</string>
-    <string name="signin_id_tv">ID</string>
-    <string name="signin_id_et">아이디를 입력하세요</string>
-    <string name="signin_pw_tv">비밀번호</string>
-    <string name="signin_pw_et">비밀번호를 입력하세요</string>
-    <string name="signup_id_et">아이디를 입력하세요</string>
-    <string name="signup_pw_tv">비밀번호</string>
-    <string name="signup_pw_et">비밀번호를 입력하세요</string>
+    <string name="sign_id_tv">ID</string>
+    <string name="sign_pw_tv">Password</string>
     <string name="signin_login_btn">Login</string>
     <string name="signup_login_success">회원가입 성공</string>
     <string name="signup_fail_id_length">아이디는 6글자~10글자 이내로 입력해주세요!</string>
@@ -18,7 +12,6 @@
     <string name="signin_fail_id_or_pw">ID 또는 PW를 확인해주세요!</string>
     <string name="signup_title_tv">SIGNUP</string>
     <string name="signup_mbti_tv">MBTI</string>
-    <string name="signup_mbti_et">MBTI를 입력하세요</string>
     <string name="signup_complete_btn">회원가입 완료</string>
     <string name="signin_success_signup">회원가입 완료!</string>
     <string name="signin_fail_signup">회원가입이 취소되었습니다.</string>
@@ -28,4 +21,7 @@
     <string name="signup_mbti_desc1">(선택)</string>
     <string name="signup_pw_desc1">(필수)</string>
     <string name="signup_id_desc1">(필수)</string>
+    <string name="signup_logout">Logout</string>
+    <string name="signin_auto_login_complete">자동 로그인 되었습니다.</string>
+    <string name="signin_login_complete">로그인에 성공했습니다</string>
 </resources>
