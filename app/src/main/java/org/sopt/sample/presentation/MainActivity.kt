@@ -22,6 +22,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
                 .commit()
         }
         initBottomNavigation()
+        bottomNavScrollToTop()
     }
 
     private fun initBottomNavigation() {
@@ -48,8 +49,12 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
                 else -> false
             }
         }
+    }
+    private fun bottomNavScrollToTop(){
         binding.mainBtmNavigation.setOnItemReselectedListener {
-            findViewById<RecyclerView>(R.id.home_recycler_repo).smoothScrollToPosition(0)
+            if(it.itemId==R.id.btm_home_menu){
+                findViewById<RecyclerView>(R.id.home_recycler_repo).smoothScrollToPosition(0)
+            }
         }
     }
 
