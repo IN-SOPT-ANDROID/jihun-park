@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.sample.databinding.HomeItemViewBinding
-import org.sopt.sample.presentation.home.data.RecycleData
+import org.sopt.sample.presentation.home.data.RepoContentData
 
 class HomeRecyclerAdapter(context:Context):RecyclerView.Adapter<HomeRecyclerAdapter.HomeViewHolder>() {
     private val inflater by lazy{LayoutInflater.from(context)} //by laze : 초기화를 최대한 늦추는 효과
-    private var dataList:List<RecycleData> = emptyList()
+    private var dataList:List<RepoContentData> = emptyList()
     class HomeViewHolder(private val binding:HomeItemViewBinding):RecyclerView.ViewHolder(binding.root){
         //2. onCreateViewHolder에서 받아온 binding을 이용하여 HomeItemView의 컴포넌트에 접근할 수 있다.
-        fun onBind(data: RecycleData){
+        fun onBind(data: RepoContentData){
             binding.apply {
                 homeItemProfile.setImageDrawable(binding.root.context.getDrawable(data.profileImg))
                 homeItemRepoName.text = data.repoName
@@ -39,7 +39,7 @@ class HomeRecyclerAdapter(context:Context):RecyclerView.Adapter<HomeRecyclerAdap
     override fun getItemCount(): Int {
         return dataList.size
     }
-    fun setDataList(dataList:List<RecycleData>){
+    fun setDataList(dataList:List<RepoContentData>){
         //깊은복사 얕은복사, 외부의 변화에도 this.dataList가 바뀌지 않도록, toList로 리스트를 새로 만들어준다.
         this.dataList = dataList.toList()
         notifyDataSetChanged() //4. 데이터의 변화가 발생했음을 알림
