@@ -4,5 +4,5 @@ data class RepoContentData(
     val profileImg: Int,
     val repoName: String,
     val authorName: String,
-    val viewType: Int = REPO_CONTENT_TYPE
-)
+    override val viewType: Int = REPO_CONTENT_TYPE
+): RecycleData()

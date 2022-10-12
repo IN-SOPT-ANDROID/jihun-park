@@ -6,12 +6,17 @@ import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.adapter.HomeRecyclerAdapter
+import org.sopt.sample.presentation.home.data.RecycleData
 import org.sopt.sample.presentation.home.data.RepoContentData
+import org.sopt.sample.presentation.home.data.RepoTitleData
 
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind,R.layout.fragment_home) {
 
-    private val homeRecycleList = listOf<RepoContentData>(
+    private val homeRecycleList = listOf<RecycleData>(
+        RepoTitleData(
+            titleName = "지훈이의 레포지터리"
+        ),
         RepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
