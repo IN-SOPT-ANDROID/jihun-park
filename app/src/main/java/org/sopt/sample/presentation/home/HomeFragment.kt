@@ -78,7 +78,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::b
     )
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = HomeRecyclerAdapter(requireContext())
