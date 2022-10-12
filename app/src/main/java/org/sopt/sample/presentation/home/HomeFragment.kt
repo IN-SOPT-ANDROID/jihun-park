@@ -2,6 +2,8 @@ package org.sopt.sample.presentation.home
 
 import android.os.Bundle
 import android.view.View
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
@@ -10,8 +12,8 @@ import org.sopt.sample.presentation.home.data.RecycleData
 import org.sopt.sample.presentation.home.data.RepoContentData
 import org.sopt.sample.presentation.home.data.RepoTitleData
 
-
-class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind,R.layout.fragment_home) {
+class HomeFragment :
+    BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
 
     private val homeRecycleList = listOf<RecycleData>(
         RepoTitleData(
@@ -82,13 +84,17 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::b
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+    }
+
+    private fun initAdapter() {
         val adapter = HomeRecyclerAdapter(requireContext())
         binding.homeRecyclerRepo.adapter = adapter
         adapter.setDataList(homeRecycleList)
     }
 
     companion object {
-        fun newInstance():HomeFragment{
+        fun newInstance(): HomeFragment {
             return HomeFragment()
         }
     }

@@ -1,6 +1,8 @@
 package org.sopt.sample.presentation
 
 import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivityMainBinding
@@ -45,6 +47,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
                 }
                 else -> false
             }
+        }
+        binding.mainBtmNavigation.setOnItemReselectedListener {
+            findViewById<RecyclerView>(R.id.home_recycler_repo).smoothScrollToPosition(0)
         }
     }
 
