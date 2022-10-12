@@ -8,8 +8,10 @@
     tools:context=".presentation.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_recycler_repo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/home_item_view">
     </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

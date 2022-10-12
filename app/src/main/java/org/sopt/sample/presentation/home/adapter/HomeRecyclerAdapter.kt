@@ -1,21 +1,23 @@
-package org.sopt.sample.presentation.home.recyclerview
+package org.sopt.sample.presentation.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.sample.databinding.HomeItemViewBinding
-import org.sopt.sample.presentation.data.HomeRecycleData
+import org.sopt.sample.presentation.home.data.HomeRecycleData
 
 class HomeRecyclerAdapter(context:Context):RecyclerView.Adapter<HomeRecyclerAdapter.HomeViewHolder>() {
     private val inflater by lazy{LayoutInflater.from(context)} //by laze : 초기화를 최대한 늦추는 효과
     private var dataList:List<HomeRecycleData> = emptyList()
     class HomeViewHolder(private val binding:HomeItemViewBinding):RecyclerView.ViewHolder(binding.root){
         //2. onCreateViewHolder에서 받아온 binding을 이용하여 HomeItemView의 컴포넌트에 접근할 수 있다.
-        fun onBind(data:HomeRecycleData){
-            binding.homeItemProfile.setImageDrawable(binding.root.context.getDrawable(data.profileImg))
-            binding.homeItemRepoName.text = data.repoName
-            binding.homeItemAuthor.text = data.authorName
+        fun onBind(data: HomeRecycleData){
+            binding.apply {
+                homeItemProfile.setImageDrawable(binding.root.context.getDrawable(data.profileImg))
+                homeItemRepoName.text = data.repoName
+                homeItemAuthor.text = data.authorName
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {

@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.data
+package org.sopt.sample.presentation.home.data
 
 data class HomeRecycleData(
     val profileImg:Int,
