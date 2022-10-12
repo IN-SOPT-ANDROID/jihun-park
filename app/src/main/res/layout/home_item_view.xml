@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/home_item_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="fitXY"
@@ -21,19 +22,19 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/item_view_repo_name_title"
+        android:id="@+id/home_item_repo_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Repo Name"
         app:layout_constraintEnd_toEndOf="parent"></TextView>
 
     <TextView
-        android:id="@+id/item_view_repo_name"
+        android:id="@+id/home_item_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jihun Park"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_view_repo_name_title"></TextView>
+        app:layout_constraintTop_toBottomOf="@id/home_item_repo_name"></TextView>
 
 
     <androidx.constraintlayout.helper.widget.Flow
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:orientation="vertical"
-        app:constraint_referenced_ids="item_view_repo_name_title,item_view_repo_name"
+        app:constraint_referenced_ids="home_item_repo_name,home_item_author"
         app:flow_verticalGap="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
