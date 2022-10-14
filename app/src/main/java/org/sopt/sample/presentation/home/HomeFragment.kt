@@ -2,85 +2,82 @@ package org.sopt.sample.presentation.home
 
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.adapter.HomeRecyclerAdapter
-import org.sopt.sample.presentation.home.data.RecycleData
-import org.sopt.sample.presentation.home.data.RepoContentData
-import org.sopt.sample.presentation.home.data.RepoTitleData
+import org.sopt.sample.presentation.home.data.HomeRecycleData
+import org.sopt.sample.presentation.home.data.RepoContentDataHome
+import org.sopt.sample.presentation.home.data.RepoTitleDataHome
 
 class HomeFragment :
     BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
 
-    private val homeRecycleList = listOf<RecycleData>(
-        RepoTitleData(
+    private val homeRecycleList = listOf<HomeRecycleData>(
+        RepoTitleDataHome(
             titleName = "지훈이의 레포지터리"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Park"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Lee"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Han"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Seok"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Kim"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Woo"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Hwang"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Jegal"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Sunwoo"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Kang"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Choi"
         ),
-        RepoContentData(
+        RepoContentDataHome(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Son"
         )
     )
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
