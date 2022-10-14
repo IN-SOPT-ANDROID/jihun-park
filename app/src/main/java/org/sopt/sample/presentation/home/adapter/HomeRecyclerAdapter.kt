@@ -9,35 +9,33 @@ import org.sopt.sample.databinding.HomeRepoTitleItemViewBinding
 import org.sopt.sample.presentation.home.data.*
 import org.sopt.sample.presentation.home.data.HomeRecycleData.HomeConst.REPO_CONTENT_TYPE
 import org.sopt.sample.presentation.home.data.HomeRecycleData.HomeConst.REPO_TITLE_TYPE
+import org.sopt.sample.presentation.home.viewholder.HomeViewHolder
+import org.sopt.sample.presentation.home.viewholder.RepoContentViewHolder
+import org.sopt.sample.presentation.home.viewholder.RepoTitleViewHolder
 
 class HomeRecyclerAdapter(context: Context) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<HomeViewHolder>() {
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
     private var dataList: List<HomeRecycleData> = emptyList()
 
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         //1. 미리 얻어온 inflater를 이용하여 xml파일인 HomeItemView의 binding을 가져오고 이걸 HomeViewHolder에게 넘겨준다.
-        if (viewType == REPO_TITLE_TYPE) {
-            val binding = HomeRepoTitleItemViewBinding.inflate(inflater, parent, false)
-            return TitleViewHolder(binding)
-        }
-        //viewType == REPO_CONTENT_TYPE
-        else {
-            val binding = HomeRepoContentItemViewBinding.inflate(inflater, parent, false)
-            return ContentViewHolder(binding)
+        return when (viewType) {
+            //뷰 타입에 따른 분기처리
+            REPO_TITLE_TYPE -> RepoTitleViewHolder(HomeRepoTitleItemViewBinding.inflate(inflater, parent, false))
+            REPO_CONTENT_TYPE -> RepoContentViewHolder(HomeRepoContentItemViewBinding.inflate(inflater, parent, false))
+            else -> throw java.lang.IllegalArgumentException()
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         //3. 만들어진 onCreateViewHolder에서 만들어진 VieHolder를 이용하여 HomeItemView에 data를 set하는 onBind함수 호출
-        if (holder.itemViewType == REPO_TITLE_TYPE) {
-            (holder as TitleViewHolder).onTitleBind(dataList[position] as HomeRepoTitleData)
-        } else if (holder.itemViewType == REPO_CONTENT_TYPE) {
-            (holder as ContentViewHolder).onContentBind(dataList[position] as HomeRepoContentData)
+        when (holder) {
+            //홀더 타입에 따른 분기처리
+            is RepoTitleViewHolder -> holder.onBind(dataList[position])
+            is RepoContentViewHolder -> holder.onBind(dataList[position])
         }
-//        holder.onBind(dataList[position])
     }
 
     //dataList 요소들의 viewType 반환
