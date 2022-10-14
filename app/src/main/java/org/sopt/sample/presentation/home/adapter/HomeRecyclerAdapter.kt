@@ -15,32 +15,10 @@ class HomeRecyclerAdapter(context: Context) :
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
     private var dataList: List<HomeRecycleData> = emptyList()
 
-    //Repo Content 뷰횰더
-    class ContentViewHolder(private val binding: HomeRepoContentItemViewBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        //2. onCreateViewHolder에서 받아온 binding을 이용하여 HomeItemView의 컴포넌트에 접근할 수 있다.
-        fun onContentBind(data: RepoContentDataHome) {
-            binding.apply {
-                homeItemProfile.setImageDrawable(binding.root.context.getDrawable(data.profileImg))
-                homeItemRepoName.text = data.repoName
-                homeItemAuthor.text = data.authorName
-            }
-        }
-    }
 
-    //Repo Title 뷰홀더
-    class TitleViewHolder(private val binding: HomeRepoTitleItemViewBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun onTitleBind(data: RepoTitleDataHome) {
-            binding.apply {
-                homeItemTitle.text = data.titleName
-            }
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         //1. 미리 얻어온 inflater를 이용하여 xml파일인 HomeItemView의 binding을 가져오고 이걸 HomeViewHolder에게 넘겨준다.
-
         if (viewType == REPO_TITLE_TYPE) {
             val binding = HomeRepoTitleItemViewBinding.inflate(inflater, parent, false)
             return TitleViewHolder(binding)
@@ -55,9 +33,9 @@ class HomeRecyclerAdapter(context: Context) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         //3. 만들어진 onCreateViewHolder에서 만들어진 VieHolder를 이용하여 HomeItemView에 data를 set하는 onBind함수 호출
         if (holder.itemViewType == REPO_TITLE_TYPE) {
-            (holder as TitleViewHolder).onTitleBind(dataList[position] as RepoTitleDataHome)
+            (holder as TitleViewHolder).onTitleBind(dataList[position] as HomeRepoTitleData)
         } else if (holder.itemViewType == REPO_CONTENT_TYPE) {
-            (holder as ContentViewHolder).onContentBind(dataList[position] as RepoContentDataHome)
+            (holder as ContentViewHolder).onContentBind(dataList[position] as HomeRepoContentData)
         }
 //        holder.onBind(dataList[position])
     }

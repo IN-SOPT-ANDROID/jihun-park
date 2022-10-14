@@ -7,72 +7,72 @@ import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.adapter.HomeRecyclerAdapter
 import org.sopt.sample.presentation.home.data.HomeRecycleData
-import org.sopt.sample.presentation.home.data.RepoContentDataHome
-import org.sopt.sample.presentation.home.data.RepoTitleDataHome
+import org.sopt.sample.presentation.home.data.HomeRepoContentData
+import org.sopt.sample.presentation.home.data.HomeRepoTitleData
 
 class HomeFragment :
     BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
 
     private val homeRecycleList = listOf<HomeRecycleData>(
-        RepoTitleDataHome(
+        HomeRepoTitleData(
             titleName = "지훈이의 레포지터리"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Park"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Lee"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Han"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Seok"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Kim"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Woo"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Hwang"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Jegal"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Sunwoo"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Kang"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Choi"
         ),
-        RepoContentDataHome(
+        HomeRepoContentData(
             profileImg = R.drawable.home_profile_img_bino,
             repoName = "IN_SOPT",
             authorName = "Jihun Son"

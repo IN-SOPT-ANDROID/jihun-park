@@ -8,12 +8,12 @@ abstract class HomeRecycleData {
     }
     abstract val viewType:Int
 }
-data class RepoTitleDataHome(
+data class HomeRepoTitleData(
     val titleName: String,
     override val viewType: Int = REPO_TITLE_TYPE
 ): HomeRecycleData()
 
-data class RepoContentDataHome(
+data class HomeRepoContentData(
     val profileImg: Int,
     val repoName: String,
     val authorName: String,
