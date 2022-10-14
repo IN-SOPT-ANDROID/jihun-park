@@ -178,3 +178,64 @@ onPause()는 아주 잠깐 실행되므로 저장 작업을 실행하기에는 �
 
 ![9913FB4C5A9CAE1919](https://user-images.githubusercontent.com/70442964/194336951-f0152536-e072-4468-9497-334796a15668.png)
 
+
+### Fragment LifeCycle
+
+![image](https://user-images.githubusercontent.com/70442964/195812025-60ee26a7-e518-47d8-99f9-dedda77dfe3b.png)
+
+## onCreate()
+ - Fragment 만 CREATED 가 된 상황이다.
+ - 이는 FragmentManager 에 add 됐을 때 도달하며 onCreate() 콜백 함수를 호출한다. 주의할 점은 onCreate() 이전에 onAttach()가 먼저 호출된다는 것이다.
+ - 중요한 점은 이 시점에는 아직 Fragment View가 생성되지 않았기 때문에 Fragment의 View와 관련된 작업을 수행하지 않도록 해야한다. 
+ - Fragment를 생성하면서 넘겨준 값들이 있다면, 여기서 변수에 넣어주면 된다.
+
+## onCreateView()
+Fragment가 View를 그리기 위한, 즉 Layout을 Inflate 하는 작업을 수행하는 부분이다. 따라서 반환 값도 View가 된다. 다만 UI를 아직 그리지 않았다면 null을 반환해도 된다.
+
+## onViewCreated()
+onCreateView() 를 통해 반환된 View 객체는 onViewCreated()의 파라미터로 전달되는데, 이 시점부터는 Fragment View의 Lifecycle 이 INITIALIZED 상태로 업데이트됐기 때문에 View 의 초기값을 설정해주거나 LiveData Observing, RecyclerView나 ViewPager2에 사용할 Adapter 초기화 등을 이곳에서 수행하는 것이 적절하다.
+
+## onViewStateRestored()
+onViewStateRestored() 함수는 저장해둔 모든 state 값이 Fragment의 View 계층구조에 복원됐을 때 호출된다. 따라서 여기서부터는 체크박스 위젯이 현재 체크되어있는지 등 각 뷰의 상태 값을 체크할 수 있다.
+View lifecycle owner 는 이때 INITIALIZED 상태에서 CREATED 상태로 변경됐음을 알린다.
+
+## onStart()
+Fragment 가 사용자에게 보여질 수 있을 때 호출된다. 이는 주로 Fragment 가 attach 되어있는 Activity의 onStart() 시점과 유사하다. 이 시점부터는 Fragment의 child FragmentManager 통해 FragmentTransaction 을 안전하게 수행할 수 있다.
+
+## onResume()
+Fragment 가 보이는 상태에서 모든 Animator 와 Transition 효과가 종료되고, 프래그먼트가 사용자와 상호작용할 수 있을 때 onResume() 콜백이 호출된다.
+Resumed 상태가 됐다는 것은 사용자가 프래그먼트와 상호작용 하기에 적절한 상태가 됐다고 했는데, 이는 반대로 이야기하면 onResume() 이 호출되지 않은 시점에서는 입력을 시도하거나 포커스를 설정하는 등의 작업을 임의로 하면 안 된다는 것을 의미합니다.
+
+## onPause()
+사용자가 Fragment를 떠나기 시작했지만 Fragment는 여전히 visible 일 때 onPause()가 호출된다.
+
+## onStop()
+Fragment 가 더 이상 화면에 보이지 않게 되면 Fragment와 View의 Lifecycle 은 CREATED 상태가 되고, onStop() 콜백 함수가 호출되게 된다. 이 상태는 부모 액티비티나 프래그먼트가 중단됐을 때뿐만 아니라, 부모 액티비티나 프래그먼트의 상태가 저장될 때도 호출된다. 
+onStop()이 onSaveInstanceState() 함수보다 먼저 호출됨으로써 onStop()이 FragmentTransaction을 안전하게 수행할 수 있는 마지막 지점이 된다.
+
+## onDestroyView()
+모든 exit animation과 transition 이 완료되고, Fragment 가 화면으로부터 벗어났을 경우 Fragment View의 Lifecycle 은 DESTROYED 가 되고 onDestroy()가 호출된다.
+
+그리고 해당 시점에서는 가비지 컬렉터에 의해 수거될 수 있도록 Fragment View에 대한 모든 참조가 제거되어야 한다.
+
+## onDestroy()
+Fragment 가 제거되거나 FragmentManager 가 destroy 됐을 경우, 프래그먼트의 Lifecycle 은 DESTROYED 상태가 되고, onDestroy() 콜백 함수가 호출된다. 해당 지점은 Fragment Lifecycle의 끝을 알린다.
+그리고 가 onCreate() 이전에 호출됐던 것처럼 onDetach() 또한 onDestroy() 이후에 호출되게 된다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
