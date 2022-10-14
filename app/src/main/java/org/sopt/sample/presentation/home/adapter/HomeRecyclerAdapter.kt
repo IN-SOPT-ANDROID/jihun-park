@@ -39,7 +39,6 @@ class HomeRecyclerAdapter(context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         //1. 미리 얻어온 inflater를 이용하여 xml파일인 HomeItemView의 binding을 가져오고 이걸 HomeViewHolder에게 넘겨준다.
-        Log.d("onCreateViewHolder 뷰 타입", viewType.toString())
 
         if (viewType == REPO_TITLE_TYPE) {
             val binding = HomeRepoTitleItemViewBinding.inflate(inflater, parent, false)
@@ -54,7 +53,6 @@ class HomeRecyclerAdapter(context: Context) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         //3. 만들어진 onCreateViewHolder에서 만들어진 VieHolder를 이용하여 HomeItemView에 data를 set하는 onBind함수 호출
-        Log.d("onBindgViewHolder 아이템 뷰 타입", holder.itemViewType.toString())
         if (holder.itemViewType == REPO_TITLE_TYPE) {
             (holder as TitleViewHolder).onTitleBind(dataList[position] as RepoTitleData)
         } else if (holder.itemViewType == REPO_CONTENT_TYPE) {
