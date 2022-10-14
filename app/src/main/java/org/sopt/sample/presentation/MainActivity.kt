@@ -1,8 +1,8 @@
 package org.sopt.sample.presentation
 
+import android.content.Context
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivityMainBinding
@@ -54,10 +54,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
         binding.mainBtmNavigation.setOnItemReselectedListener {
             if(it.itemId==R.id.btm_home_menu){
                 findViewById<RecyclerView>(R.id.home_recycler_repo).smoothScrollToPosition(0)
+
             }
         }
     }
-
 
 //    /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
 //    private fun logOutBtnListener(){

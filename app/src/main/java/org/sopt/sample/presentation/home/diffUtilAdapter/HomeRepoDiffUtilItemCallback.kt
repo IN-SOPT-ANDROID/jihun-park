@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.home.diffUtil
+package org.sopt.sample.presentation.home.diffUtilAdapter
 
 import androidx.recyclerview.widget.DiffUtil
 import org.sopt.sample.presentation.home.data.HomeRecycleData
