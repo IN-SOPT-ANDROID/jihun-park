@@ -42,11 +42,9 @@ class HomeRecyclerAdapter(context: Context) :
     override fun getItemViewType(position: Int): Int {
         return dataList[position].viewType
     }
-
     override fun getItemCount(): Int {
         return dataList.size
     }
-
     fun setDataList(dataList: List<HomeRecycleData>) {
         //깊은복사 얕은복사, 외부의 변화에도 this.dataList가 바뀌지 않도록, toList로 리스트를 새로 만들어준다.
         this.dataList = dataList.toList()
