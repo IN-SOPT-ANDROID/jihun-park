@@ -223,6 +223,11 @@ Fragment 가 제거되거나 FragmentManager 가 destroy 됐을 경우, 프래�
 그리고 가 onCreate() 이전에 호출됐던 것처럼 onDetach() 또한 onDestroy() 이후에 호출되게 된다.
 
 
+### DiffUtill을 활용한 향상된 RecyclerView
+ - 좌(RecyclerView) 우(DiffUtil RecyclerView)
+ - 성능이 향상된 정도를 비교하기 위해 프로필 GPU렌더링을 참고
+    
+![image](https://user-images.githubusercontent.com/70442964/195871174-81abcc1c-69ea-4c42-b163-91dcf336b551.png)
 
 
 
