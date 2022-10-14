@@ -180,6 +180,7 @@ onPause()는 아주 잠깐 실행되므로 저장 작업을 실행하기에는 �
 
 ### DiffUtill을 활용한 향상된 RecyclerView
  - 좌(RecyclerView) 우(DiffUtil RecyclerView)
-![image](https://user-images.githubusercontent.com/70442964/195870760-f3e0e083-3e60-40d5-b9c3-6435012deabd.png)
+ - 성능이 향상된 정도를 비교하기 위해 프로필 GPU렌더링을 참고
+    
+![image](https://user-images.githubusercontent.com/70442964/195871174-81abcc1c-69ea-4c42-b163-91dcf336b551.png)
 
-![image](https://user-images.githubusercontent.com/70442964/195870532-a9b40060-910d-4e9e-b5ee-78e65bfee84f.png)
