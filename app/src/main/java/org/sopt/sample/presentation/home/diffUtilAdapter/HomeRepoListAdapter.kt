@@ -22,7 +22,6 @@ class HomeRepoListAdapter(context: Context) :
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        Log.d("뷰 타입", viewType.toString())
         return when (viewType) {
             REPO_TITLE_TYPE -> RepoTitleViewHolder(
                 HomeRepoTitleItemViewBinding.inflate(
@@ -45,7 +44,6 @@ class HomeRepoListAdapter(context: Context) :
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        Log.d("만들어진 뷰홀더 타입", holder.toString())
         when (holder) {
             is RepoTitleViewHolder -> holder.onBind(currentList[position])
             is RepoContentViewHolder -> holder.onBind(currentList[position])
@@ -90,7 +88,6 @@ class HomeRepoListAdapter(context: Context) :
             ) as HomeRecycleData
         )
         submitList(newData)
-        Log.d("MainActivity Create 생성될까?", "dd")
     }
 
     fun remove() {

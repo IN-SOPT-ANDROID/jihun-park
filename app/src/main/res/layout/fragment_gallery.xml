@@ -6,7 +6,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.gallery.GalleryFragment">
-
+    <Button
+        android:id="@+id/gallery_recycler_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/home_repo_add_btn">
+    </Button>
+    <Button
+        android:id="@+id/gallery_recycler_remove_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/home_repo_remove_btn">
+    </Button>
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/gallery_btn_flow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="gallery_recycler_add_btn,gallery_recycler_remove_btn"
+        >
+    </androidx.constraintlayout.helper.widget.Flow>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gallery_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/gallery_btn_flow"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/gallery_img_item_view"
+        android:layout_marginTop="50dp">
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:layout_width="wrap_content"
