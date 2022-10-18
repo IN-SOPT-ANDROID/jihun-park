@@ -1,5 +1,6 @@
 package org.sopt.sample.presentation.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import org.sopt.sample.R
@@ -12,7 +13,6 @@ import org.sopt.sample.presentation.home.diffUtilAdapter.HomeRepoListAdapter
 
 class HomeFragment :
     BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
-
     private val homeRecycleList = listOf<HomeRecycleData>(
         HomeRepoTitleData(
             titleName = "지훈이의 레포지터리"
@@ -79,6 +79,9 @@ class HomeFragment :
         )
     )
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
@@ -91,7 +94,7 @@ class HomeFragment :
         val adapter = HomeRepoListAdapter(requireContext())
         binding.homeRecyclerRepo.adapter = adapter
 //        adapter.setDataList(homeRecycleList)
-
+        adapter.setData(homeRecycleList)
         //add 버튼 -> Repo 추가
         binding.homeRecyclerRepoAddBtn.setOnClickListener {
             adapter.add()
@@ -101,6 +104,9 @@ class HomeFragment :
         binding.homeRecyclerRepoRemoveBtn.setOnClickListener {
             adapter.remove()
         }
+    }
+    fun scrollToTop(){
+        binding.homeRecyclerRepo.smoothScrollToPosition(0)
     }
 
     companion object {

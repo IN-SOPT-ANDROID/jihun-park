@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import org.sopt.sample.R
 import org.sopt.sample.databinding.HomeRepoContentItemViewBinding
 import org.sopt.sample.databinding.HomeRepoTitleItemViewBinding
+import org.sopt.sample.presentation.MainActivity
+import org.sopt.sample.presentation.home.HomeFragment
 import org.sopt.sample.presentation.home.data.HomeRecycleData
 import org.sopt.sample.presentation.home.data.HomeRecycleData.HomeConst.REPO_CONTENT_TYPE
 import org.sopt.sample.presentation.home.data.HomeRecycleData.HomeConst.REPO_TITLE_TYPE
@@ -19,6 +21,7 @@ import org.sopt.sample.presentation.home.viewholder.RepoTitleViewHolder
 
 class HomeRepoListAdapter(context: Context) :
     ListAdapter<HomeRecycleData, HomeViewHolder>(HomeRepoDiffUtilItemCallback()) {
+    val adapterContext:Context = context
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -65,13 +68,7 @@ class HomeRepoListAdapter(context: Context) :
 //        this.dataList = dataList.toList()
         val newData = mutableListOf<HomeRecycleData>()
         newData.addAll(currentList)
-        newData.add(
-            HomeRepoContentData(
-                R.drawable.home_profile_img_bino2,
-                "NEW IN_SOPT",
-                "Jihun Park"
-            )
-        )
+        newData.addAll(dataList)
         //ListAdapter 내장함수 submitList()
         submitList(newData)
     }
@@ -79,7 +76,7 @@ class HomeRepoListAdapter(context: Context) :
     fun add() {
         val newData = mutableListOf<HomeRecycleData>()
         newData.addAll(currentList)
-        newData.add(
+        newData.add(0,
             HomeRepoContentData(
                 R.drawable.home_profile_img_bino2,
                 "NEW IN_SOPT",
@@ -88,6 +85,7 @@ class HomeRepoListAdapter(context: Context) :
             ) as HomeRecycleData
         )
         submitList(newData)
+        ((MainActivity.mContext as MainActivity).supportFragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName) as HomeFragment).scrollToTop()
     }
 
     fun remove() {
