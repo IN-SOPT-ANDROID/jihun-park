@@ -15,7 +15,7 @@ import org.sopt.sample.presentation.home.HomeFragment
 
 class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(FragmentGalleryBinding::bind,R.layout.fragment_gallery) {
 
-    private val dataList = listOf<GalleryRecycleData>(
+    private val dataList = listOf(
         GalleryRecycleData(R.drawable.gallery_recycle_ironman1,"아이언맨1"),
         GalleryRecycleData(R.drawable.gallery_recycle_ironman3,"아이언3"),
         GalleryRecycleData(R.drawable.gallery_recycle_spiderman_amazing,"어메이징 스파이더맨"),

@@ -16,10 +16,11 @@ import org.sopt.sample.presentation.home.data.HomeRepoContentData
 import org.sopt.sample.presentation.home.viewholder.HomeViewHolder
 import org.sopt.sample.presentation.home.viewholder.RepoContentViewHolder
 import org.sopt.sample.presentation.home.viewholder.RepoTitleViewHolder
+import org.sopt.sample.util.diffUtil.DiffUtilItemCallback
 
 
 class HomeRepoListAdapter(context: Context) :
-    ListAdapter<HomeRecycleData, HomeViewHolder>(HomeRepoDiffUtilItemCallback()) {
+    ListAdapter<HomeRecycleData, HomeViewHolder>(DiffUtilItemCallback()) {
     val adapterContext: Context = context
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
 

@@ -9,8 +9,11 @@ import org.sopt.sample.databinding.GalleryImgItemViewBinding
 import org.sopt.sample.presentation.gallery.data.GalleryRecycleData
 import org.sopt.sample.presentation.gallery.viewholder.GalleryImgViewHolder
 import org.sopt.sample.presentation.gallery.viewholder.GalleryViewHolder
+import org.sopt.sample.util.diffUtil.DiffUtilItemCallback
 
-class GalleryListAdapter(context: Context):ListAdapter<GalleryRecycleData,GalleryViewHolder>(GalleryDiffUtilItemCallback()) {
+class GalleryListAdapter(context: Context):ListAdapter<GalleryRecycleData,GalleryViewHolder>(
+    DiffUtilItemCallback<GalleryRecycleData>()
+) {
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
     private var dataList:List<GalleryRecycleData> = emptyList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
