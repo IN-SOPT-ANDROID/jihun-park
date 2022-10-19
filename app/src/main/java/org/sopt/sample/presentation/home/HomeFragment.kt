@@ -88,19 +88,15 @@ class HomeFragment :
     }
 
     private fun initAdapter() {
-//        val adapter = HomeRecyclerAdapter(requireContext())
-//        binding.homeRecyclerRepo.adapter = adapter
-//        adapter.setDataList(homeRecycleList)
         val adapter = HomeRepoListAdapter(requireContext())
         binding.homeRecyclerRepo.adapter = adapter
-//        adapter.setDataList(homeRecycleList)
+        //setData
         adapter.submitList(homeRecycleList)
         //add 버튼 -> Repo 추가
         binding.homeRecyclerRepoAddBtn.setOnClickListener {
             adapter.add()
         }
-
-//        remove 버튼 -> Repo 삭제
+        //remove 버튼 -> Repo 삭제
         binding.homeRecyclerRepoRemoveBtn.setOnClickListener {
             adapter.remove()
         }

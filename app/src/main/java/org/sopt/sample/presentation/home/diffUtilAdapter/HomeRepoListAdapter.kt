@@ -74,6 +74,8 @@ class HomeRepoListAdapter(context: Context) :
         )
         //ListAdapter 내장함수 submitList()
         submitList(newData)
+
+        //Repo 추가 후 scrollToTop
         ((MainActivity.mContext as MainActivity).supportFragmentManager.findFragmentByTag(
             HomeFragment::class.java.simpleName
         ) as HomeFragment).scrollToTop()
