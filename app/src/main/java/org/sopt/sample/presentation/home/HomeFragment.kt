@@ -94,7 +94,7 @@ class HomeFragment :
         val adapter = HomeRepoListAdapter(requireContext())
         binding.homeRecyclerRepo.adapter = adapter
 //        adapter.setDataList(homeRecycleList)
-        adapter.setData(homeRecycleList)
+        adapter.submitList(homeRecycleList)
         //add 버튼 -> Repo 추가
         binding.homeRecyclerRepoAddBtn.setOnClickListener {
             adapter.add()

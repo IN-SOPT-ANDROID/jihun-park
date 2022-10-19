@@ -59,18 +59,9 @@ class HomeRepoListAdapter(context: Context) :
         return result
     }
 
-    fun setData(dataList: List<HomeRecycleData>) {
+    fun add() {
         //DiffUtil은 기존 데이터 리스트와 새로운 데이터 리스트의 차이를 분석해서 해당 부분만 갱신한다.
         //따라서 두개의 리스트가 필요하고, 리스트를 갱신할 때에도 새로운 리스트인 newData를 전달해야한다.
-//        this.dataList = dataList.toList()
-        val newData = mutableListOf<HomeRecycleData>()
-        newData.addAll(currentList)
-        newData.addAll(dataList)
-        //ListAdapter 내장함수 submitList()
-        submitList(newData)
-    }
-
-    fun add() {
         val newData = mutableListOf<HomeRecycleData>()
         newData.addAll(currentList)
         newData.add(
@@ -81,6 +72,7 @@ class HomeRepoListAdapter(context: Context) :
                 "Jihun Park",
             ) as HomeRecycleData
         )
+        //ListAdapter 내장함수 submitList()
         submitList(newData)
         ((MainActivity.mContext as MainActivity).supportFragmentManager.findFragmentByTag(
             HomeFragment::class.java.simpleName
