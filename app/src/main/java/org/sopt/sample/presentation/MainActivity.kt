@@ -55,7 +55,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
                     SearchFragment::class.java.simpleName
                 )
             }
-            else -> java.lang.IllegalArgumentException("Not found menu item id")
+            else -> IllegalArgumentException("${this::class.java.simpleName} Not found menu item id")
         }
     }
 //        logOutBtnListener()

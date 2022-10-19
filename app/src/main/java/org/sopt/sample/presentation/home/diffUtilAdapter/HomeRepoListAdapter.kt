@@ -37,7 +37,7 @@ class HomeRepoListAdapter(context: Context) :
                 )
             )
             else -> {
-                throw java.lang.IllegalArgumentException()
+                throw IllegalArgumentException("${this::class.java.simpleName} error")
             }
         }
     }
@@ -54,7 +54,7 @@ class HomeRepoListAdapter(context: Context) :
         val result = when(currentList[position]){
             is HomeRepoTitleData -> REPO_TITLE_TYPE
             is HomeRepoContentData -> REPO_CONTENT_TYPE
-            else -> throw java.lang.IllegalArgumentException()
+            else -> throw IllegalArgumentException("${this::class.java.simpleName} error")
         }
         return result
     }
