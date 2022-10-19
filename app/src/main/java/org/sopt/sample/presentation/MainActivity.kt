@@ -2,10 +2,8 @@ package org.sopt.sample.presentation
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import androidx.recyclerview.widget.RecyclerView
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivityMainBinding
@@ -14,9 +12,10 @@ import org.sopt.sample.presentation.home.HomeFragment
 import org.sopt.sample.presentation.search.SearchFragment
 
 class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
-    companion object{
+    companion object {
         lateinit var mContext: Context
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
@@ -24,23 +23,40 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
         addListener()
         changeFragment(R.id.btm_home_menu)
     }
-    private fun addListener(){
+
+    private fun addListener() {
         binding.mainBtmNavigation.setOnItemSelectedListener {
             changeFragment(it.itemId)
             true
         }
         binding.mainBtmNavigation.setOnItemReselectedListener {
-            if(it.itemId!=R.id.btm_home_menu) return@setOnItemReselectedListener
+            if (it.itemId != R.id.btm_home_menu) return@setOnItemReselectedListener
             (supportFragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName) as? HomeFragment)?.scrollToTop()
         }
     }
-    private fun changeFragment(menuItemId:Int) {
-            when (menuItemId) {
-                R.id.btm_home_menu -> supportFragmentManager.commit { replace<HomeFragment>(R.id.main_fragment_frame,HomeFragment::class.java.simpleName)}
-                R.id.btm_gallery_menu -> supportFragmentManager.commit {replace<GalleryFragment>(R.id.main_fragment_frame,GalleryFragment::class.java.simpleName)}
-                R.id.btm_search_menu -> supportFragmentManager.commit {replace<SearchFragment>(R.id.main_fragment_frame,SearchFragment::class.java.simpleName)}
-                else -> java.lang.IllegalArgumentException("Not found menu item id")
+
+    private fun changeFragment(menuItemId: Int) {
+        when (menuItemId) {
+            R.id.btm_home_menu -> supportFragmentManager.commit {
+                replace<HomeFragment>(
+                    R.id.main_fragment_frame,
+                    HomeFragment::class.java.simpleName
+                )
             }
+            R.id.btm_gallery_menu -> supportFragmentManager.commit {
+                replace<GalleryFragment>(
+                    R.id.main_fragment_frame,
+                    GalleryFragment::class.java.simpleName
+                )
+            }
+            R.id.btm_search_menu -> supportFragmentManager.commit {
+                replace<SearchFragment>(
+                    R.id.main_fragment_frame,
+                    SearchFragment::class.java.simpleName
+                )
+            }
+            else -> java.lang.IllegalArgumentException("Not found menu item id")
+        }
     }
 //        logOutBtnListener()
 //    /** 로그아웃 : sp를 초기화하고 SignInActivity Start */

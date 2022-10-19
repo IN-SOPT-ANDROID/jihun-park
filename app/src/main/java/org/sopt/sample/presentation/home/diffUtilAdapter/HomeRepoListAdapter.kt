@@ -1,7 +1,6 @@
 package org.sopt.sample.presentation.home.diffUtilAdapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -21,7 +20,7 @@ import org.sopt.sample.presentation.home.viewholder.RepoTitleViewHolder
 
 class HomeRepoListAdapter(context: Context) :
     ListAdapter<HomeRecycleData, HomeViewHolder>(HomeRepoDiffUtilItemCallback()) {
-    val adapterContext:Context = context
+    val adapterContext: Context = context
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -76,7 +75,8 @@ class HomeRepoListAdapter(context: Context) :
     fun add() {
         val newData = mutableListOf<HomeRecycleData>()
         newData.addAll(currentList)
-        newData.add(0,
+        newData.add(
+            0,
             HomeRepoContentData(
                 R.drawable.home_profile_img_bino2,
                 "NEW IN_SOPT",
@@ -85,7 +85,9 @@ class HomeRepoListAdapter(context: Context) :
             ) as HomeRecycleData
         )
         submitList(newData)
-        ((MainActivity.mContext as MainActivity).supportFragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName) as HomeFragment).scrollToTop()
+        ((MainActivity.mContext as MainActivity).supportFragmentManager.findFragmentByTag(
+            HomeFragment::class.java.simpleName
+        ) as HomeFragment).scrollToTop()
     }
 
     fun remove() {

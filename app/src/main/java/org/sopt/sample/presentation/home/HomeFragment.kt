@@ -1,6 +1,5 @@
 package org.sopt.sample.presentation.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import org.sopt.sample.R
@@ -82,6 +81,7 @@ class HomeFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
@@ -105,7 +105,8 @@ class HomeFragment :
             adapter.remove()
         }
     }
-    fun scrollToTop(){
+
+    fun scrollToTop() {
         binding.homeRecyclerRepo.smoothScrollToPosition(0)
     }
 
