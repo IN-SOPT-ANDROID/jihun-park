@@ -13,10 +13,4 @@ class SearchFragment() : BindingFragment<FragmentSearchBinding>(FragmentSearchBi
         super.onViewCreated(view, savedInstanceState)
     }
 
-    companion object {
-        fun newInstance(): SearchFragment {
-            return SearchFragment()
-        }
-
-    }
 }

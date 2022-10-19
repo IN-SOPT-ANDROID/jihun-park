@@ -109,10 +109,4 @@ class HomeFragment :
     fun scrollToTop() {
         binding.homeRecyclerRepo.smoothScrollToPosition(0)
     }
-
-    companion object {
-        fun newInstance(): HomeFragment {
-            return HomeFragment()
-        }
-    }
 }

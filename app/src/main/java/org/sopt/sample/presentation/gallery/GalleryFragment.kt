@@ -35,10 +35,5 @@ class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(FragmentGaller
             adapter.setData(dataList)
         }
     }
-    companion object {
-        fun newInstance(): GalleryFragment {
-            return GalleryFragment()
-        }
 
-    }
 }
