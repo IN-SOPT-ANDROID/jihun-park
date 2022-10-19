@@ -15,7 +15,6 @@ class GalleryListAdapter(context: Context):ListAdapter<GalleryRecycleData,Galler
     DiffUtilItemCallback<GalleryRecycleData>()
 ) {
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
-    private var dataList:List<GalleryRecycleData> = emptyList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
         return GalleryImgViewHolder(GalleryImgItemViewBinding.inflate(inflater,parent,false))
     }
@@ -32,11 +31,7 @@ class GalleryListAdapter(context: Context):ListAdapter<GalleryRecycleData,Galler
     fun setData(dataList:List<GalleryRecycleData>){
         val newData = mutableListOf<GalleryRecycleData>()
         newData.addAll(currentList)
-        newData.add(GalleryRecycleData(R.drawable.gallery_recycle_ironman1,"아이언맨1"))
-//        newData.addAll(dataList.toList())
+        newData.addAll(dataList)
         submitList(newData)
-//        this.dataList = dataList.toList()
-//        submitList(this.dataList)
-//        notifyDataSetChanged()
     }
 }
