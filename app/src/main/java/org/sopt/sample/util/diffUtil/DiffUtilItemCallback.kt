@@ -14,7 +14,7 @@ class DiffUtilItemCallback<T> :DiffUtil.ItemCallback<T>(), DiffUtilEquals {
 
     override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
         //oldItem과 newItem의 id 비교
-        return oldItem === newItem
+        return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem:T, newItem: T): Boolean {

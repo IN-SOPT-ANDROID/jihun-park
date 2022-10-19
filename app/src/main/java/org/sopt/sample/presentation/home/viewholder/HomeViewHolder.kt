@@ -16,20 +16,17 @@ class RepoContentViewHolder(private val binding: HomeRepoContentItemViewBinding)
     //2. onCreateViewHolder에서 받아온 binding을 이용하여 HomeItemView의 컴포넌트에 접근할 수 있다.
     override fun onBind(data: HomeRecycleData) {
         val contentData = data as HomeRepoContentData
-        binding.apply {
+        with(binding) {
             homeItemProfile.setImageDrawable(binding.root.context.getDrawable(contentData.profileImg))
             homeItemRepoName.text = contentData.repoName
             homeItemAuthor.text = contentData.authorName
         }
     }
-
 }
 //Repo Title 뷰홀더
 class RepoTitleViewHolder(private val binding: HomeRepoTitleItemViewBinding) : HomeViewHolder(binding){
     override fun onBind(data: HomeRecycleData) {
         val titleData = data as HomeRepoTitleData
-        binding.apply {
-            homeItemTitle.text = titleData.titleName
-        }
+            binding.homeItemTitle.text = titleData.titleName
     }
 }
