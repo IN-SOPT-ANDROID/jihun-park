@@ -89,8 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintTop_toTopOf="@id/signIn_pw_et"
-        app:srcCompat="@drawable/show_password"></androidx.appcompat.widget.AppCompatImageView>
-
+        app:srcCompat="@drawable/show_password"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signIn_login_btn"
@@ -122,6 +121,5 @@
         app:flow_horizontalGap="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signIn_pw_et"></androidx.constraintlayout.helper.widget.Flow>
-
+        app:layout_constraintTop_toBottomOf="@id/signIn_pw_et"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

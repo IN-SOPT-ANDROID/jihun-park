@@ -12,15 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
-        android:text="@string/home_repo_add_btn">
-    </Button>
+        android:text="@string/home_repo_add_btn"/>
     <Button
         android:id="@+id/home_recycler_repo_remove_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
-        android:text="@string/home_repo_remove_btn">
-    </Button>
+        android:text="@string/home_repo_remove_btn"/>
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/home_btn_flow"
         android:layout_width="match_parent"
@@ -29,8 +27,7 @@
         android:layout_marginTop="50dp"
         android:orientation="horizontal"
         app:constraint_referenced_ids="home_recycler_repo_add_btn,home_recycler_repo_remove_btn"
-        >
-    </androidx.constraintlayout.helper.widget.Flow>
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_recycler_repo"
         android:layout_width="match_parent"
@@ -40,7 +37,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/home_repo_content_item_view"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
