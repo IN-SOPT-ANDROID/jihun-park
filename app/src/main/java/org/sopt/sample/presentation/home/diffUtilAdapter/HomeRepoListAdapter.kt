@@ -9,10 +9,7 @@ import org.sopt.sample.databinding.HomeRepoContentItemViewBinding
 import org.sopt.sample.databinding.HomeRepoTitleItemViewBinding
 import org.sopt.sample.presentation.MainActivity
 import org.sopt.sample.presentation.home.HomeFragment
-import org.sopt.sample.presentation.home.data.HomeRecycleData
-import org.sopt.sample.presentation.home.data.HomeRecycleData.HomeConst.REPO_CONTENT_TYPE
-import org.sopt.sample.presentation.home.data.HomeRecycleData.HomeConst.REPO_TITLE_TYPE
-import org.sopt.sample.presentation.home.data.HomeRepoContentData
+import org.sopt.sample.presentation.home.data.*
 import org.sopt.sample.presentation.home.viewholder.HomeViewHolder
 import org.sopt.sample.presentation.home.viewholder.RepoContentViewHolder
 import org.sopt.sample.presentation.home.viewholder.RepoTitleViewHolder
@@ -54,7 +51,12 @@ class HomeRepoListAdapter(context: Context) :
 
     //dataList 요소들의 viewType 반환
     override fun getItemViewType(position: Int): Int {
-        return currentList[position].viewType
+        val result = when(currentList[position]){
+            is HomeRepoTitleData -> REPO_TITLE_TYPE
+            is HomeRepoContentData -> REPO_CONTENT_TYPE
+            else -> throw java.lang.IllegalArgumentException()
+        }
+        return result
     }
 
     fun setData(dataList: List<HomeRecycleData>) {
@@ -77,7 +79,6 @@ class HomeRepoListAdapter(context: Context) :
                 R.drawable.home_profile_img_bino2,
                 "NEW IN_SOPT",
                 "Jihun Park",
-                REPO_CONTENT_TYPE
             ) as HomeRecycleData
         )
         submitList(newData)
