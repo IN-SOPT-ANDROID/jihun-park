@@ -15,7 +15,8 @@ abstract class BindingFragment<B : ViewBinding>(
 ) : Fragment(layoutResId) {
     private var _binding: B? = null
     protected val binding
-        get() = requireNotNull(_binding!!)
+        get() = requireNotNull(_binding!!) { "${this::class.java.simpleName} error" }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
