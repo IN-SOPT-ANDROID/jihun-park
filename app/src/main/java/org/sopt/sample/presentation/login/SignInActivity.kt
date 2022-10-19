@@ -1,4 +1,4 @@
-package org.sopt.sample.src.login
+package org.sopt.sample.presentation.login
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -11,12 +11,11 @@ import android.view.MotionEvent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import org.sopt.sample.R
-import org.sopt.sample.application.*
-import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_ID
-import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_MBTI
-import org.sopt.sample.application.ApplicationClass.Companion.USER_INFO_PW
+import org.sopt.sample.application.ApplicationClass
+import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
-import org.sopt.sample.src.home.HomeActivity
+import org.sopt.sample.presentation.MainActivity
+import org.sopt.sample.util.const.*
 import org.sopt.sample.util.extensions.makeSnackBar
 import org.sopt.sample.util.extensions.showToast
 
@@ -26,7 +25,7 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
     private var idFromSignup: String? = null
     private var pwFromSignup: String? = null
     private var mbtiFromSignup: String? = null
-    private lateinit var editor:SharedPreferences.Editor
+    private lateinit var editor: SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -38,6 +37,7 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
         signUp() //회원가입
         showPw() //비밀번호 노출
     }
+
     //Signup Callback
     private fun setResultSignUp() {
         resultLauncher =
@@ -51,19 +51,22 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
                         mbtiFromSignup = result.data?.getStringExtra(USER_INFO_MBTI)
                     }
 
-                    binding.root.makeSnackBar(getString(R.string.signin_success_signup)).setAnchorView(binding.signInLoginBtn)
+                    binding.root.makeSnackBar(getString(R.string.signin_success_signup))
+                        .setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
                 //회원가입 취소
                 else {
-                    binding.root.makeSnackBar(getString(R.string.signin_fail_signup)).setAnchorView(binding.signInLoginBtn)
+                    binding.root.makeSnackBar(getString(R.string.signin_fail_signup))
+                        .setAnchorView(binding.signInLoginBtn)
                         .show()
                 }
             }
     }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun showPw() {
-        Log.d("Signup","showPw touch 상태 ${binding.signInPwEt.inputType}")
+        Log.d("Signup", "showPw touch 상태 ${binding.signInPwEt.inputType}")
         binding.signInShowPw.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -80,6 +83,7 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
             true
         }
     }
+
     private fun signIn() {
         //로그인 버튼 클릭
         binding.signInLoginBtn.setOnClickListener {
@@ -91,14 +95,14 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
 
                 //로그인 성공 시 id,pw,mbti를 sp에 저장
                 //apply를 활용하여 가독성 up!
-                editor.apply{
-                    putString(USER_INFO_ID,idFromSignup)
-                    putString(USER_INFO_PW,pwFromSignup)
-                    putString(USER_INFO_MBTI,mbtiFromSignup)
+                editor.apply {
+                    putString(USER_INFO_ID, idFromSignup)
+                    putString(USER_INFO_PW, pwFromSignup)
+                    putString(USER_INFO_MBTI, mbtiFromSignup)
                     commit()
                 }
 
-                val homeIntent = Intent(this, HomeActivity::class.java)
+                val homeIntent = Intent(this, MainActivity::class.java)
                 //apply와 also를 활용하여 가독성 up!
                 homeIntent.apply {
                     putExtra(USER_INFO_ID, idFromSignup)
@@ -112,11 +116,13 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
             //로그인 실패
             else {
 
-                binding.root.makeSnackBar(getString(R.string.signin_fail_id_or_pw)).setAnchorView(binding.signInLoginBtn)
+                binding.root.makeSnackBar(getString(R.string.signin_fail_id_or_pw))
+                    .setAnchorView(binding.signInLoginBtn)
                     .show()
             }
         }
     }
+
     private fun signUp() {
         //회원가입 버튼
         val signupIntent = Intent(this, SignupActivity::class.java)
@@ -125,20 +131,23 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
 
         }
     }
+
     //자동 로그인
-    private fun autoLogin(){
-        val intent:Intent = Intent(this, HomeActivity::class.java)
+    private fun autoLogin() {
+        val intent: Intent = Intent(this, MainActivity::class.java)
         //로그인 성공 했을 때 저장해놓은 정보를 HomeActivity에 보내면서 자동 로그인
-        val id = ApplicationClass.sSharedPreferences.getString(USER_INFO_ID,null)
-        val pw = ApplicationClass.sSharedPreferences.getString(USER_INFO_PW,null)
-        val mbti = ApplicationClass.sSharedPreferences.getString(USER_INFO_MBTI,null)
-        if(id!=null && pw!=null){
-            intent.putExtra(USER_INFO_ID,id)
-            intent.putExtra(USER_INFO_PW,pw)
-            intent.putExtra(USER_INFO_MBTI,mbti)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            this.showToast(getString(R.string.signin_auto_login_complete))
-            startActivity(intent)
+        val id = ApplicationClass.sSharedPreferences.getString(USER_INFO_ID, null)
+        val pw = ApplicationClass.sSharedPreferences.getString(USER_INFO_PW, null)
+        val mbti = ApplicationClass.sSharedPreferences.getString(USER_INFO_MBTI, null)
+        if (id != null && pw != null) {
+            intent.apply {
+                putExtra(USER_INFO_ID, id)
+                putExtra(USER_INFO_PW, pw)
+                putExtra(USER_INFO_MBTI, mbti)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                this@SignInActivity.showToast(getString(R.string.signin_auto_login_complete))
+                startActivity(this)
+            }
         }
     }
 }
