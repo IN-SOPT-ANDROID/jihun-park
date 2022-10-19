@@ -21,7 +21,6 @@ import org.sopt.sample.util.diffUtil.DiffUtilItemCallback
 
 class HomeRepoListAdapter(context: Context) :
     ListAdapter<HomeRecycleData, HomeViewHolder>(DiffUtilItemCallback()) {
-    val adapterContext: Context = context
     private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -56,10 +55,6 @@ class HomeRepoListAdapter(context: Context) :
     //dataList 요소들의 viewType 반환
     override fun getItemViewType(position: Int): Int {
         return currentList[position].viewType
-    }
-
-    override fun getItemCount(): Int {
-        return currentList.size
     }
 
     fun setData(dataList: List<HomeRecycleData>) {

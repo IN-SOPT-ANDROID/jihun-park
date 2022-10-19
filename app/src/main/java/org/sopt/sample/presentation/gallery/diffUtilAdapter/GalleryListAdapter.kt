@@ -25,9 +25,7 @@ class GalleryListAdapter(context: Context):ListAdapter<GalleryRecycleData,Galler
         }
     }
 
-    override fun getItemCount(): Int {
-        return currentList.size
-    }
+
     fun setData(dataList:List<GalleryRecycleData>){
         val newData = mutableListOf<GalleryRecycleData>()
         newData.addAll(currentList)
