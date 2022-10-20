@@ -21,7 +21,7 @@ abstract class BindingFragment<B : ViewBinding>(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = bind(super.onCreateView(inflater, container, savedInstanceState)!!)
         return binding.root
     }

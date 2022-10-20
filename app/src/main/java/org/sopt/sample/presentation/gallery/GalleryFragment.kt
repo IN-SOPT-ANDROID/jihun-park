@@ -12,6 +12,7 @@ import org.sopt.sample.databinding.FragmentGalleryBinding
 import org.sopt.sample.presentation.gallery.data.GalleryRecycleData
 import org.sopt.sample.presentation.gallery.diffUtilAdapter.GalleryListAdapter
 import org.sopt.sample.presentation.home.HomeFragment
+import org.sopt.sample.util.RecyclerDecorationHeight
 
 
 class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(FragmentGalleryBinding::bind,R.layout.fragment_gallery) {
@@ -30,6 +31,7 @@ class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(FragmentGaller
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        heightGapRv()
     }
 
     private fun initAdapter(){
@@ -38,6 +40,9 @@ class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(FragmentGaller
         binding.galleryRv.adapter = adapter
             adapter.submitList(dataList)
         }
-
+    //리사이클러 뷰 간격(높이)
+    private fun heightGapRv(){
+        binding.galleryRv.addItemDecoration(RecyclerDecorationHeight(80))
+    }
 
 }

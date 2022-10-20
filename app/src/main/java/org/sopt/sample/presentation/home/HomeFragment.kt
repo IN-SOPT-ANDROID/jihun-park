@@ -9,6 +9,7 @@ import org.sopt.sample.presentation.home.data.HomeRecycleData
 import org.sopt.sample.presentation.home.data.HomeRepoContentData
 import org.sopt.sample.presentation.home.data.HomeRepoTitleData
 import org.sopt.sample.presentation.home.diffUtilAdapter.HomeRepoListAdapter
+import org.sopt.sample.util.RecyclerDecorationHeight
 
 class HomeFragment :
     BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
@@ -85,6 +86,8 @@ class HomeFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        heightGapRv()
+
     }
 
     private fun initAdapter() {
@@ -100,6 +103,11 @@ class HomeFragment :
         binding.homeRecyclerRepoRemoveBtn.setOnClickListener {
             adapter.remove()
         }
+
+    }
+    //리사이클러 뷰 간격(높이)
+    private fun heightGapRv(){
+        binding.homeRecyclerRepo.addItemDecoration(RecyclerDecorationHeight(80))
     }
 
     fun scrollToTop() {
