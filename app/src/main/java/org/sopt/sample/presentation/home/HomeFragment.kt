@@ -13,7 +13,8 @@ import org.sopt.sample.util.RecyclerDecorationHeight
 
 class HomeFragment :
     BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
-    private val homeRecycleList = listOf<HomeRecycleData>(
+    private val homeRecycleList by lazy {
+        listOf(
         HomeRepoTitleData(
             titleName = "지훈이의 레포지터리"
         ),
@@ -77,8 +78,8 @@ class HomeFragment :
             repoName = "IN_SOPT",
             authorName = "Jihun Son"
         )
-    )
-
+    )}
+    private val adapter by lazy { HomeRepoListAdapter(requireContext()).apply { submitList(homeRecycleList) } }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -91,10 +92,7 @@ class HomeFragment :
     }
 
     private fun initAdapter() {
-        val adapter = HomeRepoListAdapter(requireContext())
         binding.homeRecyclerRepo.adapter = adapter
-        //setData
-        adapter.submitList(homeRecycleList)
         //add 버튼 -> Repo 추가
         binding.homeRecyclerRepoAddBtn.setOnClickListener {
             adapter.add()

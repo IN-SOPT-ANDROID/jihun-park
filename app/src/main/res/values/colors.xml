@@ -18,4 +18,6 @@
     <color name="signin_et_cursor">#C8485D</color>
     <color name="signup_et_cursor">#C8485D</color>
 
+    <color name="gallery_item_on">#C8485D</color>
+    <color name="gallery_item_off">#FFFFFF</color>
 </resources>
