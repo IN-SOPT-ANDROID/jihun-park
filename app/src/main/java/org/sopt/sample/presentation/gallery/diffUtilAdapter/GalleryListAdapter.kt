@@ -24,10 +24,4 @@ class GalleryListAdapter(context: Context):ListAdapter<GalleryRecycleData,Galler
             is GalleryImgViewHolder -> holder.onBind(currentList[position])
         }
     }
-    fun setData(dataList:List<GalleryRecycleData>){
-        val newData = mutableListOf<GalleryRecycleData>()
-        newData.addAll(currentList)
-        newData.addAll(dataList)
-        submitList(newData)
-    }
 }

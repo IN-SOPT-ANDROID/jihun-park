@@ -48,7 +48,6 @@ class HomeRepoListAdapter(context: Context) :
             is RepoContentViewHolder -> holder.onBind(currentList[position])
         }
     }
-
     //dataList 요소들의 viewType 반환
     override fun getItemViewType(position: Int): Int {
         val result = when(currentList[position]){
