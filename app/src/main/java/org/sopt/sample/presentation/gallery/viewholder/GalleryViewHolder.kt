@@ -20,6 +20,8 @@ class GalleryImgViewHolder(private val binding: GalleryImgItemViewBinding) :
     override fun onBind(data: GalleryRecycleData) {
         binding.galleryImgIv.setImageDrawable(binding.root.context.getDrawable(data.galleryImg))
         binding.galleryDescTv.text = data.desc
+
+
     }
 
     //adapter의 position과 item id return
@@ -42,4 +44,5 @@ class GalleryImgViewHolder(private val binding: GalleryImgItemViewBinding) :
     fun setSelectionTracker(selectionTracker: SelectionTracker<Long>?) {
         binding.galleryItemBackground.isActivated = selectionTracker != null && selectionTracker.isSelected(adapterPosition.toLong())
     }
+
 }

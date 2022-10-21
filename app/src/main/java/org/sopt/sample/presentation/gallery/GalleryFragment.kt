@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentGalleryBinding
@@ -39,7 +40,7 @@ class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(
     }
 
     private fun initAdapter() {
-        binding.galleryRv.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.galleryRv.layoutManager = GridLayoutManager(requireContext(),3)
         binding.galleryRv.adapter = adapter
         initTracker()
     }
@@ -56,4 +57,5 @@ class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(
         )
         adapter.setSelectionTracker(SelectionTracker().setupSelectionTracker(binding.galleryRv))
     }
+
 }
