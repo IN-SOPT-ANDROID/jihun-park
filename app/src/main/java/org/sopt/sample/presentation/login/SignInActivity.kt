@@ -15,7 +15,9 @@ import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.presentation.MainActivity
-import org.sopt.sample.util.const.*
+import org.sopt.sample.util.const.USER_INFO_ID
+import org.sopt.sample.util.const.USER_INFO_MBTI
+import org.sopt.sample.util.const.USER_INFO_PW
 import org.sopt.sample.util.extensions.makeSnackBar
 import org.sopt.sample.util.extensions.showToast
 
@@ -31,7 +33,6 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
         super.onCreate(savedInstanceState)
         editor = ApplicationClass.sSharedPreferences.edit()
 
-        autoLogin()//자동 로그인
         setResultSignUp() //회원가입 콜백
         signIn() //로그인
         signUp() //회원가입
@@ -132,22 +133,4 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
         }
     }
 
-    //자동 로그인
-    private fun autoLogin() {
-        val intent: Intent = Intent(this, MainActivity::class.java)
-        //로그인 성공 했을 때 저장해놓은 정보를 HomeActivity에 보내면서 자동 로그인
-        val id = ApplicationClass.sSharedPreferences.getString(USER_INFO_ID, null)
-        val pw = ApplicationClass.sSharedPreferences.getString(USER_INFO_PW, null)
-        val mbti = ApplicationClass.sSharedPreferences.getString(USER_INFO_MBTI, null)
-        if (id != null && pw != null) {
-            intent.apply {
-                putExtra(USER_INFO_ID, id)
-                putExtra(USER_INFO_PW, pw)
-                putExtra(USER_INFO_MBTI, mbti)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                this@SignInActivity.showToast(getString(R.string.signin_auto_login_complete))
-                startActivity(this)
-            }
-        }
-    }
 }

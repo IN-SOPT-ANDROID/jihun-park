@@ -58,15 +58,5 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
             else -> IllegalArgumentException("${this::class.java.simpleName} Not found menu item id")
         }
     }
-//        logOutBtnListener()
-//    /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
-//    private fun logOutBtnListener(){
-//        binding.homeLogoutBtn.setOnClickListener {
-//            ApplicationClass.sSharedPreferences.edit().clear().commit() //모든 저장데이터 삭제
-//            this.showToast("로그아웃 되었습니다.")
-//            finish()
-//            val intent = Intent(this,SignInActivity::class.java)
-//            startActivity(intent)
-//        }
-//    }
+
 }
