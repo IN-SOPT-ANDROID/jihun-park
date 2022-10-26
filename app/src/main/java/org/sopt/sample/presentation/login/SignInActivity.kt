@@ -15,9 +15,7 @@ import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.presentation.MainActivity
-import org.sopt.sample.util.const.USER_INFO_ID
-import org.sopt.sample.util.const.USER_INFO_MBTI
-import org.sopt.sample.util.const.USER_INFO_PW
+import org.sopt.sample.util.const.*
 import org.sopt.sample.util.extensions.makeSnackBar
 import org.sopt.sample.util.extensions.showToast
 
@@ -89,17 +87,31 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
         //로그인 버튼 클릭
         binding.signInLoginBtn.setOnClickListener {
             //SignUp에서 받아온 id/pw와 일치하는지 체크
-            if (binding.signInIdEt.text.toString() == idFromSignup &&
-                binding.signInPwEt.text.toString() == (pwFromSignup)
+            if (binding.signInIdEt.text.toString() == ApplicationClass.sSharedPreferences.getString(
+                    USER_INFO_ID,null) &&
+                binding.signInPwEt.text.toString() == ApplicationClass.sSharedPreferences.getString(
+                    USER_INFO_PW,null)
             ) {
                 this.showToast(getString(R.string.signin_login_complete))
 
                 //로그인 성공 시 id,pw,mbti를 sp에 저장
                 //apply를 활용하여 가독성 up!
                 editor.apply {
-                    putString(USER_INFO_ID, idFromSignup)
-                    putString(USER_INFO_PW, pwFromSignup)
-                    putString(USER_INFO_MBTI, mbtiFromSignup)
+                    putString(USER_INFO_ID, ApplicationClass.sSharedPreferences.getString(
+                        USER_INFO_ID,null))
+                    putString(USER_INFO_PW, ApplicationClass.sSharedPreferences.getString(
+                        USER_INFO_PW,null))
+                    putString(USER_INFO_MBTI, ApplicationClass.sSharedPreferences.getString(
+                        USER_INFO_MBTI,null))
+                    commit()
+                }
+                editor.apply {
+                    putString(AUTO_LOGIN_ID,ApplicationClass.sSharedPreferences.getString(
+                        USER_INFO_ID,null))
+                    putString(AUTO_LOGIN_PW,ApplicationClass.sSharedPreferences.getString(
+                        USER_INFO_PW,null))
+                    putString(AUTO_LOGIN_MBTI,ApplicationClass.sSharedPreferences.getString(
+                        USER_INFO_MBTI,null))
                     commit()
                 }
 

@@ -12,6 +12,9 @@ import org.sopt.sample.presentation.home.data.HomeRepoTitleData
 import org.sopt.sample.presentation.home.diffUtilAdapter.HomeRepoListAdapter
 import org.sopt.sample.presentation.login.SignInActivity
 import org.sopt.sample.util.RecyclerDecorationHeight
+import org.sopt.sample.util.const.AUTO_LOGIN_ID
+import org.sopt.sample.util.const.AUTO_LOGIN_MBTI
+import org.sopt.sample.util.const.AUTO_LOGIN_PW
 import org.sopt.sample.util.extensions.showToast
 
 class HomeFragment :
@@ -105,7 +108,11 @@ class HomeFragment :
     /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
     private fun logOutBtnListener() {
         binding.homeLogout.setOnClickListener {
-            ApplicationClass.sSharedPreferences.edit().clear().commit() //모든 저장데이터 삭제
+            ApplicationClass.sSharedPreferences.edit().apply {
+                putString(AUTO_LOGIN_ID,null)
+                putString(AUTO_LOGIN_PW,null)
+                putString(AUTO_LOGIN_MBTI,null)
+            }.commit() //자동 로그인 데이터 삭제
             this.showToast("로그아웃 되었습니다.")
             val intent = Intent(activity, SignInActivity::class.java)
             startActivity(intent)

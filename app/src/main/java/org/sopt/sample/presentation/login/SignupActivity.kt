@@ -2,11 +2,13 @@ package org.sopt.sample.presentation.login
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
 import org.sopt.sample.R
+import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
 import org.sopt.sample.util.const.*
@@ -23,9 +25,11 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         //inputType Password 값
         const val INPUT_TYPE_PASSWORD = 129
     }
+    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        editor = ApplicationClass.sSharedPreferences.edit()
         signUp()
         showPw()
     }
@@ -93,6 +97,12 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
     }
 
     private fun signupSuccess() {
+        editor.apply{
+            putString(USER_INFO_ID,binding.signUpIdEt.text.toString())
+            putString(USER_INFO_PW,binding.signUpPwEt.text.toString())
+            putString(USER_INFO_MBTI,binding.signUpMbtiEt.text.toString())
+            commit()
+        }
         //SignUp Success->HomeActivity
         Intent(this, SignInActivity::class.java).apply {
             putExtra(USER_INFO_ID, binding.signUpIdEt.text.toString())

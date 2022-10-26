@@ -13,9 +13,7 @@ import org.sopt.sample.databinding.ActivitySplashBinding
 import org.sopt.sample.presentation.MainActivity
 import org.sopt.sample.presentation.login.SignInActivity
 import org.sopt.sample.presentation.search.SearchFragment
-import org.sopt.sample.util.const.USER_INFO_ID
-import org.sopt.sample.util.const.USER_INFO_MBTI
-import org.sopt.sample.util.const.USER_INFO_PW
+import org.sopt.sample.util.const.*
 import org.sopt.sample.util.extensions.showToast
 
 class SplashActivity : BindingActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
@@ -24,6 +22,7 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(ActivitySplashBind
         super.onCreate(savedInstanceState)
         //sp에 로그인 정보가 있으면, MainActivity로
         //없으면 SignInActivity로
+        //3초 로딩 후 SigninActivity
         Thread {
             handler.postDelayed({
                 autoLogin()
@@ -35,12 +34,10 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(ActivitySplashBind
     /** 자동 로그인 여부 */
     private fun isAutoLogin(): Boolean {
         //로그인 성공 했을 때 저장해놓은 정보를 HomeActivity에 보내면서 자동 로그인
-        val id = ApplicationClass.sSharedPreferences.getString(USER_INFO_ID, null)
-        val pw = ApplicationClass.sSharedPreferences.getString(USER_INFO_PW, null)
+        val id = ApplicationClass.sSharedPreferences.getString(AUTO_LOGIN_ID, null)
+        val pw = ApplicationClass.sSharedPreferences.getString(AUTO_LOGIN_PW, null)
         return (id != null && pw != null)
     }
-
-    //3초 로딩 후 SigninActivity
     private fun autoLogin() {
         if (isAutoLogin()) {
             Log.d(SearchFragment::class.java.simpleName,"자동 로그인 중")
