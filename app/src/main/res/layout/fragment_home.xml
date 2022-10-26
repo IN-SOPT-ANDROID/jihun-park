@@ -1,47 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.home.HomeFragment">
-    <Button
-        android:id="@+id/home_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="@string/home_logout"/>
-    <Button
-        android:id="@+id/home_recycler_repo_add_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="@string/home_repo_add_btn"/>
-    <Button
-        android:id="@+id/home_recycler_repo_remove_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="@string/home_repo_remove_btn"/>
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/home_btn_flow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        app:constraint_referenced_ids="home_recycler_repo_add_btn,home_recycler_repo_remove_btn,home_logout"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_recycler_repo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/home_btn_flow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/home_repo_content_item_view"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="org.sopt.sample.presentation.home.viewmodel.HomeViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
 
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.home.HomeFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/home_profile_img_cv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/black"
+            app:cardCornerRadius="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/home_profile_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_profile_img_lizard" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/home_profile_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_profile_img_cv">
+
+            <TextView
+                android:id="@+id/home_profile_id_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.userId}"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_profile_mbti_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.userMbti}"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_profile_desc_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_desc_tv"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Button
+            android:id="@+id/home_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="@string/home_logout" />
+
+        <Button
+            android:id="@+id/home_recycler_repo_add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="@string/home_repo_add_btn" />
+
+        <Button
+            android:id="@+id/home_recycler_repo_remove_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="@string/home_repo_remove_btn" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/home_btn_flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="home_recycler_repo_add_btn,home_recycler_repo_remove_btn,home_logout"
+            app:layout_constraintTop_toBottomOf="@id/home_profile_linear" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recycler_repo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_btn_flow"
+            tools:listitem="@layout/home_repo_content_item_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

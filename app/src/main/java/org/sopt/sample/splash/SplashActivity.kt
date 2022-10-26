@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.animation.AlphaAnimation
 import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
@@ -26,7 +25,7 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(ActivitySplashBind
         Thread {
             handler.postDelayed({
                 autoLogin()
-            },3000)
+            }, 3000)
         }.start()
         overridePendingTransition(R.anim.fadein, R.anim.fadeout)
     }
@@ -38,9 +37,10 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(ActivitySplashBind
         val pw = ApplicationClass.sSharedPreferences.getString(AUTO_LOGIN_PW, null)
         return (id != null && pw != null)
     }
+
     private fun autoLogin() {
         if (isAutoLogin()) {
-            Log.d(SearchFragment::class.java.simpleName,"자동 로그인 중")
+            Log.d(SearchFragment::class.java.simpleName, "자동 로그인 중")
             val intent = Intent(this, MainActivity::class.java)
             intent.apply {
                 putExtra(
@@ -60,7 +60,7 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(ActivitySplashBind
                 startActivity(this)
             }
         } else {
-            Log.d(SearchFragment::class.java.simpleName,"로그인 화면 이동중")
+            Log.d(SearchFragment::class.java.simpleName, "로그인 화면 이동중")
             startActivity(Intent(this, SignInActivity::class.java))
         }
     }

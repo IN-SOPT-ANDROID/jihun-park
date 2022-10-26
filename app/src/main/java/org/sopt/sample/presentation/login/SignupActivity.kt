@@ -11,7 +11,9 @@ import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
-import org.sopt.sample.util.const.*
+import org.sopt.sample.util.const.USER_INFO_ID
+import org.sopt.sample.util.const.USER_INFO_MBTI
+import org.sopt.sample.util.const.USER_INFO_PW
 import org.sopt.sample.util.extensions.makeSnackBar
 
 class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
@@ -21,10 +23,12 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         "INFP", "INFJ", "INTP", "ISTP",
         "ISFP", "ISFJ", "ISTJ", "INTJ"
     )
-    companion object{
+
+    companion object {
         //inputType Password 값
         const val INPUT_TYPE_PASSWORD = 129
     }
+
     private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +37,10 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         signUp()
         showPw()
     }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun showPw() {
-        Log.d("Signup","showPw touch 상태 ${binding.signUpPwEt.inputType}")
+        Log.d("Signup", "showPw touch 상태 ${binding.signUpPwEt.inputType}")
         binding.signupShowPw.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -69,7 +74,8 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         if (id.length in 6..10) {
             return true
         } else {
-            binding.root.makeSnackBar(getString(R.string.signup_fail_id_length)).setAnchorView(binding.signUpIdEt)
+            binding.root.makeSnackBar(getString(R.string.signup_fail_id_length))
+                .setAnchorView(binding.signUpIdEt)
                 .show()
             return false
         }
@@ -79,7 +85,8 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
         if (pw.length in 8..12) {
             return true
         } else {
-            binding.root.makeSnackBar(getString(R.string.signup_fail_pw_length)).setAnchorView(binding.signUpPwEt)
+            binding.root.makeSnackBar(getString(R.string.signup_fail_pw_length))
+                .setAnchorView(binding.signUpPwEt)
                 .show()
             return false
         }
@@ -97,10 +104,10 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBind
     }
 
     private fun signupSuccess() {
-        editor.apply{
-            putString(USER_INFO_ID,binding.signUpIdEt.text.toString())
-            putString(USER_INFO_PW,binding.signUpPwEt.text.toString())
-            putString(USER_INFO_MBTI,binding.signUpMbtiEt.text.toString())
+        editor.apply {
+            putString(USER_INFO_ID, binding.signUpIdEt.text.toString())
+            putString(USER_INFO_PW, binding.signUpPwEt.text.toString())
+            putString(USER_INFO_MBTI, binding.signUpMbtiEt.text.toString())
             commit()
         }
         //SignUp Success->HomeActivity

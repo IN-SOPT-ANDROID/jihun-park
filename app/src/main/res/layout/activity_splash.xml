@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".splash.SplashActivity"
-    android:background="@color/splash_background">
+    android:background="@color/splash_background"
+    tools:context=".splash.SplashActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -14,5 +14,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/splash_logo"/>
+        app:srcCompat="@drawable/splash_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

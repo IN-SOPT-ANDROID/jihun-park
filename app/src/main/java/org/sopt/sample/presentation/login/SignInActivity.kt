@@ -88,30 +88,50 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
         binding.signInLoginBtn.setOnClickListener {
             //SignUp에서 받아온 id/pw와 일치하는지 체크
             if (binding.signInIdEt.text.toString() == ApplicationClass.sSharedPreferences.getString(
-                    USER_INFO_ID,null) &&
+                    USER_INFO_ID, null
+                ) &&
                 binding.signInPwEt.text.toString() == ApplicationClass.sSharedPreferences.getString(
-                    USER_INFO_PW,null)
+                    USER_INFO_PW, null
+                )
             ) {
                 this.showToast(getString(R.string.signin_login_complete))
 
                 //로그인 성공 시 id,pw,mbti를 sp에 저장
                 //apply를 활용하여 가독성 up!
                 editor.apply {
-                    putString(USER_INFO_ID, ApplicationClass.sSharedPreferences.getString(
-                        USER_INFO_ID,null))
-                    putString(USER_INFO_PW, ApplicationClass.sSharedPreferences.getString(
-                        USER_INFO_PW,null))
-                    putString(USER_INFO_MBTI, ApplicationClass.sSharedPreferences.getString(
-                        USER_INFO_MBTI,null))
+                    putString(
+                        USER_INFO_ID, ApplicationClass.sSharedPreferences.getString(
+                            USER_INFO_ID, null
+                        )
+                    )
+                    putString(
+                        USER_INFO_PW, ApplicationClass.sSharedPreferences.getString(
+                            USER_INFO_PW, null
+                        )
+                    )
+                    putString(
+                        USER_INFO_MBTI, ApplicationClass.sSharedPreferences.getString(
+                            USER_INFO_MBTI, null
+                        )
+                    )
                     commit()
                 }
                 editor.apply {
-                    putString(AUTO_LOGIN_ID,ApplicationClass.sSharedPreferences.getString(
-                        USER_INFO_ID,null))
-                    putString(AUTO_LOGIN_PW,ApplicationClass.sSharedPreferences.getString(
-                        USER_INFO_PW,null))
-                    putString(AUTO_LOGIN_MBTI,ApplicationClass.sSharedPreferences.getString(
-                        USER_INFO_MBTI,null))
+                    putString(
+                        AUTO_LOGIN_ID, ApplicationClass.sSharedPreferences.getString(
+                            USER_INFO_ID, null
+                        )
+                    )
+                    putString(
+                        AUTO_LOGIN_PW, ApplicationClass.sSharedPreferences.getString(
+                            USER_INFO_PW, null
+                        )
+                    )
+                    putString(
+                        AUTO_LOGIN_MBTI, ApplicationClass.sSharedPreferences.getString(
+                            USER_INFO_MBTI, null
+                        )
+                    )
                     commit()
                 }
 
@@ -128,7 +148,6 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
             }
             //로그인 실패
             else {
-
                 binding.root.makeSnackBar(getString(R.string.signin_fail_id_or_pw))
                     .setAnchorView(binding.signInLoginBtn)
                     .show()
