@@ -138,9 +138,9 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(ActivitySigninBind
                 val homeIntent = Intent(this, MainActivity::class.java)
                 //apply와 also를 활용하여 가독성 up!
                 homeIntent.apply {
-                    putExtra(USER_INFO_ID, idFromSignup)
-                    putExtra(USER_INFO_PW, pwFromSignup)
-                    putExtra(USER_INFO_MBTI, mbtiFromSignup)
+                    putExtra(USER_INFO_ID, ApplicationClass.sSharedPreferences.getString(USER_INFO_ID, null))
+                    putExtra(USER_INFO_PW, ApplicationClass.sSharedPreferences.getString(USER_INFO_PW, null))
+                    putExtra(USER_INFO_MBTI, ApplicationClass.sSharedPreferences.getString(USER_INFO_MBTI,null))
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }.also { //apply는 자기자신(T)을 반환하기 때문에, homeIntent.also{} 처럼 가능
                     startActivity(it) //자기자신(T)를 반환하는 also를 it으로 활용하여 startActivity(it) 호출
