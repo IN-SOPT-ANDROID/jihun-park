@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="org.sopt.sample.presentation.home.viewmodel.HomeViewModel" />
+            type="org.sopt.sample.presentation.viewmodel.MainViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 

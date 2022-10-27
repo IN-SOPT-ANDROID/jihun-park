@@ -7,22 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.data.HomeRepoContentData
 import org.sopt.sample.presentation.home.data.HomeRepoTitleData
 import org.sopt.sample.presentation.home.diffUtilAdapter.HomeRepoListAdapter
-import org.sopt.sample.presentation.home.viewmodel.HomeViewModel
 import org.sopt.sample.presentation.login.SignInActivity
+import org.sopt.sample.presentation.viewmodel.MainViewModel
 import org.sopt.sample.util.RecyclerDecorationHeight
 import org.sopt.sample.util.const.AUTO_LOGIN_ID
 import org.sopt.sample.util.const.AUTO_LOGIN_MBTI
 import org.sopt.sample.util.const.AUTO_LOGIN_PW
 import org.sopt.sample.util.extensions.showToast
 
-class HomeFragment :Fragment() {
+class HomeFragment : Fragment() {
     private val homeRecycleList by lazy {
         listOf(
             HomeRepoTitleData(
@@ -86,24 +86,24 @@ class HomeFragment :Fragment() {
         }
     }
     private lateinit var hBinding: FragmentHomeBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val viewModel by activityViewModels<MainViewModel>()
 
-
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         //데이터 바인딩 연결 및 ViewModel 선언
         hBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return hBinding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         heightGapRv()
         logOutBtnListener()
-        val viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         hBinding.viewModel = viewModel
     }
 

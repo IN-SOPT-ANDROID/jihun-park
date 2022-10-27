@@ -1,17 +1,29 @@
 package org.sopt.sample.presentation
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import org.sopt.sample.R
-import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.presentation.gallery.GalleryFragment
 import org.sopt.sample.presentation.home.HomeFragment
 import org.sopt.sample.presentation.search.SearchFragment
+import org.sopt.sample.presentation.viewmodel.MainViewModel
+import org.sopt.sample.util.const.USER_INFO_ID
+import org.sopt.sample.util.const.USER_INFO_MBTI
 
-class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+
+class MainActivity : AppCompatActivity(){
+
+    private lateinit var mBinding: ActivityMainBinding
+    private val model: MainViewModel by viewModels()
+
     companion object {
         lateinit var mContext: Context
     }
@@ -19,17 +31,23 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
+        //DataBinding
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        mBinding.lifecycleOwner = this
+        model.receiveUserData(intent.getStringExtra(USER_INFO_ID).toString(),intent.getStringExtra(USER_INFO_MBTI).toString())
+        mBinding.viewModel = model
+
         //현재 설정되어있는 Fragment가 없으면, HomeFragment를 초기화면으로 설정
         addListener()
         changeFragment(R.id.btm_home_menu)
     }
 
     private fun addListener() {
-        binding.mainBtmNavigation.setOnItemSelectedListener {
+        mBinding.mainBtmNavigation.setOnItemSelectedListener {
             changeFragment(it.itemId)
             true
         }
-        binding.mainBtmNavigation.setOnItemReselectedListener {
+        mBinding.mainBtmNavigation.setOnItemReselectedListener {
             if (it.itemId != R.id.btm_home_menu) return@setOnItemReselectedListener
             (supportFragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName) as? HomeFragment)?.scrollToTop()
         }
