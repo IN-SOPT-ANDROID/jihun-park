@@ -86,6 +86,7 @@ class HomeFragment : Fragment() {
         }
     }
     private lateinit var hBinding: FragmentHomeBinding
+    //MainActivity 뷰모델 by 위임 생성
     private val viewModel by activityViewModels<MainViewModel>()
 
     override fun onCreateView(

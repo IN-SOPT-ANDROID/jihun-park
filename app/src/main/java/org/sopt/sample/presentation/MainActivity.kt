@@ -1,9 +1,7 @@
 package org.sopt.sample.presentation
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity(){
         //DataBinding
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.lifecycleOwner = this
-        model.receiveUserData(intent.getStringExtra(USER_INFO_ID).toString(),intent.getStringExtra(USER_INFO_MBTI).toString())
+        model.setUserData(intent.getStringExtra(USER_INFO_ID).toString(),intent.getStringExtra(USER_INFO_MBTI).toString())
         mBinding.viewModel = model
 
         //현재 설정되어있는 Fragment가 없으면, HomeFragment를 초기화면으로 설정
