@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
+import androidx.activity.viewModels
 import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
@@ -17,6 +18,7 @@ import org.sopt.sample.util.const.USER_INFO_PW
 import org.sopt.sample.util.extensions.makeSnackBar
 
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
+    private val viewModel: SignUpViewModel by viewModels()
     private val mbtiList: List<String> = listOf(
         "ENFJ", "ENTJ", "ENFP", "ENTP",
         "ESFP", "ESFJ", "ESTP", "ESTJ",
@@ -33,6 +35,9 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
         editor = ApplicationClass.sSharedPreferences.edit()
         signUp()
         showPw()

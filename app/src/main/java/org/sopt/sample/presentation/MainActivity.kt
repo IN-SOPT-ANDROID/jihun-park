@@ -27,11 +27,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
-        //DataBinding
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-
         viewModel.setUserData(intent.getStringExtra(USER_INFO_ID).toString(),intent.getStringExtra(USER_INFO_MBTI).toString())
 
 

@@ -17,18 +17,25 @@ import org.sopt.sample.util.const.*
 import org.sopt.sample.util.extensions.showToast
 
 class SplashActivity : BindingActivity<ActivitySplashBinding>(R.layout.activity_splash) {
+    private val viewModel: SplashViewModel by viewModels()
     private val handler = Handler(Looper.getMainLooper())
-//    private val viewModel: SplashViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //sp에 로그인 정보가 있으면, MainActivity로
-        //없으면 SignInActivity로
-        //3초 로딩 후 SigninActivity
+        //없으면 3초 로딩 후 SigninActivity
         Thread {
             handler.postDelayed({
                 autoLogin()
             }, 3000)
         }.start()
+
+        //뷰모델 초기화
+        binding.viewModel = viewModel
+        //Splash Activity의 별도 코드실행 없이 생명주기를 다룰 수 있도록 함.
+        binding.lifecycleOwner = this
+        setAnimation()
+    }
+    private fun setAnimation(){
         overridePendingTransition(R.anim.fadein, R.anim.fadeout)
     }
 

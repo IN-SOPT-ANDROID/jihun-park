@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.MotionEvent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
@@ -21,20 +23,22 @@ import org.sopt.sample.util.extensions.showToast
 
 
 class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_signin) {
+    private val viewModel:SignInViewModel by viewModels()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent> //회원가입 정보를 받아오기 위한 launcher
     private var idFromSignup: String? = null
     private var pwFromSignup: String? = null
     private var mbtiFromSignup: String? = null
     private lateinit var editor: SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         editor = ApplicationClass.sSharedPreferences.edit()
-
         setResultSignUp() //회원가입 콜백
         signIn() //로그인
         signUp() //회원가입
         showPw() //비밀번호 노출
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
     }
 
     //Signup Callback
