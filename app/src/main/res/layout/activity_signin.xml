@@ -1,125 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/signin_background"
-    tools:context=".presentation.login.SignInActivity">
+<layout>
 
-    <TextView
-        android:id="@+id/signIn_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/signin_title_tv"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/signIn_id_tv"
-        style="@style/sign_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/sign_id_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signIn_title_tv" />
+        <variable
+            name="viewModel"
+            type="org.sopt.sample.presentation.login.SignInViewModel" />
+    </data>
 
-    <EditText
-        android:id="@+id/signIn_id_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/signin_et_underline"
-        android:inputType="text"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textCursorDrawable="@color/signin_et_cursor"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/signIn_id_tv"
-        app:layout_constraintTop_toBottomOf="@id/signIn_id_tv" />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/signin_background"
+        tools:context=".presentation.login.SignInActivity">
 
-    <TextView
-        android:id="@+id/signIn_pw_tv"
-        style="@style/sign_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/sign_pw_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signIn_id_et" />
+        <TextView
+            android:id="@+id/signIn_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/signin_title_tv"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/signIn_pw_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/signin_et_underline"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textCursorDrawable="@color/signin_et_cursor"
+        <TextView
+            android:id="@+id/signIn_id_tv"
+            style="@style/sign_input_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/sign_id_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signIn_title_tv" />
 
-        android:textStyle="bold"
+        <EditText
+            android:id="@+id/signIn_id_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/signin_et_underline"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@color/signin_et_cursor"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/signIn_id_tv"
+            app:layout_constraintTop_toBottomOf="@id/signIn_id_tv" />
 
-        app:layout_constraintEnd_toStartOf="@id/signIn_show_pw"
-        app:layout_constraintStart_toStartOf="parent"
+        <TextView
+            android:id="@+id/signIn_pw_tv"
+            style="@style/sign_input_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/sign_pw_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signIn_id_et" />
 
-        app:layout_constraintTop_toBottomOf="@id/signIn_pw_tv" />
+        <EditText
+            android:id="@+id/signIn_pw_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/signin_et_underline"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@color/signin_et_cursor"
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/signIn_show_pw"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="@id/signIn_pw_et"
-        app:layout_constraintDimensionRatio="0.05"
-        app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
 
-        app:layout_constraintTop_toTopOf="@id/signIn_pw_et"
-        app:srcCompat="@drawable/show_password"/>
+            app:layout_constraintEnd_toStartOf="@id/signIn_show_pw"
+            app:layout_constraintStart_toStartOf="parent"
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signIn_login_btn"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/signin_btn_border"
-        android:text="@string/signin_login_btn"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            app:layout_constraintTop_toBottomOf="@id/signIn_pw_tv" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signIn_signUp_btn"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/signin_btn_border"
-        android:text="@string/signin_signup_btn"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/signIn_show_pw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/signIn_pw_et"
+            app:layout_constraintDimensionRatio="0.05"
+            app:layout_constraintEnd_toEndOf="parent"
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/signIn_btn_flow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        app:constraint_referenced_ids="signIn_login_btn,signIn_signUp_btn"
-        app:flow_horizontalGap="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signIn_pw_et"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="@id/signIn_pw_et"
+            app:srcCompat="@drawable/show_password" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signIn_login_btn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signin_btn_border"
+            android:text="@string/signin_login_btn"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signIn_signUp_btn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signin_btn_border"
+            android:text="@string/signin_signup_btn"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/signIn_btn_flow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="signIn_login_btn,signIn_signUp_btn"
+            app:flow_horizontalGap="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signIn_pw_et" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

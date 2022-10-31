@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="org.sopt.sample.presentation.login.SignUpViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -172,3 +178,4 @@
         app:layout_constraintTop_toBottomOf="@id/signUp_mbti_et" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

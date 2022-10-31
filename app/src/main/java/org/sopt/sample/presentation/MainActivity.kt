@@ -3,8 +3,6 @@ package org.sopt.sample.presentation
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import org.sopt.sample.R
@@ -13,29 +11,28 @@ import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.presentation.gallery.GalleryFragment
 import org.sopt.sample.presentation.home.HomeFragment
 import org.sopt.sample.presentation.search.SearchFragment
-import org.sopt.sample.presentation.viewmodel.MainViewModel
-import org.sopt.sample.util.const.USER_INFO_ID
-import org.sopt.sample.util.const.USER_INFO_MBTI
 
 
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main){
 
-    private lateinit var mBinding: ActivityMainBinding
-    private val model: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     companion object {
         lateinit var mContext: Context
+        const val USER_INFO_ID = "id"
+        const val USER_INFO_PW = "pw"
+        const val USER_INFO_MBTI = "mbti"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
         //DataBinding
-        mBinding.viewModel = model
-        mBinding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
 
-        model.setUserData(intent.getStringExtra(USER_INFO_ID).toString(),intent.getStringExtra(USER_INFO_MBTI).toString())
+        viewModel.setUserData(intent.getStringExtra(USER_INFO_ID).toString(),intent.getStringExtra(USER_INFO_MBTI).toString())
 
 
         //현재 설정되어있는 Fragment가 없으면, HomeFragment를 초기화면으로 설정
@@ -44,11 +41,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun addListener() {
-        mBinding.mainBtmNavigation.setOnItemSelectedListener {
+        binding.mainBtmNavigation.setOnItemSelectedListener {
             changeFragment(it.itemId)
             true
         }
-        mBinding.mainBtmNavigation.setOnItemReselectedListener {
+        binding.mainBtmNavigation.setOnItemReselectedListener {
             if (it.itemId != R.id.btm_home_menu) return@setOnItemReselectedListener
             (supportFragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName) as? HomeFragment)?.scrollToTop()
         }

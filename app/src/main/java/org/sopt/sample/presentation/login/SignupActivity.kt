@@ -16,7 +16,7 @@ import org.sopt.sample.util.const.USER_INFO_MBTI
 import org.sopt.sample.util.const.USER_INFO_PW
 import org.sopt.sample.util.extensions.makeSnackBar
 
-class SignupActivity : BindingActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
+class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
     private val mbtiList: List<String> = listOf(
         "ENFJ", "ENTJ", "ENFP", "ENTP",
         "ESFP", "ESFJ", "ESTP", "ESTJ",

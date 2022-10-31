@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.viewmodel
+package org.sopt.sample.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
