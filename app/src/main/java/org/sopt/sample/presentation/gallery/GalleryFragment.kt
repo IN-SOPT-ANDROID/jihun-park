@@ -3,21 +3,19 @@ package org.sopt.sample.presentation.gallery
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentGalleryBinding
 import org.sopt.sample.presentation.gallery.data.GalleryRecycleData
 import org.sopt.sample.presentation.gallery.diffUtilAdapter.GalleryListAdapter
+import org.sopt.sample.presentation.MainViewModel
 import org.sopt.sample.util.RecyclerDecorationHeight
 import org.sopt.sample.util.selection.SelectionTracker
 
 
-class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(
-    FragmentGalleryBinding::bind,
-    R.layout.fragment_gallery
-) {
+class GalleryFragment : BindingFragment<FragmentGalleryBinding>(R.layout.fragment_gallery) {
 
     private val dataList by lazy {
         listOf(
@@ -33,8 +31,13 @@ class GalleryFragment() : BindingFragment<FragmentGalleryBinding>(
         )
     }
     private val adapter by lazy { GalleryListAdapter(requireContext()).apply { submitList(dataList) } }
+
+    //MainActivity 뷰모델 by 위임 생성
+    private val viewModel by activityViewModels<MainViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
         initAdapter()
         heightGapRv()
     }
