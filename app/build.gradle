@@ -59,4 +59,7 @@ dependencies {
     // LiveData - 데이터의 변경 사항을 알 수 있다.
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.activity:activity-ktx:1.6.1"
+    //DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
 }
