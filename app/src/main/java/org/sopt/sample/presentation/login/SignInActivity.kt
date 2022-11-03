@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.first
@@ -79,7 +80,7 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_
     }
 
     private fun addObservers() {
-        viewModel.isCompletedSignIn.observe(this, EventObserver { isCompleted ->
+        viewModel.isSignInSuccess.asLiveData().observe(this, EventObserver { isCompleted ->
             showToast(getString(if (isCompleted) {
                 moveToHome()
                 R.string.sign_in_success_toast_message
