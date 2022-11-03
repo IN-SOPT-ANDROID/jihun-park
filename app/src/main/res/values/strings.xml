@@ -5,6 +5,7 @@
     <string name="sign_pw_tv">Password</string>
     <string name="signin_login_btn">Login</string>
     <string name="signup_login_success">회원가입 성공</string>
+    <string name="signup_login_fail">회원가입 실패</string>
     <string name="signup_fail_id_length">아이디는 6글자~10글자 이내로 입력해주세요!</string>
     <string name="signup_fail_pw_length">비밀번호는 8글자~12글자 이내로 입력해주세요!</string>
     <string name="signup_fail_mbti"> 올바르지 않은 MBTI입니다!</string>
