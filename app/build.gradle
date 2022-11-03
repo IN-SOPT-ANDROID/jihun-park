@@ -1,9 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    //plugin for ViewModel
+    id 'kotlin-kapt'
+    //parcelize
+    id 'kotlin-parcelize'
 }
-//plugin for ViewModel
-apply plugin: 'kotlin-kapt'
 android {
     namespace 'org.sopt.sample'
     compileSdk 33
