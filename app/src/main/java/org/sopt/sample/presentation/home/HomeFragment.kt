@@ -2,23 +2,20 @@ package org.sopt.sample.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
+import org.sopt.sample.presentation.MainViewModel
 import org.sopt.sample.presentation.home.data.HomeRepoContentData
 import org.sopt.sample.presentation.home.data.HomeRepoTitleData
 import org.sopt.sample.presentation.home.diffUtilAdapter.HomeRepoListAdapter
 import org.sopt.sample.presentation.login.SignInActivity
-import org.sopt.sample.presentation.MainViewModel
 import org.sopt.sample.util.RecyclerDecorationHeight
-import org.sopt.sample.util.const.AUTO_LOGIN_ID
-import org.sopt.sample.util.const.AUTO_LOGIN_MBTI
-import org.sopt.sample.util.const.AUTO_LOGIN_PW
 import org.sopt.sample.util.extensions.showToast
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -100,38 +97,36 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
     private fun logOutBtnListener() {
         binding.homeLogout.setOnClickListener {
-            ApplicationClass.sSharedPreferences.edit().apply {
-                putString(AUTO_LOGIN_ID, null)
-                putString(AUTO_LOGIN_PW, null)
-                putString(AUTO_LOGIN_MBTI, null)
-            }.apply() //자동 로그인 데이터 삭제
-            this.showToast("로그아웃 되었습니다.")
-            val intent = Intent(activity, SignInActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
-        }
-    }
-
-
-    private fun initAdapter() {
-        binding.homeRecyclerRepo.adapter = adapter
-        //add 버튼 -> Repo 추가
-        binding.homeRecyclerRepoAddBtn.setOnClickListener {
-            adapter.add()
-        }
-        //remove 버튼 -> Repo 삭제
-        binding.homeRecyclerRepoRemoveBtn.setOnClickListener {
-            adapter.remove()
+            lifecycleScope.launch { //setUserInfo는 DataStore의 edit을 호출하기 때문에, 코루틴Scope 안에서 동작시켜야한다.
+                ApplicationClass.getInstance().getUserManager().setUserInfo("", "", "") //유저 데이터 삭제
+                showToast("로그아웃 되었습니다.")
+                val intent = Intent(activity, SignInActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
         }
 
     }
 
-    //리사이클러 뷰 간격(높이)
-    private fun heightGapRv() {
-        binding.homeRecyclerRepo.addItemDecoration(RecyclerDecorationHeight(80))
+private fun initAdapter() {
+    binding.homeRecyclerRepo.adapter = adapter
+    //add 버튼 -> Repo 추가
+    binding.homeRecyclerRepoAddBtn.setOnClickListener {
+        adapter.add()
+    }
+    //remove 버튼 -> Repo 삭제
+    binding.homeRecyclerRepoRemoveBtn.setOnClickListener {
+        adapter.remove()
     }
 
-    fun scrollToTop() {
-        binding.homeRecyclerRepo.smoothScrollToPosition(0)
-    }
+}
+
+//리사이클러 뷰 간격(높이)
+private fun heightGapRv() {
+    binding.homeRecyclerRepo.addItemDecoration(RecyclerDecorationHeight(80))
+}
+
+fun scrollToTop() {
+    binding.homeRecyclerRepo.smoothScrollToPosition(0)
+}
 }
