@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="org.sopt.sample.presentation.login.SignUpViewModel" />
+            type="org.sopt.sample.presentation.login.SignViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,6 +59,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="text"
         android:maxLines="1"
+        android:text="@{viewModel.id}"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
@@ -102,6 +103,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="textPassword"
         android:maxLines="1"
+        android:text="@{viewModel.pw}"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
@@ -155,6 +157,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="text"
         android:maxLines="1"
+        android:text="@{viewModel.mbti}"
         android:textColor="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
         android:textStyle="bold"
