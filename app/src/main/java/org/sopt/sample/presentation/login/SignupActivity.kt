@@ -2,49 +2,42 @@ package org.sopt.sample.presentation.login
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
 import androidx.activity.viewModels
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.*
 import org.sopt.sample.R
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
-import org.sopt.sample.util.const.USER_INFO_ID
-import org.sopt.sample.util.const.USER_INFO_MBTI
-import org.sopt.sample.util.const.USER_INFO_PW
-import org.sopt.sample.util.extensions.makeSnackBar
+import org.sopt.sample.presentation.model.UserInfo
+import org.sopt.sample.util.EventObserver
+import org.sopt.sample.util.extensions.showToast
 
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
-    private val viewModel: SignUpViewModel by viewModels()
-    private val mbtiList: List<String> = listOf(
-        "ENFJ", "ENTJ", "ENFP", "ENTP",
-        "ESFP", "ESFJ", "ESTP", "ESTJ",
-        "INFP", "INFJ", "INTP", "ISTP",
-        "ISFP", "ISFJ", "ISTJ", "INTJ"
-    )
+    private val viewModel: SignViewModel by viewModels()
 
     companion object {
         //inputType Password 값
         const val INPUT_TYPE_PASSWORD = 129
+        const val ARG_USER_INFO = "userInfo"
     }
-
-    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        editor = ApplicationClass.sSharedPreferences.edit()
-        signUp()
-        showPw()
+        addListeners()
+        addObservers()
+        revealPw()
     }
-
     @SuppressLint("ClickableViewAccessibility")
-    private fun showPw() {
+    private fun revealPw() {
         Log.d("Signup", "showPw touch 상태 ${binding.signUpPwEt.inputType}")
         binding.signupShowPw.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -62,68 +55,55 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             true
         }
     }
-
-
-    private fun signUp() {
+    private fun addListeners(){
         binding.signUpCompleteBtn.setOnClickListener {
-            if (idValidCheck(binding.signUpIdEt.text.toString()) && pwValidCheck(binding.signUpPwEt.text.toString()) && mbtiValidCheck(
-                    binding.signUpMbtiEt.text.toString()
-                )
-            ) {
-                signupSuccess()
+            viewModel.inputValidCheck()
+        }
+    }
+    private fun addObservers(){
+        //asLiveData - 뷰가 STOPPED되면 자동 소비 관리
+        //addListeners()를 통해 viewModel.inputValidCheck()가 호출되면, isSignUpInputValid의 값이 변경
+        //isSignUpInputValid를 observe 하고있다가 signUpSuccess에 값을 넘겨준다.
+        viewModel.isSignUpInputValid.asLiveData().observe(this, EventObserver { isValid ->
+            lifecycleScope.launch {
+                signUpSuccess(isValid)
             }
-        }
-    } //root func(idValidCheck,pwValidCheck,signupSuccess)
-
-    private fun idValidCheck(id: String): Boolean {
-        if (id.length in 6..10) {
-            return true
-        } else {
-            binding.root.makeSnackBar(getString(R.string.signup_fail_id_length))
-                .setAnchorView(binding.signUpIdEt)
-                .show()
-            return false
-        }
+        })
     }
-
-    private fun pwValidCheck(pw: String): Boolean {
-        if (pw.length in 8..12) {
-            return true
-        } else {
-            binding.root.makeSnackBar(getString(R.string.signup_fail_pw_length))
-                .setAnchorView(binding.signUpPwEt)
-                .show()
-            return false
-        }
-    }
-
-    private fun mbtiValidCheck(mbti: String?): Boolean {
-        if (mbti?.isEmpty() == true || binding.signUpMbtiEt.text.toString()
-                .uppercase() in mbtiList
-        ) {
-            return true
-        } else {
-            binding.root.makeSnackBar("올바르지 않은 MBTI입니다.").setAnchorView(binding.signUpMbtiEt).show()
-            return false
-        }
-    }
-
-    private fun signupSuccess() {
-        editor.apply {
-            putString(USER_INFO_ID, binding.signUpIdEt.text.toString())
-            putString(USER_INFO_PW, binding.signUpPwEt.text.toString())
-            putString(USER_INFO_MBTI, binding.signUpMbtiEt.text.toString())
-            commit()
-        }
-        //SignUp Success->HomeActivity
-        Intent(this, SignInActivity::class.java).apply {
-            putExtra(USER_INFO_ID, binding.signUpIdEt.text.toString())
-            putExtra(USER_INFO_PW, binding.signUpPwEt.text.toString())
-            putExtra(USER_INFO_MBTI, binding.signUpMbtiEt.text.toString())
-        }.also {
-            setResult(RESULT_OK, it) //result code 및 intent 설정
+    private fun signUpSuccess(isValid: Boolean) {
+        if(isValid){
+            showToast(getString(R.string.signup_login_success))
+            //DataStore에 로그인 정보 저장(자동 로그인을 위함) - 백그라운드에서 수행
+            CoroutineScope(Dispatchers.IO).launch {
+                with(binding) {
+                    ApplicationClass.getInstance().getUserManager().setUserInfo(
+                        signUpIdEt.text.toString(),
+                        signUpPwEt.text.toString(),
+                        signUpMbtiEt.text.toString()
+                    )
+                }
+            }
+            //SignUp Success->SignInActivity로 전달
+            val intent = Intent(this, SignInActivity::class.java)
+            with(binding) {
+                intent.putExtra(
+                    ARG_USER_INFO,
+                    UserInfo(
+                        signUpIdEt.text.toString(),
+                        signUpPwEt.text.toString(),
+                        signUpMbtiEt.text.toString()
+                    )
+                )
+            }
+            setResult(RESULT_OK, intent) //result code 및 intent 설정
             finish() //액티비티 종료
         }
+        else {
+            when(viewModel.failReason){
+                SignUpFail.ID_FAIL-> showToast(getString(R.string.signup_fail_id_length))
+                SignUpFail.PW_FAIL-> showToast(getString(R.string.signup_fail_pw_length))
+                SignUpFail.MBTI_FAIL-> showToast(getString(R.string.signup_fail_mbti))
+            }
+        }
     }
-
 }
