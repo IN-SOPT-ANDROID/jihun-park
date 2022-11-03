@@ -37,6 +37,7 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(R.layout.activity_
     private fun addObserver() {
         //LiveData.observe - 뷰가 STOPPED 상태가 되면소비자를 자동으로 등록 취소한다.
         //StateFlow - 자동으로 중지하지 않기 때문에, lifecycleScope로 생명주기를 인지시켜주거나, lifecycle-livedata-ktx의 확장함수 asLiveData로 해결 가능
+        //1회성으로 이벤트를 전달해주기 위해 데이터를 Event Wrapper로 감싸줬다.
         viewModel.isSignedUser.asLiveData().observe(this, EventObserver { isSigned ->
             lifecycleScope.launch {
                 delay(2000)
@@ -45,6 +46,7 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(R.layout.activity_
             }
         })
     }
+
     private fun moveToNext(isSigned: Boolean) {
         //isSigned(자동 로그인 여부)에 따라 MainActivity 또는 SignInActivity로 StartActivity
         when (isSigned) {
