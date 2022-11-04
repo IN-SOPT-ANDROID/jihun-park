@@ -20,6 +20,7 @@ import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.presentation.MainActivity
+import org.sopt.sample.util.EventObserver
 import org.sopt.sample.util.const.USER_INFO_ID
 import org.sopt.sample.util.const.USER_INFO_MBTI
 import org.sopt.sample.util.const.USER_INFO_PW
