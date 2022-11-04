@@ -24,7 +24,9 @@ class SignViewModel : ViewModel() {
     val pw = MutableStateFlow<String>("")
     val mbti = MutableStateFlow<String>("")
     var userInput: UserInfo? = null
-
+    //Presentation layer - VIEW,VIEWMODEL
+    //Domain Layer -
+    //Data Layer - DB, ROOM
     lateinit var failReason: Enum<SignUpFail>
     private var _isSignUpInputValid = MutableStateFlow<Event<Boolean>>(Event(false))
     val isSignUpInputValid: StateFlow<Event<Boolean>> get() = _isSignUpInputValid
