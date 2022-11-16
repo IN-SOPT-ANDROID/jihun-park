@@ -1,19 +1,19 @@
 package org.sopt.sample.application
 
 import android.app.Application
-import android.content.SharedPreferences
-import org.sopt.sample.R
+import org.sopt.sample.util.datastore.UserManager
 
-//앱 최초 생성 시 sp 새로 생성
-class ApplicationClass: Application() {
-    //전역변수
+class ApplicationClass : Application() {
+    private lateinit var userManager: UserManager
 
     companion object{
-
-        lateinit var sSharedPreferences: SharedPreferences
+        private lateinit var applicationClass: ApplicationClass
+        fun getInstance(): ApplicationClass = applicationClass
     }
+
     override fun onCreate() {
         super.onCreate()
-        sSharedPreferences = applicationContext.getSharedPreferences("${R.string.login_info_sp}", MODE_PRIVATE)
+        userManager = UserManager(this)
     }
+    fun getUserManager(): UserManager = userManager //DataStore 싱글톤으로 사용하기
 }

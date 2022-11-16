@@ -2,6 +2,7 @@ package org.sopt.sample.presentation
 
 import android.content.Context
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import org.sopt.sample.R
@@ -11,14 +12,27 @@ import org.sopt.sample.presentation.gallery.GalleryFragment
 import org.sopt.sample.presentation.home.HomeFragment
 import org.sopt.sample.presentation.search.SearchFragment
 
-class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main){
+
+    private val viewModel: MainViewModel by viewModels()
+
     companion object {
         lateinit var mContext: Context
+        const val USER_INFO_ID = "id"
+        const val USER_INFO_PW = "pw"
+        const val USER_INFO_MBTI = "mbti"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        viewModel.setUserData(intent.getStringExtra(USER_INFO_ID).toString(),intent.getStringExtra(USER_INFO_MBTI).toString())
+
+
         //현재 설정되어있는 Fragment가 없으면, HomeFragment를 초기화면으로 설정
         addListener()
         changeFragment(R.id.btm_home_menu)
@@ -58,15 +72,5 @@ class MainActivity : BindingActivity<ActivityMainBinding>(ActivityMainBinding::i
             else -> IllegalArgumentException("${this::class.java.simpleName} Not found menu item id")
         }
     }
-//        logOutBtnListener()
-//    /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
-//    private fun logOutBtnListener(){
-//        binding.homeLogoutBtn.setOnClickListener {
-//            ApplicationClass.sSharedPreferences.edit().clear().commit() //모든 저장데이터 삭제
-//            this.showToast("로그아웃 되었습니다.")
-//            finish()
-//            val intent = Intent(this,SignInActivity::class.java)
-//            startActivity(intent)
-//        }
-//    }
+
 }
