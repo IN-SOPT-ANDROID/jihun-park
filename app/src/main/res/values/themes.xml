@@ -12,5 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/signin_background</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:includeFontPadding">false</item>
     </style>
 </resources>
