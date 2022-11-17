@@ -14,7 +14,7 @@ import org.sopt.sample.presentation.MainViewModel
 import org.sopt.sample.presentation.home.data.HomeRepoContentData
 import org.sopt.sample.presentation.home.data.HomeRepoTitleData
 import org.sopt.sample.presentation.home.diffUtilAdapter.HomeRepoListAdapter
-import org.sopt.sample.presentation.login.SignInActivity
+import org.sopt.sample.presentation.login.signin.SignInActivity
 import org.sopt.sample.util.RecyclerDecorationHeight
 import org.sopt.sample.util.extensions.showToast
 

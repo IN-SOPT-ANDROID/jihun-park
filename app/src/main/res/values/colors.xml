@@ -14,9 +14,10 @@
     <color name="signin_background">#1A181B</color>
     <color name="signin_et_underline">#C8485D</color>
     <color name="signin_btn">#C8485D</color>
-    <color name="signup_btn">#C8485D</color>
     <color name="signin_et_cursor">#C8485D</color>
     <color name="signup_et_cursor">#C8485D</color>
+    <color name="signup_btn">#C8485D</color>
+    <color name="signup_btn_disable">#808080</color>
 
     <color name="gallery_item_on">#C8485D</color>
     <color name="gallery_item_off">#FFFFFF</color>
