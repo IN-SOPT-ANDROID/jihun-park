@@ -8,11 +8,14 @@
     <string name="signup_login_fail">회원가입 실패</string>
     <string name="signup_fail_id_length">아이디는 6글자~10글자 이내로 입력해주세요!</string>
     <string name="signup_fail_pw_length">비밀번호는 8글자~12글자 이내로 입력해주세요!</string>
+    <string name="signup_fail_id_or_pw_length">ID는 6~10자, PW는 8~12자 이내로 입력해주세요</string>
+
     <string name="signup_fail_mbti"> 올바르지 않은 MBTI입니다!</string>
 
     <string name="signin_signup_btn">SIGNUP</string>
     <string name="signin_title_tv">Welcome to SOPT</string>
     <string name="signin_fail_id_or_pw">ID 또는 PW를 확인해주세요!</string>
+    <string name="signin_empty_id_or_pw">ID 또는 PW를 입력해주세요!</string>
     <string name="signup_title_tv">SIGNUP</string>
     <string name="signup_mbti_tv">MBTI</string>
     <string name="signup_complete_btn">회원가입 완료</string>
