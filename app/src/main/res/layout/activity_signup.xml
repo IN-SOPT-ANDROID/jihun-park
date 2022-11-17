@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="org.sopt.sample.presentation.login.SignViewModel" />
+            type="org.sopt.sample.presentation.login.signup.SignUpViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/signin_background"
-    tools:context=".presentation.login.SignupActivity">
+    tools:context=".presentation.login.signup.SignupActivity">
 
     <TextView
         android:id="@+id/signUp_title_tv"
@@ -59,7 +59,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="text"
         android:maxLines="1"
-        android:text="@{viewModel.id}"
+        android:text="@={viewModel.id}"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
@@ -103,7 +103,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:text="@{viewModel.pw}"
+        android:text="@={viewModel.pw}"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
@@ -157,7 +157,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="text"
         android:maxLines="1"
-        android:text="@{viewModel.mbti}"
+        android:text="@={viewModel.mbti}"
         android:textColor="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
         android:textStyle="bold"
@@ -176,6 +176,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="@id/signUp_mbti_et"
         app:layout_constraintStart_toStartOf="@id/signUp_mbti_et"
         app:layout_constraintTop_toBottomOf="@id/signUp_mbti_et" />

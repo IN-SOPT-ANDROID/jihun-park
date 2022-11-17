@@ -3,7 +3,6 @@ package org.sopt.sample.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -11,7 +10,7 @@ import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySplashBinding
 import org.sopt.sample.presentation.MainActivity
-import org.sopt.sample.presentation.login.SignInActivity
+import org.sopt.sample.presentation.login.signin.SignInActivity
 import org.sopt.sample.util.EventObserver
 import org.sopt.sample.util.extensions.showToast
 
@@ -38,7 +37,7 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>(R.layout.activity_
         //LiveData.observe - 뷰가 STOPPED 상태가 되면 소비자를 자동으로 등록 취소한다.
         //StateFlow - 자동으로 중지하지 않기 때문에, lifecycleScope로 생명주기를 인지시켜주거나, lifecycle-livedata-ktx의 확장함수 asLiveData로 해결 가능
         //1회성으로 이벤트를 전달해주기 위해 데이터를 Event Wrapper로 감싸줬다.
-        viewModel.isSignedUser.asLiveData().observe(this, EventObserver { isSigned ->
+        viewModel.isSignedUser.observe(this, EventObserver { isSigned ->
             lifecycleScope.launch {
                 delay(2000)
                 moveToNext(isSigned)
