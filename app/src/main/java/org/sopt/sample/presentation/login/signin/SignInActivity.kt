@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import org.sopt.sample.R
@@ -12,6 +11,7 @@ import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.presentation.MainActivity
 import org.sopt.sample.presentation.login.signup.SignupActivity
+import org.sopt.sample.util.extensions.showToast
 
 
 class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_signin) {
@@ -21,22 +21,17 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-        signIn() //로그인
-        moveTosignUp() //회원가입
+        moveToSignUp() //회원가입
         showPw() //비밀번호 노출
-
+        addListener()
     }
-
-
-    private fun addListeners() {
-
+    private fun addListener(){
+        binding.signInLoginBtn.setOnClickListener {
+            if(viewModel.id.value.isNullOrBlank()||viewModel.pw.value.isNullOrBlank()){
+                showToast(getString(R.string.signin_empty_id_or_pw))
+            }
+        }
     }
-
-    private fun addObservers() {
-
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     private fun showPw() {
         binding.signInShowPw.setOnTouchListener { v, event ->
@@ -54,21 +49,15 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_
             true
         }
     }
-
-    private fun signIn() {
-        //로그인 버튼 클릭
-    }
-
     private fun moveToHome() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
-
-    private fun moveTosignUp() {
+    private fun moveToSignUp() {
         //회원가입 버튼
-        val signupIntent = Intent(this, SignupActivity::class.java)
         binding.signInSignUpBtn.setOnClickListener {
-            startActivity(signupIntent)
+            startActivity(Intent(this, SignupActivity::class.java))
+            finish()
         }
     }
 }

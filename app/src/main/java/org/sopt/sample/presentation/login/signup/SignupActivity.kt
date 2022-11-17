@@ -1,14 +1,15 @@
 package org.sopt.sample.presentation.login.signup
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
+import org.sopt.sample.presentation.login.signin.SignInActivity
 import org.sopt.sample.util.extensions.showToast
 
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
@@ -24,8 +25,10 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         addObserver()
+        addListener()
         revealPw()
     }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun revealPw() {
         binding.signupShowPw.setOnTouchListener { _, event ->
@@ -43,24 +46,30 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             true
         }
     }
-    private fun addObserver(){
-        viewModel.isInputValid.observe(this){
+    private fun addObserver() {
+        viewModel.isInputValid.observe(this) {
             binding.signUpCompleteBtn.apply {
-                if(it) {
-                        isClickable = false
-                        setBackgroundColor(getColor(R.color.signup_btn_disable))
+                if (it) {
+                    setBackgroundColor(getColor(R.color.sign_btn))
+                } else {
+                    setBackgroundColor(getColor(R.color.sign_btn_disable))
                 }
-                else{
-                        isClickable = true
-                        setBackgroundColor(getColor(R.color.signup_btn))
-                    }
-                }
+            }
+        }
+    }
+
+    private fun addListener() {
+        binding.signUpCompleteBtn.setOnClickListener {
+            if (viewModel.isInputValid.value == false) {
+                showToast(getString(R.string.signup_fail_id_or_pw_length))
+            }
         }
     }
 
     private fun signUpSuccess(isValid: Boolean) {
         if (isValid) {
             showToast(getString(R.string.signup_login_success))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish() //액티비티 종료
         } else {
         }

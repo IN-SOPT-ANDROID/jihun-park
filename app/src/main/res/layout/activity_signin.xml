@@ -48,6 +48,7 @@
             android:layout_marginEnd="20dp"
             android:backgroundTint="@color/signin_et_underline"
             android:inputType="text"
+            android:text="@={viewModel.id}"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textCursorDrawable="@color/signin_et_cursor"
@@ -79,7 +80,7 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textCursorDrawable="@color/signin_et_cursor"
-
+            android:text="@={viewModel.pw}"
             android:textStyle="bold"
 
             app:layout_constraintEnd_toStartOf="@id/signIn_show_pw"

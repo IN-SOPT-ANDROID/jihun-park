@@ -124,48 +124,6 @@
         app:layout_constraintTop_toTopOf="@id/signUp_pw_et"
         app:srcCompat="@drawable/show_password" />
 
-    <TextView
-        android:id="@+id/signUp_mbti_tv"
-        style="@style/sign_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/signup_mbti_tv"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUp_pw_et" />
-
-    <TextView
-        android:id="@+id/signUp_mbti_desc1_tv"
-        style="@style/sign_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="@string/signup_mbti_desc1"
-
-        app:layout_constraintBottom_toBottomOf="@id/signUp_mbti_tv"
-        app:layout_constraintStart_toEndOf="@id/signUp_mbti_tv"
-        app:layout_constraintTop_toTopOf="@id/signUp_mbti_tv" />
-
-    <EditText
-        android:id="@+id/signUp_mbti_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/signin_et_underline"
-        android:inputType="text"
-        android:maxLines="1"
-        android:text="@={viewModel.mbti}"
-        android:textColor="@color/white"
-        android:textCursorDrawable="@color/signup_et_cursor"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="@id/signUp_mbti_tv"
-        app:layout_constraintTop_toBottomOf="@id/signUp_mbti_tv" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUp_complete_btn"
         android:layout_width="0dp"
@@ -176,10 +134,11 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:clickable="false"
-        app:layout_constraintEnd_toEndOf="@id/signUp_mbti_et"
-        app:layout_constraintStart_toStartOf="@id/signUp_mbti_et"
-        app:layout_constraintTop_toBottomOf="@id/signUp_mbti_et" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUp_pw_et" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
