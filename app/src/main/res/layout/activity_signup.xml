@@ -26,17 +26,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/signUp_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android_ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/signUp_name_tv"
+        style="@style/sign_input_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/sign_name_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUp_title_tv" />
+
+    <TextView
+        android:id="@+id/signUp_name_desc1_tv"
+        style="@style/sign_input_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/signup_email_desc1"
+        app:layout_constraintBottom_toBottomOf="@id/signUp_name_tv"
+        app:layout_constraintStart_toEndOf="@id/signUp_name_tv"
+        app:layout_constraintTop_toTopOf="@id/signUp_name_tv" />
+
+    <EditText
+        android:id="@+id/signUp_name_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/signin_et_underline"
+        android:inputType="text"
+        android:maxLines="1"
+        android:text="@={viewModel.name}"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textCursorDrawable="@color/signup_et_cursor"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/signUp_name_tv"
+        app:layout_constraintTop_toBottomOf="@id/signUp_name_tv" />
+
+
+
     <TextView
         android:id="@+id/signUp_id_tv"
         style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/sign_id_tv"
+        android:layout_marginTop="20dp"
+        android:text="@string/sign_email_tv"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUp_title_tv" />
+        app:layout_constraintTop_toBottomOf="@id/signUp_name_et" />
 
     <TextView
         android:id="@+id/signUp_id_desc1_tv"
@@ -44,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:text="@string/signup_id_desc1"
+        android:text="@string/signup_email_desc1"
 
         app:layout_constraintBottom_toBottomOf="@id/signUp_id_tv"
         app:layout_constraintStart_toEndOf="@id/signUp_id_tv"
@@ -59,7 +111,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="text"
         android:maxLines="1"
-        android:text="@={viewModel.id}"
+        android:text="@={viewModel.email}"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
@@ -75,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/sign_pw_tv"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +180,7 @@
         android:id="@+id/signUp_complete_btn"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/signup_btn_border"
         android:text="@string/signup_complete_btn"
         android:textColor="@color/white"

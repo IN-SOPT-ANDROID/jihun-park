@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="100dp"
-            android:text="@string/sign_id_tv"
+            android:text="@string/sign_email_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signIn_title_tv" />
 
@@ -48,7 +48,7 @@
             android:layout_marginEnd="20dp"
             android:backgroundTint="@color/signin_et_underline"
             android:inputType="text"
-            android:text="@={viewModel.id}"
+            android:text="@={viewModel.email}"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textCursorDrawable="@color/signin_et_cursor"
@@ -77,10 +77,10 @@
             android:layout_marginEnd="20dp"
             android:backgroundTint="@color/signin_et_underline"
             android:inputType="textPassword"
+            android:text="@={viewModel.pw}"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textCursorDrawable="@color/signin_et_cursor"
-            android:text="@={viewModel.pw}"
             android:textStyle="bold"
 
             app:layout_constraintEnd_toStartOf="@id/signIn_show_pw"
