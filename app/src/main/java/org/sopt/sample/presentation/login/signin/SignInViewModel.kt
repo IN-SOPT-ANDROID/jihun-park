@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.auth.model.SignInRequest
 import org.sopt.sample.data.auth.repository.AuthRepository
+import org.sopt.sample.util.addSourceList
 
 
 class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() {
@@ -22,8 +23,8 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
 
     private fun isEnabledSigninButton() {
         isInputValid.apply {
-            addSource(email) { value = inputValidCheck() }
-            addSource(pw) { value = inputValidCheck() }
+            addSourceList(email,pw){inputValidCheck()}
+
         }
     }
 
