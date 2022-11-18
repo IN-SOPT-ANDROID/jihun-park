@@ -55,9 +55,6 @@ dependencies {
     //Typedef annotation
     implementation 'com.android.support:support-annotations:28.0.0'
 
-    //RecyclerView Selection
-    implementation "androidx.recyclerview:recyclerview-selection:1.0.0"
-
     def lifecycle_version = "2.5.1"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -76,4 +73,7 @@ dependencies {
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }
