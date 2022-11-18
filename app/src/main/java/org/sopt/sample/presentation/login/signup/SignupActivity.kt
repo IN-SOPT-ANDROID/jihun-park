@@ -31,6 +31,23 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         revealPw()
     }
 
+    private fun addObserver() {
+        //입력값 상태에 따른 회원가입 버튼 활성화<->비활성화
+        viewModel.isInputValid.observe(this) {
+            binding.signUpCompleteBtn.apply {
+                if (it) {
+                    background = AppCompatResources.getDrawable(
+                        this@SignupActivity,
+                        R.drawable.signup_btn_border
+                    )
+                } else {
+                    background = AppCompatResources.getDrawable(
+                        this@SignupActivity,
+                        R.drawable.signup_btn_border_disable
+                    )
+                }
+            }
+        }
         //회원가입 성공 여부 observe
         viewModel.signUpSuccess.observe(this) {
             if (it) {

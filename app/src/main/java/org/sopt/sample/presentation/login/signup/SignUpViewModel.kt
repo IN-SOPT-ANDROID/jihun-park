@@ -25,11 +25,33 @@ class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() 
 
     private fun isEnabledSignupButton() {
         isInputValid.apply {
-            addSource(id) { value = inputValidCheck() }
+            addSource(name) { value = inputValidCheck() }
+            addSource(email) { value = inputValidCheck() }
             addSource(pw) { value = inputValidCheck() }
         }
     }
 
-    private fun inputValidCheck(): Boolean =
-        (id.value?.length in 6..10) && (pw.value?.length in 8..12)
+    private fun inputValidCheck(): Boolean = isNameValid() && isEmailValid() && isPwValid()
+    fun isNameValid(): Boolean = !name.value.isNullOrBlank()
+    fun isEmailValid(): Boolean = email.value?.contains('@') == true
+    fun isPwValid(): Boolean = pw.value?.length in 8..12
+    private fun getUser(): SignUpRequest {
+        return SignUpRequest(email.value.toString(), name.value.toString(), pw.value.toString())
+    }
+
+    private fun postSignUp(signUpRequest: SignUpRequest) {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                authRepository.signUp(signUpRequest)
+            }.onSuccess {
+                _signUpSuccess.value = it.status == 201
+            }.onFailure {
+                _signUpSuccess.value = false
+            }
+        }
+    }
+
+    fun signUp() {
+        postSignUp(getUser())
+    }
 }
