@@ -8,12 +8,6 @@
         android:icon="@drawable/btm_btn_home"
         android:title="@string/btm_menu_home"/>
     <item
-        android:id="@+id/btm_gallery_menu"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:icon="@drawable/btm_btn_gallery"
-        android:title="@string/btm_menu_gallery"/>
-    <item
         android:id="@+id/btm_search_menu"
         app:showAsAction="ifRoom"
         android:enabled="true"

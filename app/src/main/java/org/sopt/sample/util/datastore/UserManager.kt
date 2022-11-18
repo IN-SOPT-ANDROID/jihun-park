@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import org.sopt.sample.presentation.model.UserInfo
 import java.io.IOException
 
 
@@ -62,12 +61,12 @@ class UserManager(private val context: Context) {
             it[USER_MBTI_KEY] = mbti
         }
     }
-    suspend fun getUserInfo(): UserInfo? {
-        // id가 존재하지 않는 경우 null 반환
-        if(userIdFlow.first().isEmpty()){
-            return null
-        }
-        return UserInfo(userIdFlow.first(),userPwFlow.first(),userMbtiFlow.first())
-    }
+//    suspend fun getUserInfo(): UserInfo? {
+//        // id가 존재하지 않는 경우 null 반환
+//        if(userIdFlow.first().isEmpty()){
+//            return null
+//        }
+//        return UserInfo(userIdFlow.first(),userPwFlow.first(),userMbtiFlow.first())
+//    }
 
 }
