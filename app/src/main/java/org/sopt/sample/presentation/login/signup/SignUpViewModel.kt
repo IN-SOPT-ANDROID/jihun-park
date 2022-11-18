@@ -1,16 +1,22 @@
 package org.sopt.sample.presentation.login.signup
 
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import kotlinx.coroutines.launch
+import org.sopt.sample.data.auth.model.SignUpRequest
+import org.sopt.sample.data.auth.repository.AuthRepository
 
 
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
-    val id = MutableLiveData<String>()
+    val name = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
     val isInputValid = MediatorLiveData<Boolean>()
+
+    private val _signUpSuccess = MutableLiveData<Boolean>()
+    val signUpSuccess: LiveData<Boolean>
+        get() = _signUpSuccess
 
     init {
         isInputValid.value = false

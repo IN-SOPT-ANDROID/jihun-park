@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.MotionEvent
 import androidx.activity.viewModels
+import androidx.appcompat.content.res.AppCompatResources
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
+import org.sopt.sample.presentation.common.ViewModelFactory
 import org.sopt.sample.presentation.login.signin.SignInActivity
 import org.sopt.sample.util.extensions.showToast
 
@@ -29,10 +31,36 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         revealPw()
     }
 
+        //회원가입 성공 여부 observe
+        viewModel.signUpSuccess.observe(this) {
+            if (it) {
+                showToast(getString(R.string.signup_login_success))
+                moveToSignIn()
+            } else {
+                showToast(getString(R.string.signup_login_fail))
+            }
+        }
+    }
+    //입력값 valid check ->  signUp():서버통신 -> signUpSuccess값 변경 -> 회원가입 success or fail
+    private fun addListener() {
+        //회원가입 버튼 클릭 시, 입력값 검사 후 회원가입 서버통신
+        binding.signUpCompleteBtn.setOnClickListener {
+            if (!viewModel.isNameValid()) {
+                showToast(getString(R.string.signup_fail_name))
+            } else if (!viewModel.isEmailValid()) {
+                showToast(getString(R.string.signup_fail_email))
+            } else if (!viewModel.isPwValid()) {
+                showToast(getString(R.string.signup_fail_pw_length))
+            } else {
+                viewModel.signUp()
+            }
+        }
         //뒤로가기 버튼
         binding.signUpBackBtn.setOnClickListener {
             moveToSignIn()
         }
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun revealPw() {
         binding.signupShowPw.setOnTouchListener { _, event ->
@@ -49,33 +77,10 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             }
             true
         }
-    }
-    private fun addObserver() {
-        viewModel.isInputValid.observe(this) {
-            binding.signUpCompleteBtn.apply {
-                if (it) {
-                    setBackgroundColor(getColor(R.color.sign_btn))
-                } else {
-                    setBackgroundColor(getColor(R.color.sign_btn_disable))
-                }
-            }
-        }
-    }
+    } //비밀번호 드러내기
 
-    private fun addListener() {
-        binding.signUpCompleteBtn.setOnClickListener {
-            if (viewModel.isInputValid.value == false) {
-                showToast(getString(R.string.signup_fail_id_or_pw_length))
-            }
-        }
-    }
-
-    private fun signUpSuccess(isValid: Boolean) {
-        if (isValid) {
-            showToast(getString(R.string.signup_login_success))
-            startActivity(Intent(this, SignInActivity::class.java))
-            finish() //액티비티 종료
-        } else {
-        }
+    private fun moveToSignIn() {
+        startActivity(Intent(this, SignInActivity::class.java))
+        finish()
     }
 }
