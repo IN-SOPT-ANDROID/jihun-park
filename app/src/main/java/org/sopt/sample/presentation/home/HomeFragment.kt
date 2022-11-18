@@ -82,8 +82,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
     }
 
-    //MainActivity 뷰모델 by 위임 생성
-    private val viewModel by activityViewModels<MainViewModel>()
+    private val viewModel:HomeViewModel by viewModels {ViewModelFactory(requireContext())}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
