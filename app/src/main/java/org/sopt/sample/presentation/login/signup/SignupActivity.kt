@@ -29,6 +29,10 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         revealPw()
     }
 
+        //뒤로가기 버튼
+        binding.signUpBackBtn.setOnClickListener {
+            moveToSignIn()
+        }
     @SuppressLint("ClickableViewAccessibility")
     private fun revealPw() {
         binding.signupShowPw.setOnTouchListener { _, event ->
