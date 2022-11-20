@@ -1,6 +1,7 @@
 package org.sopt.sample.presentation.home.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,16 +12,15 @@ import org.sopt.sample.databinding.HomeUserProfileItemBinding
 class HomeUserListAdapter(private val context: Context)  : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var userInfo = emptyList<UserInfo>()
+    private lateinit var inflater:LayoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+        if(!::inflater.isInitialized) inflater = LayoutInflater.from(parent.context)
         return HomeUserViewHolder(context,HomeUserProfileItemBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is HomeUserViewHolder -> holder.bind(userInfo[position])
-        }
+        (holder as HomeUserViewHolder).bind(userInfo[position])
     }
 
     override fun getItemCount(): Int = userInfo.size
