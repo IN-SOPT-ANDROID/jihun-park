@@ -1,18 +1,23 @@
 <resources>
     <string name="app_name">INSOPTAndroidPractice</string>
     <string name="login_info_sp">LoginSp</string>
-    <string name="sign_id_tv">ID</string>
+    <string name="sign_email_tv">Email</string>
+    <string name="sign_name_tv">Name</string>
     <string name="sign_pw_tv">Password</string>
     <string name="signin_login_btn">Login</string>
     <string name="signup_login_success">회원가입 성공</string>
     <string name="signup_login_fail">회원가입 실패</string>
-    <string name="signup_fail_id_length">아이디는 6글자~10글자 이내로 입력해주세요!</string>
+    <string name="signup_fail_name">이름은 최소 1글자 이상 입력해주세요!</string>
+    <string name="signup_fail_email">이메일 형식을 지켜주세요!</string>
     <string name="signup_fail_pw_length">비밀번호는 8글자~12글자 이내로 입력해주세요!</string>
+    <string name="signup_fail_input">올바른 정보를 입력해주세요!</string>
+
     <string name="signup_fail_mbti"> 올바르지 않은 MBTI입니다!</string>
 
     <string name="signin_signup_btn">SIGNUP</string>
     <string name="signin_title_tv">Welcome to SOPT</string>
     <string name="signin_fail_id_or_pw">ID 또는 PW를 확인해주세요!</string>
+    <string name="signin_empty_email_or_pw">Email 또는 PW를 확인해주세요!</string>
     <string name="signup_title_tv">SIGNUP</string>
     <string name="signup_mbti_tv">MBTI</string>
     <string name="signup_complete_btn">회원가입 완료</string>
@@ -23,10 +28,11 @@
     <string name="home_user_name">이름: 박지훈</string>
     <string name="signup_mbti_desc1">(선택)</string>
     <string name="signup_pw_desc1">(필수)</string>
-    <string name="signup_id_desc1">(필수)</string>
+    <string name="signup_email_desc1">(필수)</string>
     <string name="home_logout">Logout</string>
     <string name="signin_auto_login_complete">자동 로그인 되었습니다.</string>
-    <string name="signin_login_complete">로그인에 성공했습니다</string>
+    <string name="signin_login_success">로그인에 성공했습니다</string>
+    <string name="signin_login_fail">로그인 실패</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btm_menu_home">홈</string>

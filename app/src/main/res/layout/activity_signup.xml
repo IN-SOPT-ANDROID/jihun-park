@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="org.sopt.sample.presentation.login.SignViewModel" />
+            type="org.sopt.sample.presentation.login.signup.SignUpViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/signin_background"
-    tools:context=".presentation.login.SignupActivity">
+    tools:context=".presentation.login.signup.SignupActivity">
 
     <TextView
         android:id="@+id/signUp_title_tv"
@@ -26,17 +26,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/signUp_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android_ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/signUp_name_tv"
+        style="@style/sign_input_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/sign_name_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUp_title_tv" />
+
+    <TextView
+        android:id="@+id/signUp_name_desc1_tv"
+        style="@style/sign_input_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/signup_email_desc1"
+        app:layout_constraintBottom_toBottomOf="@id/signUp_name_tv"
+        app:layout_constraintStart_toEndOf="@id/signUp_name_tv"
+        app:layout_constraintTop_toTopOf="@id/signUp_name_tv" />
+
+    <EditText
+        android:id="@+id/signUp_name_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/signin_et_underline"
+        android:inputType="text"
+        android:maxLines="1"
+        android:text="@={viewModel.name}"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textCursorDrawable="@color/signup_et_cursor"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/signUp_name_tv"
+        app:layout_constraintTop_toBottomOf="@id/signUp_name_tv" />
+
+
+
     <TextView
         android:id="@+id/signUp_id_tv"
         style="@style/sign_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/sign_id_tv"
+        android:layout_marginTop="20dp"
+        android:text="@string/sign_email_tv"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUp_title_tv" />
+        app:layout_constraintTop_toBottomOf="@id/signUp_name_et" />
 
     <TextView
         android:id="@+id/signUp_id_desc1_tv"
@@ -44,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:text="@string/signup_id_desc1"
+        android:text="@string/signup_email_desc1"
 
         app:layout_constraintBottom_toBottomOf="@id/signUp_id_tv"
         app:layout_constraintStart_toEndOf="@id/signUp_id_tv"
@@ -59,7 +111,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="text"
         android:maxLines="1"
-        android:text="@{viewModel.id}"
+        android:text="@={viewModel.email}"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
@@ -75,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/sign_pw_tv"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +155,7 @@
         android:backgroundTint="@color/signin_et_underline"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:text="@{viewModel.pw}"
+        android:text="@={viewModel.pw}"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
@@ -124,61 +176,21 @@
         app:layout_constraintTop_toTopOf="@id/signUp_pw_et"
         app:srcCompat="@drawable/show_password" />
 
-    <TextView
-        android:id="@+id/signUp_mbti_tv"
-        style="@style/sign_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/signup_mbti_tv"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUp_pw_et" />
-
-    <TextView
-        android:id="@+id/signUp_mbti_desc1_tv"
-        style="@style/sign_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="@string/signup_mbti_desc1"
-
-        app:layout_constraintBottom_toBottomOf="@id/signUp_mbti_tv"
-        app:layout_constraintStart_toEndOf="@id/signUp_mbti_tv"
-        app:layout_constraintTop_toTopOf="@id/signUp_mbti_tv" />
-
-    <EditText
-        android:id="@+id/signUp_mbti_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/signin_et_underline"
-        android:inputType="text"
-        android:maxLines="1"
-        android:text="@{viewModel.mbti}"
-        android:textColor="@color/white"
-        android:textCursorDrawable="@color/signup_et_cursor"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="@id/signUp_mbti_tv"
-        app:layout_constraintTop_toBottomOf="@id/signUp_mbti_tv" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUp_complete_btn"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/signup_btn_border"
         android:text="@string/signup_complete_btn"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/signUp_mbti_et"
-        app:layout_constraintStart_toStartOf="@id/signUp_mbti_et"
-        app:layout_constraintTop_toBottomOf="@id/signUp_mbti_et" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUp_pw_et" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

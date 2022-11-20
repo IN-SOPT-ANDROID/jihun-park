@@ -5,7 +5,14 @@ plugins {
     id 'kotlin-kapt'
     //parcelize
     id 'kotlin-parcelize'
+    //serialization
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.10'
+
 }
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'org.sopt.sample'
     compileSdk 33
@@ -18,7 +25,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "AUTH_BASE_URL", properties["auth.base.url"]
+        buildConfigField "String", "REQRES_BASE_URL", properties["reqres.base.url"]
     }
+
+
+
 
     buildTypes {
         release {
@@ -52,9 +64,6 @@ dependencies {
     //Typedef annotation
     implementation 'com.android.support:support-annotations:28.0.0'
 
-    //RecyclerView Selection
-    implementation "androidx.recyclerview:recyclerview-selection:1.0.0"
-
     def lifecycle_version = "2.5.1"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -64,4 +73,16 @@ dependencies {
     //DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    //retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
+    // define a BOM and its version
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }
