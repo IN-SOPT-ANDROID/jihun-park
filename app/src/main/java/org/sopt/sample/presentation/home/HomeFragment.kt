@@ -12,7 +12,7 @@ import org.sopt.sample.util.RecyclerDecorationHeight
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private val viewModel:HomeViewModel by viewModels {ViewModelFactory(requireContext())}
+    private val viewModel: HomeViewModel by viewModels { ViewModelFactory(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,18 +20,19 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         val adapter = HomeUserListAdapter(requireContext())
         binding.homeRv.adapter = adapter
         viewModel.loadUserList(2) //page 수 Query
-
         addObserver(adapter)
         heightGapRv()
     }
+
     //load 성공 여부 observe 후 adapter로 userList 전달
-    private fun addObserver(adapter:HomeUserListAdapter){
-        viewModel.loadUserSuccess.observe(viewLifecycleOwner){
-            if(it){
+    private fun addObserver(adapter: HomeUserListAdapter) {
+        viewModel.loadUserSuccess.observe(viewLifecycleOwner) {
+            if (it) {
                 viewModel.userList.value?.let { it1 -> adapter.submitUserList(it1) }
             }
         }
     }
+
     //리사이클러 뷰 간격(높이)
     private fun heightGapRv() {
         binding.homeRv.addItemDecoration(RecyclerDecorationHeight(80))

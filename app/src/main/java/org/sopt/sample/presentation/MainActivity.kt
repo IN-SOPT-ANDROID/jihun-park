@@ -12,12 +12,14 @@ import org.sopt.sample.presentation.home.HomeFragment
 import org.sopt.sample.presentation.search.SearchFragment
 
 
-class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main){
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel: MainViewModel by viewModels()
+
     companion object {
         lateinit var mContext: Context
 
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
@@ -27,6 +29,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         addListener()
         changeFragment(R.id.btm_home_menu)
     }
+
     private fun addListener() {
         binding.mainBtmNavigation.setOnItemSelectedListener {
             changeFragment(it.itemId)
