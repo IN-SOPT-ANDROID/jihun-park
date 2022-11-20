@@ -12,10 +12,9 @@ import org.sopt.sample.databinding.HomeUserProfileItemBinding
 class HomeUserListAdapter(private val context: Context)  : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var userInfo = emptyList<UserInfo>()
-    private lateinit var inflater:LayoutInflater
+    private val inflater by lazy{LayoutInflater.from(context)}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if(!::inflater.isInitialized) inflater = LayoutInflater.from(parent.context)
         return HomeUserViewHolder(context,HomeUserProfileItemBinding.inflate(inflater, parent, false))
     }
 
