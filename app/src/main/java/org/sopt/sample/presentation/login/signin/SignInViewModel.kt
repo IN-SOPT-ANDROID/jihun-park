@@ -15,6 +15,8 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
     private val _signInSuccess = MutableLiveData<Boolean>()
     val signInSuccess: LiveData<Boolean>
         get() = _signInSuccess
+    private val request: SignInRequest
+        get() = SignInRequest(email.value.toString(), pw.value.toString())
 
     init {
         isInputValid.value = false
@@ -23,7 +25,7 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
 
     private fun isEnabledSigninButton() {
         isInputValid.apply {
-            addSourceList(email,pw){inputValidCheck()}
+            addSourceList(email, pw) { inputValidCheck() }
 
         }
     }
@@ -32,9 +34,8 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
 
     private fun isEmailValid(): Boolean = !email.value.isNullOrBlank()
     private fun isPwValid(): Boolean = !pw.value.isNullOrBlank()
-    private fun getInfo(): SignInRequest {
-        return SignInRequest(email.value.toString(), pw.value.toString())
-    }
+
+
 
     //viewModel Factory에게 매개변수를 통해 받은 authRepository로 통신 함수 호출
     private fun postSignIn(signInRequest: SignInRequest) {
@@ -51,7 +52,7 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
     }
 
     fun signIn() {
-        postSignIn(getInfo())
+        postSignIn(request)
     }
 
 }
