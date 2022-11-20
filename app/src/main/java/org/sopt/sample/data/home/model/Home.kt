@@ -27,3 +27,9 @@ data class UserListResponse(
     @SerialName("total") val total: Int,
     @SerialName("total_pages") val totalpages: Int
 )
+
+data class User(
+    val avatar: String,
+    val email: String,
+    val name: String
+)
