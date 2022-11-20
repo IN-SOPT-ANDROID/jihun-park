@@ -6,12 +6,10 @@ import org.sopt.sample.data.auth.model.SignInResponse
 import org.sopt.sample.data.auth.model.SignUpRequest
 import org.sopt.sample.data.auth.model.SignUpResponse
 
-class AuthDataSourceImpl(private val authService: AuthService):AuthDataSource {
-    override suspend fun signIn(signInRequest: SignInRequest): SignInResponse {
-        return authService.signIn(signInRequest)
-    }
+class AuthDataSourceImpl(private val authService: AuthService) : AuthDataSource {
+    override suspend fun signIn(signInRequest: SignInRequest): SignInResponse =
+        authService.signIn(signInRequest)
 
-    override suspend fun signUp(signUpRequest: SignUpRequest): SignUpResponse {
-        return authService.signUp(signUpRequest)
-    }
+    override suspend fun signUp(signUpRequest: SignUpRequest): SignUpResponse =
+        authService.signUp(signUpRequest)
 }

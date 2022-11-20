@@ -22,7 +22,6 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        moveToSignUp() //회원가입
         revealPw() //비밀번호 노출
         addListener()
         addObserver()
@@ -57,6 +56,10 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_
                 viewModel.signIn()
             }
         }
+        //회원가입 버튼 클릭 시
+        binding.signInSignUpBtn.setOnClickListener {
+            moveToSignUp()
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -83,10 +86,7 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_
     }
 
     private fun moveToSignUp() {
-        //회원가입 버튼
-        binding.signInSignUpBtn.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java))
-            finish()
-        }
+        startActivity(Intent(this, SignupActivity::class.java))
+        finish()
     }
 }
