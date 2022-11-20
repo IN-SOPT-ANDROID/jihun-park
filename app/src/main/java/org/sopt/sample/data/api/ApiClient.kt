@@ -14,52 +14,50 @@ import retrofit2.Retrofit
 object ApiClient {
     private const val AUTH_BASE_URL = BuildConfig.AUTH_BASE_URL
     private const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
-    private var retrofit: Retrofit? = null
+    private var authRetrofit: Retrofit? = null
+    private var reqresRetrofit: Retrofit? = null
 
     //AUTH API
     @OptIn(ExperimentalSerializationApi::class, InternalCoroutinesApi::class)
-    //특정 스레드가 retrofit 변수를 사용 중일 때, 다른 스레드의 접근을 막아 데이터 안전성 보장 -> Thread Safe
+    //동기화 처리를 통해 멀티쓰레드 환경에서 인스턴스가 2개 생성되는 것을 방지
     fun getRetrofitForAuth(): Retrofit? {
-        retrofit?.let {
-            synchronized(it) {
-                if (retrofit == null) {
-                    val logger = HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    }
-                    val client = OkHttpClient.Builder()
-                        .addInterceptor(logger)
-                        .build()
-                    retrofit = Retrofit.Builder()
-                        .baseUrl(AUTH_BASE_URL)
-                        .client(client)
-                        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-                        .build()
+        synchronized(this) {
+            if (authRetrofit == null) {
+                val logger = HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
                 }
+                val client = OkHttpClient.Builder()
+                    .addInterceptor(logger)
+                    .build()
+                authRetrofit = Retrofit.Builder()
+                    .baseUrl(AUTH_BASE_URL)
+                    .client(client)
+                    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+                    .build()
             }
+            return authRetrofit
         }
-        return retrofit
     }
 
     //UserList API
     @OptIn(ExperimentalSerializationApi::class, InternalCoroutinesApi::class)
+    @Synchronized
     fun getRetrofitForUserList(): Retrofit? {
-        retrofit?.let {
-            synchronized(it) {
-                if (retrofit == null) {
-                    val logger = HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    }
-                    val client = OkHttpClient.Builder()
-                        .addInterceptor(logger)
-                        .build()
-                    retrofit = Retrofit.Builder()
-                        .baseUrl(REQRES_BASE_URL)
-                        .client(client)
-                        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-                        .build()
+        synchronized(this) {
+            if (reqresRetrofit == null) {
+                val logger = HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
                 }
+                val client = OkHttpClient.Builder()
+                    .addInterceptor(logger)
+                    .build()
+                reqresRetrofit = Retrofit.Builder()
+                    .baseUrl(REQRES_BASE_URL)
+                    .client(client)
+                    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+                    .build()
             }
+            return reqresRetrofit
         }
-        return retrofit
     }
 }
