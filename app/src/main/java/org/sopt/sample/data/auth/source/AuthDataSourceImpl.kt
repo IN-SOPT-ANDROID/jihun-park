@@ -1,6 +1,6 @@
 package org.sopt.sample.data.auth.source
 
-import org.sopt.sample.data.auth.api.AuthService
+import org.sopt.sample.data.auth.Service.AuthService
 import org.sopt.sample.data.auth.model.SignInRequest
 import org.sopt.sample.data.auth.model.SignInResponse
 import org.sopt.sample.data.auth.model.SignUpRequest

@@ -1,4 +1,4 @@
-package org.sopt.sample.data.home.api
+package org.sopt.sample.data.home.Service
 
 import org.sopt.sample.data.home.model.UserListResponse
 import retrofit2.http.GET

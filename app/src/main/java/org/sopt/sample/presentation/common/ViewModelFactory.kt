@@ -3,12 +3,11 @@ package org.sopt.sample.presentation.common
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.sopt.sample.data.auth.api.ApiClient
-import org.sopt.sample.data.auth.api.AuthService
+import org.sopt.sample.data.api.ApiClient
+import org.sopt.sample.data.auth.Service.AuthService
 import org.sopt.sample.data.auth.repository.AuthRepository
 import org.sopt.sample.data.auth.source.AuthDataSourceImpl
-import org.sopt.sample.data.home.api.HomeApiClient
-import org.sopt.sample.data.home.api.HomeService
+import org.sopt.sample.data.home.Service.HomeService
 import org.sopt.sample.data.home.repository.HomeRepository
 import org.sopt.sample.data.home.source.HomeDataSourceImpl
 import org.sopt.sample.presentation.home.HomeViewModel
@@ -24,7 +23,7 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
                 SignUpViewModel(
                     AuthRepository(
                         AuthDataSourceImpl(
-                            ApiClient.getInstance()!!.create(AuthService::class.java)
+                            ApiClient.getRetrofitForAuth()!!.create(AuthService::class.java)
                         )
                     )
                 ) as T
@@ -33,7 +32,7 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
                 SignInViewModel(
                     AuthRepository(
                         AuthDataSourceImpl(
-                            ApiClient.getInstance()!!.create(AuthService::class.java)
+                            ApiClient.getRetrofitForAuth()!!.create(AuthService::class.java)
                         )
                     )
                 ) as T
@@ -42,7 +41,7 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
                 HomeViewModel(
                     HomeRepository(
                         HomeDataSourceImpl(
-                            HomeApiClient.getInstance()!!.create(HomeService::class.java)
+                            ApiClient.getRetrofitForUserList()!!.create(HomeService::class.java)
                         )
                     )
                 ) as T

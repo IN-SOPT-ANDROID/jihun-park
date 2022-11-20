@@ -1,4 +1,4 @@
-package org.sopt.sample.data.auth.api
+package org.sopt.sample.data.auth.Service
 
 import org.sopt.sample.data.auth.model.SignInRequest
 import org.sopt.sample.data.auth.model.SignInResponse
