@@ -6,10 +6,12 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.sopt.sample.BuildConfig
 import retrofit2.Retrofit
 
 object HomeApiClient {
-    private const val BASE_URL = "https://reqres.in"
+    private const val BASE_URL = BuildConfig.REQRES_BASE_URL
+
     private var retrofit: Retrofit? = null
 
     @OptIn(ExperimentalSerializationApi::class)
