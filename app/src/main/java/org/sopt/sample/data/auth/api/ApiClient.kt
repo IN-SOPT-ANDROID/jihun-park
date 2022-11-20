@@ -13,10 +13,11 @@ object ApiClient {
     private var retrofit: Retrofit? = null
 
     @OptIn(ExperimentalSerializationApi::class)
+    @Synchronized //특정 스레드가 사용 중일 때, 다른 스레드의 접근을 막아 데이터 안전성 보장 -> Thread Safe
     fun getInstance(): Retrofit? {
         if (retrofit == null) {
             val logger = HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BASIC
+                level = HttpLoggingInterceptor.Level.BODY
             }
             val client = OkHttpClient.Builder()
                 .addInterceptor(logger)
