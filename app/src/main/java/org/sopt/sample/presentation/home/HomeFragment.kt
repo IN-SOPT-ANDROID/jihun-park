@@ -28,7 +28,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private fun addObserver(adapter: HomeUserListAdapter) {
         viewModel.loadUserSuccess.observe(viewLifecycleOwner) {
             if (it) {
-                viewModel.userList.value?.let { it1 -> adapter.submitUserList(it1) }
+                viewModel.userList.value?.let { userList -> adapter.submitUserList(userList) }
             }
         }
     }

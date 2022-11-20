@@ -11,11 +11,13 @@ data class UserInfo(
     @SerialName("id") val id: Int,
     @SerialName("last_name") val lastname: String
 )
+
 @Serializable
 data class Support(
     @SerialName("text") val text: String,
     @SerialName("url") val url: String
 )
+
 @Serializable
 data class UserListResponse(
     @SerialName("data") val data: List<UserInfo>,
