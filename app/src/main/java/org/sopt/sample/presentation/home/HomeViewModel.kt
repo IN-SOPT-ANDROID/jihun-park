@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.sopt.sample.data.home.model.Data
+import org.sopt.sample.data.home.model.UserInfo
 import org.sopt.sample.data.home.repository.HomeRepository
 
 class HomeViewModel(private val homeRepository: HomeRepository):ViewModel() {
-    val userList = MutableLiveData<List<Data>>()
+    val userList = MutableLiveData<List<UserInfo>>()
     private val _loadUserSuccess = MutableLiveData<Boolean>()
     val loadUserSuccess:LiveData<Boolean>
         get() = _loadUserSuccess

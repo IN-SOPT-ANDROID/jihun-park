@@ -4,12 +4,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Data(
+data class UserInfo(
     @SerialName("avatar") val avatar: String,
     @SerialName("email") val email: String,
-    @SerialName("first_name") val first_name: String,
+    @SerialName("first_name") val firstname: String,
     @SerialName("id") val id: Int,
-    @SerialName("last_name") val last_name: String
+    @SerialName("last_name") val lastname: String
 )
 @Serializable
 data class Support(
@@ -18,10 +18,10 @@ data class Support(
 )
 @Serializable
 data class UserListResponse(
-    @SerialName("data") val data: List<Data>,
+    @SerialName("data") val data: List<UserInfo>,
     @SerialName("page") val page: Int,
-    @SerialName("per_page") val per_page: Int,
+    @SerialName("per_page") val perpage: Int,
     @SerialName("support") val support: Support,
     @SerialName("total") val total: Int,
-    @SerialName("total_pages") val total_pages: Int
+    @SerialName("total_pages") val totalpages: Int
 )
