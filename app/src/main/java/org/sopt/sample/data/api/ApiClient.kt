@@ -1,5 +1,6 @@
 package org.sopt.sample.data.api
 
+import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
@@ -9,6 +10,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.sample.BuildConfig
+import org.sopt.sample.application.ApplicationClass
 import retrofit2.Retrofit
 
 object ApiClient {
@@ -28,6 +30,7 @@ object ApiClient {
                 }
                 val client = OkHttpClient.Builder()
                     .addInterceptor(logger)
+                    .addNetworkInterceptor(FlipperOkhttpInterceptor(ApplicationClass.networkFlipperPlugin))
                     .build()
                 authRetrofit = Retrofit.Builder()
                     .baseUrl(AUTH_BASE_URL)
@@ -50,6 +53,7 @@ object ApiClient {
                 }
                 val client = OkHttpClient.Builder()
                     .addInterceptor(logger)
+                    .addNetworkInterceptor(FlipperOkhttpInterceptor(ApplicationClass.networkFlipperPlugin))
                     .build()
                 reqresRetrofit = Retrofit.Builder()
                     .baseUrl(REQRES_BASE_URL)
