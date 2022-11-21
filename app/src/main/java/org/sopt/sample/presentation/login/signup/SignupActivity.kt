@@ -15,7 +15,7 @@ import org.sopt.sample.presentation.login.signin.SignInActivity
 import org.sopt.sample.util.extensions.showToast
 
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
-    private val viewModel: SignUpViewModel by viewModels { ViewModelFactory(this) }
+    private val viewModel: SignUpViewModel by viewModels { ViewModelFactory() }
 
     companion object {
         //inputType Password 값

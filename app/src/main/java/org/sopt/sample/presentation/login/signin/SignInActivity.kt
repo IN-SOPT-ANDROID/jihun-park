@@ -16,7 +16,7 @@ import org.sopt.sample.util.extensions.showToast
 
 
 class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_signin) {
-    private val viewModel: SignInViewModel by viewModels { ViewModelFactory(this) }
+    private val viewModel: SignInViewModel by viewModels { ViewModelFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

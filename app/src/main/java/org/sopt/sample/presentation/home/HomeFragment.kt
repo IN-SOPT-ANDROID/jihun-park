@@ -12,7 +12,7 @@ import org.sopt.sample.util.RecyclerDecorationHeight
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private val viewModel: HomeViewModel by viewModels { ViewModelFactory(requireContext()) }
+    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

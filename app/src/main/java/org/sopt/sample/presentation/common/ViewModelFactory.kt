@@ -16,7 +16,7 @@ import org.sopt.sample.presentation.login.signup.SignUpViewModel
 
 //ViewModelFactory는 주로 ViewModel에 매개변수를 전달하고자 할 때 사용
 //할당되는 ViewModel에 따라 다른 ViewModel에 retrofit객체를 생성해서 초기화 후 return
-class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
+class ViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(SignUpViewModel::class.java) -> {
