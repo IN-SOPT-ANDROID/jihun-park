@@ -57,25 +57,30 @@
         app:layout_constraintBottom_toBottomOf="@id/signUp_name_tv"
         app:layout_constraintStart_toEndOf="@id/signUp_name_tv"
         app:layout_constraintTop_toTopOf="@id/signUp_name_tv" />
-
-    <EditText
-        android:id="@+id/signUp_name_et"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUp_name_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/signin_et_underline"
-        android:inputType="text"
-        android:maxLines="1"
-        android:text="@={viewModel.name}"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textCursorDrawable="@color/signup_et_cursor"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/signUp_name_tv"
-        app:layout_constraintTop_toBottomOf="@id/signUp_name_tv" />
-
+        app:layout_constraintTop_toBottomOf="@id/signUp_name_tv"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        style="@style/SignEtLayout"
+        android:theme="@style/SignEtLayout"
+        app:counterMaxLength="10">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/signUp_name_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLines="1"
+        android:hint ="영문,숫자 포함 6~10글자"
+        android:text="@={viewModel.name}"
+        android:textColor="@color/white"
+        android:textCursorDrawable="@color/signup_et_cursor"
+        android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <TextView
@@ -88,7 +93,7 @@
         android:text="@string/sign_email_tv"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUp_name_et" />
+        app:layout_constraintTop_toBottomOf="@id/signUp_name_input" />
 
     <TextView
         android:id="@+id/signUp_id_desc1_tv"

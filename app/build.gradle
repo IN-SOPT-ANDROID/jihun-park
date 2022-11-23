@@ -90,4 +90,5 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
     debugImplementation 'com.facebook.flipper:flipper-network-plugin:0.174.0'
     releaseImplementation 'com.facebook.flipper:flipper-noop:0.174.0'
+
 }
