@@ -1,10 +1,7 @@
 package org.sopt.sample.presentation.login.signup
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
-import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.content.res.AppCompatResources
 import org.sopt.sample.R
@@ -28,7 +25,8 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         binding.lifecycleOwner = this
         addObserver()
         addListener()
-        revealPw()
+
+
     }
 
     private fun addObserver() {
@@ -57,16 +55,48 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
                 showToast(getString(R.string.signup_login_fail))
             }
         }
+        //name,email, pw 유효성 검사
+        viewModel.name.observe(this){
+            binding.signUpNameInput.apply {
+                if (!viewModel.isNameValid) {
+                    isErrorEnabled = true
+                    error = " "
+                } else {
+                    isErrorEnabled = false
+                }
+            }
+        }
+        viewModel.email.observe(this) {
+            binding.signUpEmailInput.apply {
+                if (!viewModel.isEmailValid) {
+                    isErrorEnabled = true
+                    error = " "
+                } else {
+                    isErrorEnabled = false
+                }
+            }
+        }
+        viewModel.pw.observe(this) {
+            binding.signUpPwInput.apply {
+                if (!viewModel.isPwValid) {
+                    isErrorEnabled = true
+                    error = " "
+                } else {
+                    isErrorEnabled = false
+                }
+            }
+        }
     }
+
     //입력값 valid check ->  signUp():서버통신 -> signUpSuccess값 변경 -> 회원가입 success or fail
     private fun addListener() {
         //회원가입 버튼 클릭 시, 입력값 검사 후 회원가입 서버통신
         binding.signUpCompleteBtn.setOnClickListener {
-            if (!viewModel.isNameValid()) {
+            if (!viewModel.isNameValid) {
                 showToast(getString(R.string.signup_fail_name))
-            } else if (!viewModel.isEmailValid()) {
+            } else if (!viewModel.isEmailValid) {
                 showToast(getString(R.string.signup_fail_email))
-            } else if (!viewModel.isPwValid()) {
+            } else if (!viewModel.isPwValid) {
                 showToast(getString(R.string.signup_fail_pw_length))
             } else {
                 viewModel.signUp()
@@ -77,24 +107,6 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             moveToSignIn()
         }
     }
-
-    @SuppressLint("ClickableViewAccessibility")
-    private fun revealPw() {
-        binding.signupShowPw.setOnTouchListener { _, event ->
-            when (event?.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    binding.signUpPwEt.inputType = InputType.TYPE_CLASS_TEXT
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    binding.signUpPwEt.inputType = InputType.TYPE_CLASS_TEXT
-                }
-                MotionEvent.ACTION_UP -> {
-                    binding.signUpPwEt.inputType = INPUT_TYPE_PASSWORD
-                }
-            }
-            true
-        }
-    } //비밀번호 드러내기
 
     private fun moveToSignIn() {
         startActivity(Intent(this, SignInActivity::class.java))
