@@ -66,7 +66,9 @@
         app:layout_constraintTop_toBottomOf="@id/signUp_name_tv"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        style="@style/SignEtLayout">
+        style="@style/SignEtLayout"
+        app:counterEnabled="true"
+        app:counterTextColor="@color/white">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signUp_name_et"
         android:layout_width="match_parent"
@@ -76,7 +78,8 @@
         android:text="@={viewModel.name}"
         android:textColor="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:hint = "@string/signup_name_hint"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -100,14 +103,17 @@
         android:layout_marginStart="5dp"
         android:text="@string/signup_id_desc1"
 
+        app:layout_constraintBottom_toBottomOf="@id/signUp_id_tv"
+        app:layout_constraintStart_toEndOf="@id/signUp_id_tv"
+        app:layout_constraintTop_toTopOf="@id/signUp_id_tv" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUp_id_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/signUp_email_tv"
-        app:layout_constraintTop_toBottomOf="@id/signUp_email_tv"
+        app:layout_constraintStart_toStartOf="@id/signUp_id_tv"
+        app:layout_constraintTop_toBottomOf="@id/signUp_id_tv"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         style="@style/SignEtLayout"
@@ -126,7 +132,7 @@
         android:textColorHint="@color/white"
         android:textCursorDrawable="@color/signup_et_cursor"
         android:textStyle="bold"
-        android:hint ="영문,숫자 포함 6~10글자"/>
+        android:hint ="@string/signup_id_hint"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -174,23 +180,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/signin_et_underline"
-            android:hint="영문,숫자,특수문자 포함 6~12글자"
+            android:hint="@string/signup_pw_hint"
             android:inputType="textPassword"
             android:maxLines="1"
             android:text="@={viewModel.pw}"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textCursorDrawable="@color/signup_et_cursor"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUp_complete_btn"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/signup_btn_border"
-        android:text="@string/signup_complete_btn"
+        android:background="@drawable/signup_btn_color"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -198,7 +203,9 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUp_pw_input" />
+        app:layout_constraintTop_toBottomOf="@id/signUp_pw_input"
+        android:enabled="@{viewModel.isInputValid}"
+        android:text="@string/signup_complete_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

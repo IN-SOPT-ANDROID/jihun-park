@@ -30,22 +30,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
     }
 
     private fun addObserver() {
-        //입력값 상태에 따른 회원가입 버튼 활성화<->비활성화
-        viewModel.isInputValid.observe(this) {
-            binding.signUpCompleteBtn.apply {
-                if (it) {
-                    background = AppCompatResources.getDrawable(
-                        this@SignupActivity,
-                        R.drawable.signup_btn_border
-                    )
-                } else {
-                    background = AppCompatResources.getDrawable(
-                        this@SignupActivity,
-                        R.drawable.signup_btn_border_disable
-                    )
-                }
-            }
-        }
+
         //회원가입 성공 여부 observe
         viewModel.signUpSuccess.observe(this) {
             if (it) {
@@ -55,8 +40,8 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
                 showToast(getString(R.string.signup_login_fail))
             }
         }
-        //name,email, pw 유효성 검사
-        viewModel.name.observe(this){
+        //name,id, pw 유효성 검사
+        viewModel.name.observe(this) {
             binding.signUpNameInput.apply {
                 if (!viewModel.isNameValid) {
                     isErrorEnabled = true
@@ -92,22 +77,13 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
     private fun addListener() {
         //회원가입 버튼 클릭 시, 입력값 검사 후 회원가입 서버통신
         binding.signUpCompleteBtn.setOnClickListener {
-            if (!viewModel.isNameValid) {
-                showToast(getString(R.string.signup_fail_name))
-            } else if (!viewModel.isEmailValid) {
-                showToast(getString(R.string.signup_fail_email))
-            } else if (!viewModel.isPwValid) {
-                showToast(getString(R.string.signup_fail_pw_length))
-            } else {
-                viewModel.signUp()
-            }
+            viewModel.signUp()
         }
         //뒤로가기 버튼
         binding.signUpBackBtn.setOnClickListener {
             moveToSignIn()
         }
     }
-
     private fun moveToSignIn() {
         startActivity(Intent(this, SignInActivity::class.java))
         finish()

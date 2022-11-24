@@ -33,14 +33,15 @@ class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() 
 
     private fun isEnabledSignupButton() {
         isInputValid.apply {
+            addSourceList(name, id, pw) { inputValidCheck() }
         }
     }
 
-    private fun inputValidCheck(): Boolean = isNameValid && isEmailValid && isPwValid
+    private fun inputValidCheck(): Boolean = isNameValid && isIdValid && isPwValid
     val isNameValid: Boolean
-        get() = !name.value.isNullOrBlank()
-        get() = email.value?.let { emailMatcher.matcher(it).matches() } == true
+        get() = name.value?.let{ name.value!!.length >=2}==true
     val isIdValid: Boolean
+        get() = id.value?.let { idMatcher.matcher(it).matches() } == true
     val isPwValid: Boolean
         get() = pw.value?.let { pwMatcher.matcher(it).matches() } == true
 
