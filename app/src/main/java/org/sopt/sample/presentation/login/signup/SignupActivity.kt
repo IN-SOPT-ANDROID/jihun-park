@@ -66,9 +66,9 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
                 }
             }
         }
-        viewModel.email.observe(this) {
-            binding.signUpEmailInput.apply {
-                if (!viewModel.isEmailValid) {
+        viewModel.id.observe(this) {
+            binding.signUpIdInput.apply {
+                if (!viewModel.isIdValid) {
                     isErrorEnabled = true
                     error = " "
                 } else {

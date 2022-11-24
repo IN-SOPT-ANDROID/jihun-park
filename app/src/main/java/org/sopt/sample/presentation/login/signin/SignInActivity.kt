@@ -51,7 +51,7 @@ class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_
         binding.signInLoginBtn.setOnClickListener {
 
             if (viewModel.isInputValid.value == false) {
-                showToast(getString(R.string.signin_empty_email_or_pw))
+                showToast(getString(R.string.signin_empty_id_or_pw))
             } else {
                 viewModel.signIn()
             }

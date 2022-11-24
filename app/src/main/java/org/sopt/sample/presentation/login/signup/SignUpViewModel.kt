@@ -9,15 +9,15 @@ import java.util.regex.Pattern
 
 
 class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() {
-    //email - 6~10글자 영문 숫자 포함
+    //id - 6~10글자 영문 숫자 포함
     //pw - 6~12글자 영문,숫자,특수문자 포함
-    private val emailRegex = "^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,10}$"
+    private val idRegex = "^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,10}$"
     private val pwRegex = "^(?=.*[a-zA-Z]+)(?=.*[0-9]+)(?=.*[!@#$%^&*()~`<>?:']+).{6,12}$"
-    private val emailMatcher: Pattern = Pattern.compile(emailRegex)
+    private val idMatcher: Pattern = Pattern.compile(idRegex)
     private val pwMatcher: Pattern = Pattern.compile(pwRegex)
 
     val name = MutableLiveData<String>()
-    val email = MutableLiveData<String>()
+    val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
     val isInputValid = MediatorLiveData<Boolean>()
@@ -33,20 +33,19 @@ class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() 
 
     private fun isEnabledSignupButton() {
         isInputValid.apply {
-            addSourceList(name, email, pw) { inputValidCheck() }
         }
     }
 
     private fun inputValidCheck(): Boolean = isNameValid && isEmailValid && isPwValid
     val isNameValid: Boolean
         get() = !name.value.isNullOrBlank()
-    val isEmailValid: Boolean
         get() = email.value?.let { emailMatcher.matcher(it).matches() } == true
+    val isIdValid: Boolean
     val isPwValid: Boolean
         get() = pw.value?.let { pwMatcher.matcher(it).matches() } == true
 
     private fun request(): SignUpRequest {
-        return SignUpRequest(email.value.toString(), name.value.toString(), pw.value.toString())
+        return SignUpRequest(id.value.toString(), name.value.toString(), pw.value.toString())
     }
 
     private fun postSignUp(signUpRequest: SignUpRequest) {
