@@ -18,8 +18,9 @@ import org.sopt.sample.util.diffUtil.DiffUtilItemCallback
 
 class HomeRepoListAdapter(context: Context) :
     ListAdapter<HomeRecycleData, HomeViewHolder>(DiffUtilItemCallback()) {
-    private val inflater by lazy { LayoutInflater.from(context) } //by laze : 초기화를 최대한 늦추는 효과
+    private val inflater by lazy { LayoutInflater.from(context) } //by lazy : 초기화를 최대한 늦추는 효과
 
+    //아이템뷰 타입에 따라 다른 binding inflate 반환
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return when (viewType) {
             REPO_TITLE_TYPE -> RepoTitleViewHolder(
