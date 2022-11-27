@@ -50,7 +50,6 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
             }
         }
     }
-
     fun signIn() {
         postSignIn(request)
     }
