@@ -205,6 +205,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUp_pw_input"
         android:enabled="@{viewModel.isInputValid}"
+        android:onClick="@{()->viewModel.signUp()}"
         android:text="@string/signup_complete_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,10 +75,6 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
 
     //입력값 valid check ->  signUp():서버통신 -> signUpSuccess값 변경 -> 회원가입 success or fail
     private fun addListener() {
-        //회원가입 버튼 클릭 시, 입력값 검사 후 회원가입 서버통신
-        binding.signUpCompleteBtn.setOnClickListener {
-            viewModel.signUp()
-        }
         //뒤로가기 버튼
         binding.signUpBackBtn.setOnClickListener {
             moveToSignIn()
