@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.sopt.sample.data.api.ApiClient
-import org.sopt.sample.data.auth.Service.AuthService
+import org.sopt.sample.data.auth.service.AuthService
 import org.sopt.sample.data.auth.repository.AuthRepository
 import org.sopt.sample.data.auth.source.AuthDataSourceImpl
 import org.sopt.sample.data.home.service.HomeService
