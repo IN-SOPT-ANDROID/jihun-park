@@ -21,7 +21,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         binding.homeRv.adapter = adapter
         viewModel.loadUserList(2) //page 수 Query
         addObserver(adapter)
-        heightGapRv()
+        addDecorator()
     }
 
     //load 성공 여부 observe 후 adapter로 userList 전달
@@ -31,12 +31,37 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 viewModel.userList.value?.let { userList -> adapter.submitUserList(userList) }
             }
         }
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            if (it) {
+                showSampleData()
+            } else {
+                hideSampleData()
+            }
+
+        }
     }
 
     //리사이클러 뷰 간격(높이)
-    private fun heightGapRv() {
+    private fun addDecorator() {
         binding.homeRv.addItemDecoration(RecyclerDecorationHeight(80))
     }
+
+    private fun showSampleData() {
+        binding.homeSfl.apply {
+            startShimmer()
+            visibility = View.VISIBLE
+            binding.homeRv.visibility = View.GONE
+        }
+    }
+
+    private fun hideSampleData() {
+        binding.homeSfl.apply {
+            stopShimmer()
+            visibility = View.GONE
+            binding.homeRv.visibility = View.VISIBLE
+        }
+    }
+
 
 //    /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
 //    private fun logOutBtnListener() {

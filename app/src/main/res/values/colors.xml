@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -33,11 +34,8 @@
     <color name="sign_btn">@color/purple_500</color>
     <color name="sign_btn_disable">#808080</color>
 
-
     <color name="gallery_item_on">@color/purple_500</color>
     <color name="gallery_item_off">#FFFFFF</color>
-
     <color name="splash_background">#181818</color>
-
-
+    <color name="home_skeleton_cv_background">@color/gray600</color>
 </resources>
