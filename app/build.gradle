@@ -93,4 +93,7 @@ dependencies {
 
     //스켈레톤 로딩 화면
     implementation "com.facebook.shimmer:shimmer:0.5.0"
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }
