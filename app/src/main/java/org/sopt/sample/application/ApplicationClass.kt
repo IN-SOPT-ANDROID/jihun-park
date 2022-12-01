@@ -10,6 +10,7 @@ import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.soloader.SoLoader
 import org.sopt.sample.BuildConfig
 import org.sopt.sample.util.datastore.UserManager
+import timber.log.Timber
 
 class ApplicationClass : Application() {
     private lateinit var userManager: UserManager
@@ -24,6 +25,9 @@ class ApplicationClass : Application() {
         super.onCreate()
         userManager = UserManager(this)
         initFlipper()
+        if(BuildConfig.DEBUG){
+            Timber.plant(Timber.DebugTree())
+        }
     }
     fun getUserManager(): UserManager = userManager //DataStore 싱글톤으로 사용하기
 
