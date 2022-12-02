@@ -13,8 +13,6 @@ import org.sopt.sample.util.datastore.UserManager
 import timber.log.Timber
 
 class ApplicationClass : Application() {
-    private lateinit var userManager: UserManager
-
     companion object{
         private lateinit var applicationClass: ApplicationClass
         fun getInstance(): ApplicationClass = applicationClass
@@ -23,13 +21,12 @@ class ApplicationClass : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        userManager = UserManager(this)
         initFlipper()
         if(BuildConfig.DEBUG){
             Timber.plant(Timber.DebugTree())
         }
     }
-    fun getUserManager(): UserManager = userManager //DataStore 싱글톤으로 사용하기
+
 
     private fun initFlipper() {
         SoLoader.init(this, false)

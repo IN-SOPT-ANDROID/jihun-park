@@ -61,18 +61,4 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             binding.homeRv.visibility = View.VISIBLE
         }
     }
-
-
-//    /** 로그아웃 : sp를 초기화하고 SignInActivity Start */
-//    private fun logOutBtnListener() {
-//        binding.homeLogout.setOnClickListener {
-//            lifecycleScope.launch { //setUserInfo는 DataStore의 edit을 호출하기 때문에, 코루틴Scope 안에서 동작시켜야한다.
-//                ApplicationClass.getInstance().getUserManager().setUserInfo("", "", "") //유저 데이터 삭제
-//                showToast("로그아웃 되었습니다.")
-//                val intent = Intent(activity, SignInActivity::class.java)
-//                startActivity(intent)
-//                activity?.finish()
-//            }
-//        }
-//    }
 }
