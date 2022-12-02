@@ -9,7 +9,6 @@ import com.facebook.flipper.plugins.leakcanary2.LeakCanary2FlipperPlugin
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.soloader.SoLoader
 import org.sopt.sample.BuildConfig
-import org.sopt.sample.util.datastore.UserManager
 import timber.log.Timber
 
 class ApplicationClass : Application() {
