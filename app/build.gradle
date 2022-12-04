@@ -7,7 +7,8 @@ plugins {
     id 'kotlin-parcelize'
     //serialization
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.10'
-
+    //hilt
+    id 'dagger.hilt.android.plugin'
 }
 
 Properties properties = new Properties()
@@ -95,5 +96,8 @@ dependencies {
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
 }
