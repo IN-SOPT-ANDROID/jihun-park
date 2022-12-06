@@ -8,9 +8,10 @@ import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.leakcanary2.LeakCanary2FlipperPlugin
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.soloader.SoLoader
+import dagger.hilt.android.HiltAndroidApp
 import org.sopt.sample.BuildConfig
 import timber.log.Timber
-
+@HiltAndroidApp
 class ApplicationClass : Application() {
     companion object{
         private lateinit var applicationClass: ApplicationClass
