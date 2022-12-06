@@ -3,16 +3,17 @@ package org.sopt.sample.presentation.login.signup
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.content.res.AppCompatResources
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
-import org.sopt.sample.presentation.common.ViewModelFactory
 import org.sopt.sample.presentation.login.signin.SignInActivity
 import org.sopt.sample.util.extensions.showToast
 
+@AndroidEntryPoint
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
-    private val viewModel: SignUpViewModel by viewModels { ViewModelFactory() }
+//    private val viewModel: SignUpViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: SignUpViewModel by viewModels()
 
     companion object {
         //inputType Password 값

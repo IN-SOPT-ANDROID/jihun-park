@@ -6,17 +6,18 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.MotionEvent
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.presentation.MainActivity
-import org.sopt.sample.presentation.common.ViewModelFactory
 import org.sopt.sample.presentation.login.signup.SignupActivity
 import org.sopt.sample.util.extensions.showToast
 
-
+@AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySigninBinding>(R.layout.activity_signin) {
-    private val viewModel: SignInViewModel by viewModels { ViewModelFactory() }
+//    private val viewModel: SignInViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: SignInViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

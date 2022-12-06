@@ -3,16 +3,17 @@ package org.sopt.sample.presentation.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
-import org.sopt.sample.presentation.common.ViewModelFactory
 import org.sopt.sample.presentation.home.adapter.HomeUserListAdapter
 import org.sopt.sample.util.RecyclerDecorationHeight
 
+@AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-
-    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
+//    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
