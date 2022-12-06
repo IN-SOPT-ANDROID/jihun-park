@@ -1,14 +1,15 @@
 package org.sopt.sample.presentation.login.signup
 
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.auth.model.SignUpRequest
 import org.sopt.sample.data.auth.repository.AuthRepository
 import org.sopt.sample.util.addSourceList
 import java.util.regex.Pattern
-
-
-class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() {
+import javax.inject.Inject
+@HiltViewModel
+class SignUpViewModel  @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
     //id - 6~10글자 영문 숫자 포함
     //pw - 6~12글자 영문,숫자,특수문자 포함
     private val idRegex = "^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,10}$"

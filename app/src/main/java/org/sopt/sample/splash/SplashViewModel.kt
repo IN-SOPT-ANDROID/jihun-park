@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.sopt.sample.application.ApplicationClass
 import org.sopt.sample.util.Event
+import javax.inject.Inject
 
 class SplashViewModel : ViewModel() {
     //backing property를 이용하여 내부에서는 가변적이지만, 외부로 넘겨줄 때에는 불변 StateFlow로 변경하여 반환한다.

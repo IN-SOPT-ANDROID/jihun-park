@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.home.model.User
 import org.sopt.sample.data.home.repository.HomeRepository
 import org.sopt.sample.util.extensions.toUserList
+import javax.inject.Inject
 
-class HomeViewModel(private val homeRepository: HomeRepository) : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) : ViewModel() {
     val userList = MutableLiveData<List<User>>()
 
     private val _loadUserSuccess = MutableLiveData<Boolean>()
