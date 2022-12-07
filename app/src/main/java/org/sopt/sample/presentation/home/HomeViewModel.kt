@@ -9,12 +9,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.home.model.User
 import org.sopt.sample.domain.HomeRepository
+import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.util.extensions.toUserList
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) : ViewModel() {
     val userList = MutableLiveData<List<User>>()
+
+    private val _homeState = MutableLiveData<UiState>(UiState.Loading)
+    val homeState: LiveData<UiState>
+        get() = _homeState
 
     private val _loadUserSuccess = MutableLiveData<Boolean>()
     val loadUserSuccess: LiveData<Boolean>
@@ -30,15 +35,15 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
     fun loadUserList(page: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
-                _isLoading.value = true
+                _homeState.value = UiState.Loading
                 delay(3000)
                 homeRepository.loadUser(page)
             }.onSuccess {
-                _isLoading.value = false
+                _homeState.value = UiState.Success
                 userList.value = it.data.toUserList() //서버에서 가져온 userList -> userList LiveData
                 _loadUserSuccess.value = true
             }.onFailure {
-                _isLoading.value = false
+                _homeState.value = UiState.Failure
                 _loadUserSuccess.value = false
             }
         }

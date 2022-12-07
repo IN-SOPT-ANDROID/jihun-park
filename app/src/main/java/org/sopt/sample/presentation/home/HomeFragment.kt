@@ -8,11 +8,12 @@ import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.adapter.HomeUserListAdapter
+import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.util.RecyclerDecorationHeight
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-//    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
+    //    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,8 +33,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 viewModel.userList.value?.let { userList -> adapter.submitUserList(userList) }
             }
         }
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            if (it) {
+        viewModel.homeState.observe(viewLifecycleOwner) {
+            if (it is UiState.Loading) {
                 showSampleData()
             } else {
                 hideSampleData()
