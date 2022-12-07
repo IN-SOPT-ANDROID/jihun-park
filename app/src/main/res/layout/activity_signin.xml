@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="100dp"
-            android:text="@string/sign_email_tv"
+            android:text="@string/sign_id_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signIn_title_tv" />
 

@@ -1,13 +1,15 @@
 package org.sopt.sample.presentation.login.signin
 
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.auth.model.SignInRequest
 import org.sopt.sample.data.auth.repository.AuthRepository
 import org.sopt.sample.util.addSourceList
+import javax.inject.Inject
 
-
-class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() {
+@HiltViewModel
+class SignInViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
 
     val email = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
@@ -50,7 +52,6 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
             }
         }
     }
-
     fun signIn() {
         postSignIn(request)
     }
