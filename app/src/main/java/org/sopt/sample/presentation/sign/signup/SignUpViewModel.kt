@@ -53,9 +53,9 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
     val isPwValid: Boolean
         get() = pw.value?.let { REGEX_PW_PATTERN.matcher(it).matches() } == true
 
-    private fun request(): SignUpRequest {
-        return SignUpRequest(id.value.toString(), name.value.toString(), pw.value.toString())
-    }
+    private fun signUpRequest(): SignUpRequest =
+        SignUpRequest(id.value.toString(), name.value.toString(), pw.value.toString())
+
 
     private fun postSignUp(signUpRequest: SignUpRequest) {
         viewModelScope.launch {
@@ -70,6 +70,6 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
     }
 
     fun signUp() {
-        postSignUp(request())
+        postSignUp(signUpRequest())
     }
 }
