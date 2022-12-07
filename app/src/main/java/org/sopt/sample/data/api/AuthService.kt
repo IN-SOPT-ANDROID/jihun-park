@@ -1,9 +1,9 @@
-package org.sopt.sample.data.auth.service
+package org.sopt.sample.data.api
 
-import org.sopt.sample.data.auth.model.SignInRequest
-import org.sopt.sample.data.auth.model.SignInResponse
-import org.sopt.sample.data.auth.model.SignUpRequest
-import org.sopt.sample.data.auth.model.SignUpResponse
+import org.sopt.sample.data.model.SignInRequest
+import org.sopt.sample.data.model.SignInResponse
+import org.sopt.sample.data.model.SignUpRequest
+import org.sopt.sample.data.model.SignUpResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 

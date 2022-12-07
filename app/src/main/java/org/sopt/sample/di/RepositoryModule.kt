@@ -5,12 +5,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.sopt.sample.data.api.ApiClient
-import org.sopt.sample.data.auth.repository.AuthRepository
-import org.sopt.sample.data.auth.service.AuthService
-import org.sopt.sample.data.auth.source.AuthDataSourceImpl
-import org.sopt.sample.data.home.repository.HomeRepository
-import org.sopt.sample.data.home.service.HomeService
-import org.sopt.sample.data.home.source.HomeDataSourceImpl
+import org.sopt.sample.data.api.AuthService
+import org.sopt.sample.data.api.HomeService
+import org.sopt.sample.data.repository.AuthRepositoryImpl
+import org.sopt.sample.data.repository.HomeRepositoryImpl
+import org.sopt.sample.data.source.remote.AuthDataSource
+import org.sopt.sample.data.source.remote.HomeDataSource
+import org.sopt.sample.domain.AuthRepository
+import org.sopt.sample.domain.HomeRepository
 import javax.inject.Singleton
 
 @Module
@@ -19,8 +21,8 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideHomeRepository(): HomeRepository {
-        return HomeRepository(
-            HomeDataSourceImpl(
+        return HomeRepositoryImpl(
+            HomeDataSource(
                 ApiClient.getRetrofitForUserList()!!.create(HomeService::class.java)
             )
         )
@@ -29,8 +31,8 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideSignRepository(): AuthRepository {
-        return AuthRepository(
-            AuthDataSourceImpl(
+        return AuthRepositoryImpl(
+            AuthDataSource(
                 ApiClient.getRetrofitForAuth()!!.create(AuthService::class.java)
             )
         )

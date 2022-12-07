@@ -3,8 +3,8 @@ package org.sopt.sample.presentation.login.signup
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.sopt.sample.data.auth.model.SignUpRequest
-import org.sopt.sample.data.auth.repository.AuthRepository
+import org.sopt.sample.data.model.SignUpRequest
+import org.sopt.sample.domain.AuthRepository
 import org.sopt.sample.util.addSourceList
 import java.util.regex.Pattern
 import javax.inject.Inject

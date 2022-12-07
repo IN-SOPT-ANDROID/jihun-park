@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.home.model.User
-import org.sopt.sample.data.home.repository.HomeRepository
+import org.sopt.sample.domain.HomeRepository
 import org.sopt.sample.util.extensions.toUserList
 import javax.inject.Inject
 
@@ -24,7 +24,7 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
     //로딩이 끝나면, isLoading = false
     //Fragment에서 isLoading을 observe
     private val _isLoading = MutableLiveData(false)
-    val isLoading:LiveData<Boolean>
+    val isLoading: LiveData<Boolean>
         get() = _isLoading
 
     fun loadUserList(page: Int) {
