@@ -43,7 +43,6 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
         }
     }
 
-    //
     private fun checkInputValid(): Boolean = isNameValid && isIdValid && isPwValid
 
     val isNameValid: Boolean
