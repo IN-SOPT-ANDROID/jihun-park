@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="activity"
+            type="org.sopt.sample.presentation.sign.signup.SignupActivity" />
         <variable
             name="viewModel"
             type="org.sopt.sample.presentation.sign.signup.SignUpViewModel" />
@@ -37,7 +39,8 @@
             android:layout_marginTop="40dp"
             android:src="@drawable/android_ic_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{()->activity.moveToSignIn()}"/>
 
         <TextView
             android:id="@+id/signUp_name_tv"

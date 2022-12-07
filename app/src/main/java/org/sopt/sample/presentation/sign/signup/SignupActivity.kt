@@ -26,7 +26,6 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         addObserver()
-        addListener()
     }
 
     private fun addObserver() {
@@ -57,16 +56,8 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             }
         }
     }
-
     //입력값 valid check ->  signUp():서버통신 -> signUpSuccess값 변경 -> 회원가입 success or fail
-    private fun addListener() {
-        //뒤로가기 버튼
-        binding.signUpBackBtn.setOnClickListener {
-            moveToSignIn()
-        }
-    }
-
-    private fun moveToSignIn() {
+    fun moveToSignIn() {
         startActivity(Intent(this, SignInActivity::class.java))
         finish()
     }
