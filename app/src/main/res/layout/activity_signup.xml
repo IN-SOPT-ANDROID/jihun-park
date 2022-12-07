@@ -5,13 +5,13 @@
     <data>
         <variable
             name="viewModel"
-            type="org.sopt.sample.presentation.login.signup.SignUpViewModel" />
+            type="org.sopt.sample.presentation.sign.signup.SignUpViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/signin_background"
-    tools:context=".presentation.login.signup.SignupActivity">
+    tools:context=".presentation.sign.signup.SignupActivity">
 
     <TextView
         android:id="@+id/signUp_title_tv"

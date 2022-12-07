@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.login.signin
+package org.sopt.sample.presentation.sign.signin
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel

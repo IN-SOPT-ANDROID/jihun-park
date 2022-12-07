@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.login.signin
+package org.sopt.sample.presentation.sign.signin
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,7 +11,7 @@ import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySigninBinding
 import org.sopt.sample.presentation.MainActivity
-import org.sopt.sample.presentation.login.signup.SignupActivity
+import org.sopt.sample.presentation.sign.signup.SignupActivity
 import org.sopt.sample.util.extensions.showToast
 
 @AndroidEntryPoint

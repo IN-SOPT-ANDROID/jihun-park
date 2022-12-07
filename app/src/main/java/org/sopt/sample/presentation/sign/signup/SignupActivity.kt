@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.login.signup
+package org.sopt.sample.presentation.sign.signup
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
-import org.sopt.sample.presentation.login.signin.SignInActivity
+import org.sopt.sample.presentation.sign.signin.SignInActivity
 import org.sopt.sample.util.extensions.showToast
 
 @AndroidEntryPoint
