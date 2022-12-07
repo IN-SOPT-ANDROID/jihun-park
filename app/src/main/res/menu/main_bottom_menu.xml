@@ -8,6 +8,12 @@
         android:icon="@drawable/btm_btn_home"
         android:title="@string/btm_menu_home"/>
     <item
+        android:id="@+id/btm_music_menu"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_library_music_24"
+        android:title="@string/btm_menu_music"/>
+    <item
         android:id="@+id/btm_search_menu"
         app:showAsAction="ifRoom"
         android:enabled="true"
