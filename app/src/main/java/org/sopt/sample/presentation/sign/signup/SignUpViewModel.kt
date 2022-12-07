@@ -39,12 +39,12 @@ class SignUpViewModel @Inject constructor(private val authRepository: AuthReposi
 
     private fun isEnabledSignupButton() {
         isInputValid.apply {
-            addSourceList(name, id, pw) { inputValidCheck() }
+            addSourceList(name, id, pw) { checkInputValid() }
         }
     }
 
     //
-    private fun inputValidCheck(): Boolean = isNameValid && isIdValid && isPwValid
+    private fun checkInputValid(): Boolean = isNameValid && isIdValid && isPwValid
 
     val isNameValid: Boolean
         get() = name.value?.let { name.value!!.length >= 2 } == true
