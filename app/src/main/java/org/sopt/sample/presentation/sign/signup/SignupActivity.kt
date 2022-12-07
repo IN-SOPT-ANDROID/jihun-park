@@ -3,6 +3,7 @@ package org.sopt.sample.presentation.sign.signup
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
@@ -12,7 +13,7 @@ import org.sopt.sample.util.extensions.showToast
 
 @AndroidEntryPoint
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
-//    private val viewModel: SignUpViewModel by viewModels { ViewModelFactory() }
+    //    private val viewModel: SignUpViewModel by viewModels { ViewModelFactory() }
     private val viewModel: SignUpViewModel by viewModels()
 
     companion object {
@@ -26,8 +27,6 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         binding.lifecycleOwner = this
         addObserver()
         addListener()
-
-
     }
 
     private fun addObserver() {
@@ -44,32 +43,17 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
         //name,id, pw 유효성 검사
         viewModel.name.observe(this) {
             binding.signUpNameInput.apply {
-                if (!viewModel.isNameValid) {
-                    isErrorEnabled = true
-                    error = " "
-                } else {
-                    isErrorEnabled = false
-                }
+                inputErrorCheck(this, viewModel.isNameValid)
             }
         }
         viewModel.id.observe(this) {
             binding.signUpIdInput.apply {
-                if (!viewModel.isIdValid) {
-                    isErrorEnabled = true
-                    error = " "
-                } else {
-                    isErrorEnabled = false
-                }
+                inputErrorCheck(this, viewModel.isIdValid)
             }
         }
         viewModel.pw.observe(this) {
             binding.signUpPwInput.apply {
-                if (!viewModel.isPwValid) {
-                    isErrorEnabled = true
-                    error = " "
-                } else {
-                    isErrorEnabled = false
-                }
+                inputErrorCheck(this, viewModel.isPwValid)
             }
         }
     }
@@ -81,8 +65,20 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             moveToSignIn()
         }
     }
+
     private fun moveToSignIn() {
         startActivity(Intent(this, SignInActivity::class.java))
         finish()
+    }
+
+    private fun inputErrorCheck(textInputLayout: TextInputLayout, isValid: Boolean) {
+        textInputLayout.apply {
+            if (!isValid) {
+                isErrorEnabled = true
+                error = " "
+            } else {
+                isErrorEnabled = false
+            }
+        }
     }
 }

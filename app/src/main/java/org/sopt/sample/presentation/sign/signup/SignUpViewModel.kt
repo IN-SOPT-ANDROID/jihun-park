@@ -8,14 +8,17 @@ import org.sopt.sample.domain.AuthRepository
 import org.sopt.sample.util.addSourceList
 import java.util.regex.Pattern
 import javax.inject.Inject
-@HiltViewModel
-class SignUpViewModel  @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
 
-    companion object{
+@HiltViewModel
+class SignUpViewModel @Inject constructor(private val authRepository: AuthRepository) :
+    ViewModel() {
+
+    companion object {
         //id - 6~10글자 영문 숫자 포함
         //pw - 6~12글자 영문,숫자,특수문자 포함
         private val REGEX_ID_PATTERN = Pattern.compile("^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,10}$")
-        private val REGEX_PW_PATTERN = Pattern.compile("^(?=.*[a-zA-Z]+)(?=.*[0-9]+)(?=.*[!@#$%^&*()~`<>?:']+).{6,12}$")
+        private val REGEX_PW_PATTERN =
+            Pattern.compile("^(?=.*[a-zA-Z]+)(?=.*[0-9]+)(?=.*[!@#$%^&*()~`<>?:']+).{6,12}$")
     }
 
 
@@ -40,9 +43,11 @@ class SignUpViewModel  @Inject constructor(private val authRepository: AuthRepos
         }
     }
 
+    //
     private fun inputValidCheck(): Boolean = isNameValid && isIdValid && isPwValid
+
     val isNameValid: Boolean
-        get() = name.value?.let{ name.value!!.length >=2}==true
+        get() = name.value?.let { name.value!!.length >= 2 } == true
     val isIdValid: Boolean
         get() = id.value?.let { REGEX_ID_PATTERN.matcher(it).matches() } == true
     val isPwValid: Boolean
