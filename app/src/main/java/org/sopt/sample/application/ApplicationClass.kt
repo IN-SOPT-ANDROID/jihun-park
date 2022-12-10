@@ -11,20 +11,23 @@ import com.facebook.soloader.SoLoader
 import dagger.hilt.android.HiltAndroidApp
 import org.sopt.sample.BuildConfig
 import timber.log.Timber
+
 @HiltAndroidApp
 class ApplicationClass : Application() {
-    companion object{
+    companion object {
         private lateinit var applicationClass: ApplicationClass
-        fun getInstance(): ApplicationClass = applicationClass
+        fun getInstance() = applicationClass
         val networkFlipperPlugin = NetworkFlipperPlugin()
     }
 
     override fun onCreate() {
         super.onCreate()
+        applicationClass = this
         initFlipper()
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+
     }
 
 
@@ -32,7 +35,12 @@ class ApplicationClass : Application() {
         SoLoader.init(this, false)
         if (BuildConfig.DEBUG && FlipperUtils.shouldEnableFlipper(this)) {
             AndroidFlipperClient.getInstance(this).apply {
-                addPlugin(InspectorFlipperPlugin(this@ApplicationClass, DescriptorMapping.withDefaults()))
+                addPlugin(
+                    InspectorFlipperPlugin(
+                        this@ApplicationClass,
+                        DescriptorMapping.withDefaults()
+                    )
+                )
                 addPlugin(networkFlipperPlugin)
                 addPlugin(LeakCanary2FlipperPlugin()) //-> 디버그에서 메모리 릭 잡아주는 친구
                 // addPlugin(SharedPreferencesFlipperPlugin(app, "SOPT_DATA")) -> 해당 키를 가진 SharedPreference 내부 데이터를 볼 수 있는 친구

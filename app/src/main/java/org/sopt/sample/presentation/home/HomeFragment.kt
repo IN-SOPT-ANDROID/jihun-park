@@ -1,6 +1,7 @@
 package org.sopt.sample.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -10,6 +11,7 @@ import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.adapter.HomeUserListAdapter
 import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.util.RecyclerDecorationHeight
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -27,16 +29,18 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     //load 성공 여부 observe 후 adapter로 userList 전달
     private fun addObserver(adapter: HomeUserListAdapter) {
-        viewModel.loadUserSuccess.observe(viewLifecycleOwner) {
-            if (it) {
-                viewModel.userList.value?.let { userList -> adapter.submitUserList(userList) }
-            }
-        }
         viewModel.homeState.observe(viewLifecycleOwner) {
-            if (it is UiState.Loading) {
-                showSampleData()
-            } else {
-                hideSampleData()
+            when (it) {
+                is UiState.Loading -> {
+                    showSampleData()
+                }
+                is UiState.Success -> {
+                    viewModel.userList.value?.let { userList -> adapter.submitUserList(userList) }
+                    hideSampleData()
+                }
+                else -> {
+                    hideSampleData()
+                }
             }
 
         }

@@ -1,4 +1,4 @@
-package org.sopt.sample.data.home.model
+package org.sopt.sample.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

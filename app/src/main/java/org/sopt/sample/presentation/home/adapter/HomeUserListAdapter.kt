@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.sopt.sample.data.home.model.User
+import org.sopt.sample.data.model.User
 import org.sopt.sample.databinding.HomeUserProfileItemBinding
 
 class HomeUserListAdapter(private val context: Context) :

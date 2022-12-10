@@ -1,6 +1,6 @@
 package org.sopt.sample.data.api
 
-import org.sopt.sample.data.home.model.UserListResponse
+import org.sopt.sample.data.model.UserListResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
