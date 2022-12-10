@@ -54,9 +54,6 @@ class MusicAddDialog() : BindingDialog<DialogMusicAddBinding>(R.layout.dialog_mu
         viewModel.musicState.observe(viewLifecycleOwner) {
             if (it is UiState.Success) {
                 dismissDialog()
-                showToast(getString(R.string.success_to_upload_music))
-            } else {
-                showToast(getString(R.string.fail_to_upload_music))
             }
         }
     }
