@@ -11,13 +11,16 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.sample.BuildConfig
 import org.sopt.sample.application.ApplicationClass
+import org.sopt.sample.data.api.ApiClient.MUSIC_BASE_URL
 import retrofit2.Retrofit
 
 object ApiClient {
     private const val AUTH_BASE_URL = BuildConfig.AUTH_BASE_URL
     private const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
+    private const val MUSIC_BASE_URL = BuildConfig.MUSIC_BASE_URL
     private var authRetrofit: Retrofit? = null
     private var reqresRetrofit: Retrofit? = null
+    private var musicRetrofit: Retrofit? = null
     private val logger = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -44,7 +47,6 @@ object ApiClient {
     }
     //UserList API
     @OptIn(ExperimentalSerializationApi::class, InternalCoroutinesApi::class)
-    @Synchronized
     fun getRetrofitForUserList(): Retrofit? {
         synchronized(this) {
             if (reqresRetrofit == null) {
@@ -55,6 +57,20 @@ object ApiClient {
                     .build()
             }
             return reqresRetrofit
+        }
+    }
+    //Music API
+    @OptIn(ExperimentalSerializationApi::class, InternalCoroutinesApi::class)
+    fun getRetrofitForMusicList():Retrofit?{
+        synchronized(this) {
+            if (musicRetrofit == null) {
+                musicRetrofit = Retrofit.Builder()
+                    .baseUrl(MUSIC_BASE_URL)
+                    .client(client)
+                    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+                    .build()
+            }
+            return musicRetrofit
         }
     }
 }
