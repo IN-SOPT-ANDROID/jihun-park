@@ -2,41 +2,49 @@ package org.sopt.sample.presentation.music
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentMusicBinding
 import org.sopt.sample.presentation.music.adapter.MusicListAdapter
-import org.sopt.sample.presentation.music.data.MusicInfo
+import org.sopt.sample.presentation.music.data.MusicAdd
+import org.sopt.sample.presentation.state.UiState
 
+@AndroidEntryPoint
 class MusicFragment : BindingFragment<FragmentMusicBinding>(R.layout.fragment_music) {
+    private val viewModel: MusicViewModel by viewModels()
 
     private val adapter by lazy {
-        MusicListAdapter(requireContext())
+        MusicListAdapter(
+            requireContext(),
+            childFragmentManager
+        ) //childFragmentManager 음악 추가 버튼 클릭 시, 다이얼로그 show() 호출을 위해 전달하는 인자
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
+        viewModel.fetchMusicList()
+        addObserver()
         initAdapter()
+    }
+
+    private fun addObserver() {
+        viewModel.musicState.observe(viewLifecycleOwner) {
+            if (it is UiState.Success) {
+                viewModel.musicList.value?.let { data ->
+                    adapter.setData(data)
+                    adapter.addData(MusicAdd(R.drawable.ic_baseline_add_circle_outline_24))
+                }
+            }
+        }
     }
 
     private fun initAdapter() {
         binding.musicRv.layoutManager = LinearLayoutManager(requireContext())
-        adapter.setData(
-            listOf(
-                MusicInfo(
-                    "https://sopt-31th-bucket.s3.ap-northeast-2.amazonaws.com/e3cbc3cd-f8c2-4cd5-bf45-49a10eb4ad36.jpeg",
-                    "d",
-                    "asd"
-                ),
-                MusicInfo(
-                    "https://sopt-31th-bucket.s3.ap-northeast-2.amazonaws.com/e3cbc3cd-f8c2-4cd5-bf45-49a10eb4ad36.jpeg",
-                    "d",
-                    "sa"
-                )
-            )
-        )
         binding.musicRv.adapter = adapter
-
     }
+
 }
