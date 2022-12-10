@@ -31,6 +31,7 @@
     <color name="signin_btn">@color/purple_500</color>
     <color name="signin_et_cursor">@color/purple_500</color>
     <color name="signup_et_cursor">@color/purple_500</color>
+    <color name="dialog_et_cursor">@color/purple_500</color>
     <color name="sign_btn">@color/purple_500</color>
     <color name="sign_btn_disable">#808080</color>
 
@@ -38,4 +39,6 @@
     <color name="gallery_item_off">#FFFFFF</color>
     <color name="splash_background">#181818</color>
     <color name="home_skeleton_cv_background">@color/gray600</color>
+    <color name="dialog_btn">@color/purple_500</color>
+    <color name="dialog_btn_disable">#808080</color>
 </resources>
