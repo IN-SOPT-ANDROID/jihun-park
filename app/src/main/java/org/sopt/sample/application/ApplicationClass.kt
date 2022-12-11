@@ -14,11 +14,7 @@ import timber.log.Timber
 
 @HiltAndroidApp
 class ApplicationClass : Application() {
-    companion object {
-        private lateinit var applicationClass: ApplicationClass
-        fun getInstance() = applicationClass
-        val networkFlipperPlugin = NetworkFlipperPlugin()
-    }
+
 
     override fun onCreate() {
         super.onCreate()
@@ -46,5 +42,11 @@ class ApplicationClass : Application() {
                 // addPlugin(SharedPreferencesFlipperPlugin(app, "SOPT_DATA")) -> 해당 키를 가진 SharedPreference 내부 데이터를 볼 수 있는 친구
             }.start()
         }
+    }
+
+    companion object {
+        private lateinit var applicationClass: ApplicationClass
+        fun getInstance() = applicationClass
+        val networkFlipperPlugin = NetworkFlipperPlugin()
     }
 }
