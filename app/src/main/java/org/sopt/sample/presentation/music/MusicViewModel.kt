@@ -56,7 +56,7 @@ class MusicViewModel @Inject constructor(
     fun uploadMusic() {
         viewModelScope.launch {
             val imageMultipartBody = ContentUriRequestBody(
-                application.baseContext,
+                application.baseContext, //ViewModel에 context가 들어가면 안된다..?
                 uri.value!!
             ).toFormData()
             val jsonRequestBody =
