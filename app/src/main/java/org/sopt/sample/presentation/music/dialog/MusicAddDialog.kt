@@ -51,6 +51,9 @@ class MusicAddDialog() : BindingDialog<DialogMusicAddBinding>(R.layout.dialog_mu
         binding.dialogImgIv.setOnClickListener {
             pickVmLauncher?.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
+        binding.dialogCancelBtn.setOnClickListener {
+            dismissDialog()
+        }
     }
 
     private fun addObserver() {

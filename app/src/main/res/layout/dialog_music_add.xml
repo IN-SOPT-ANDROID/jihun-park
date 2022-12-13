@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <variable
-            name="dialog"
-            type="org.sopt.sample.presentation.music.dialog.MusicAddDialog" />
-
         <variable
             name="viewModel"
             type="org.sopt.sample.presentation.music.MusicViewModel" />
@@ -110,7 +105,6 @@
             android:layout_height="0dp"
             android:background="@drawable/dialog_btn_selector"
             android:gravity="center"
-            android:onClick="@{()->dialog.dismissDialog()}"
             android:text="@string/dialog_add_cancel"
             android:textAppearance="@style/dialog_btn_text"
             app:layout_constraintDimensionRatio="5:1.7" />
