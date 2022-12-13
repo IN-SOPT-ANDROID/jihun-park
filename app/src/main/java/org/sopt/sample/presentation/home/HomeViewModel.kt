@@ -7,8 +7,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.sopt.sample.data.home.model.User
-import org.sopt.sample.data.home.repository.HomeRepository
+import org.sopt.sample.data.model.User
+import org.sopt.sample.domain.HomeRepository
+import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.util.extensions.toUserList
 import javax.inject.Inject
 
@@ -16,34 +17,23 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) : ViewModel() {
     val userList = MutableLiveData<List<User>>()
 
-    private val _loadUserSuccess = MutableLiveData<Boolean>()
-    val loadUserSuccess: LiveData<Boolean>
-        get() = _loadUserSuccess
-
-    //로딩 시작 시, isLoading = true
-    //로딩이 끝나면, isLoading = false
-    //Fragment에서 isLoading을 observe
-    private val _isLoading = MutableLiveData(false)
-    val isLoading:LiveData<Boolean>
-        get() = _isLoading
+    private val _homeState = MutableLiveData<UiState>(UiState.Loading)
+    val homeState: LiveData<UiState>
+        get() = _homeState
 
     fun loadUserList(page: Int) {
         viewModelScope.launch {
-            kotlin.runCatching {
-                _isLoading.value = true
-                delay(3000)
+            runCatching {
+                _homeState.value = UiState.Loading
+                delay(1000)
                 homeRepository.loadUser(page)
             }.onSuccess {
-                _isLoading.value = false
                 userList.value = it.data.toUserList() //서버에서 가져온 userList -> userList LiveData
-                _loadUserSuccess.value = true
+                _homeState.value = UiState.Success
             }.onFailure {
-                _isLoading.value = false
-                _loadUserSuccess.value = false
+                _homeState.value = UiState.Failure
             }
         }
 
     }
-
-
 }

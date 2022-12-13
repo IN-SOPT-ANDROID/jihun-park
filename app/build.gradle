@@ -28,11 +28,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "AUTH_BASE_URL", properties["auth.base.url"]
         buildConfigField "String", "REQRES_BASE_URL", properties["reqres.base.url"]
+        buildConfigField "String", "MUSIC_BASE_URL", properties["music.base.url"]
     }
-
-
-
-
     buildTypes {
         release {
             minifyEnabled false
@@ -80,7 +77,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor")
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
 
     //Fliper 디버거
     debugImplementation 'com.facebook.flipper:flipper:0.174.0'
@@ -100,4 +97,6 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    //coil
+    implementation 'io.coil-kt:coil:2.2.2'
 }

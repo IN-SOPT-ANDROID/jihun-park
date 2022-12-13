@@ -10,6 +10,7 @@ import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.presentation.home.HomeFragment
+import org.sopt.sample.presentation.music.MusicFragment
 import org.sopt.sample.presentation.search.SearchFragment
 
 @AndroidEntryPoint
@@ -44,6 +45,12 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 replace<HomeFragment>(
                     R.id.main_fragment_frame,
                     HomeFragment::class.java.simpleName
+                )
+            }
+            R.id.btm_music_menu->supportFragmentManager.commit {
+                replace<MusicFragment>(
+                    R.id.main_fragment_frame,
+                    MusicFragment::class.java.simpleName
                 )
             }
             R.id.btm_search_menu -> supportFragmentManager.commit {

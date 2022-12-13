@@ -11,27 +11,31 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.sample.BuildConfig
 import org.sopt.sample.application.ApplicationClass
+import org.sopt.sample.data.api.ApiClient.MUSIC_BASE_URL
 import retrofit2.Retrofit
 
 object ApiClient {
     private const val AUTH_BASE_URL = BuildConfig.AUTH_BASE_URL
     private const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
+    private const val MUSIC_BASE_URL = BuildConfig.MUSIC_BASE_URL
     private var authRetrofit: Retrofit? = null
     private var reqresRetrofit: Retrofit? = null
-
+    private var musicRetrofit: Retrofit? = null
+    private val logger = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+    private val client by lazy {
+        OkHttpClient.Builder()
+            .addInterceptor(logger)
+            .addNetworkInterceptor(FlipperOkhttpInterceptor(ApplicationClass.networkFlipperPlugin))
+            .build()
+    }
     //AUTH API
     @OptIn(ExperimentalSerializationApi::class, InternalCoroutinesApi::class)
     //동기화 처리를 통해 멀티쓰레드 환경에서 인스턴스가 2개 생성되는 것을 방지
     fun getRetrofitForAuth(): Retrofit? {
         synchronized(this) {
             if (authRetrofit == null) {
-                val logger = HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                }
-                val client = OkHttpClient.Builder()
-                    .addInterceptor(logger)
-                    .addNetworkInterceptor(FlipperOkhttpInterceptor(ApplicationClass.networkFlipperPlugin))
-                    .build()
                 authRetrofit = Retrofit.Builder()
                     .baseUrl(AUTH_BASE_URL)
                     .client(client)
@@ -41,20 +45,11 @@ object ApiClient {
             return authRetrofit
         }
     }
-
     //UserList API
     @OptIn(ExperimentalSerializationApi::class, InternalCoroutinesApi::class)
-    @Synchronized
     fun getRetrofitForUserList(): Retrofit? {
         synchronized(this) {
             if (reqresRetrofit == null) {
-                val logger = HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                }
-                val client = OkHttpClient.Builder()
-                    .addInterceptor(logger)
-                    .addNetworkInterceptor(FlipperOkhttpInterceptor(ApplicationClass.networkFlipperPlugin))
-                    .build()
                 reqresRetrofit = Retrofit.Builder()
                     .baseUrl(REQRES_BASE_URL)
                     .client(client)
@@ -62,6 +57,20 @@ object ApiClient {
                     .build()
             }
             return reqresRetrofit
+        }
+    }
+    //Music API
+    @OptIn(ExperimentalSerializationApi::class, InternalCoroutinesApi::class)
+    fun getRetrofitForMusicList():Retrofit?{
+        synchronized(this) {
+            if (musicRetrofit == null) {
+                musicRetrofit = Retrofit.Builder()
+                    .baseUrl(MUSIC_BASE_URL)
+                    .client(client)
+                    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+                    .build()
+            }
+            return musicRetrofit
         }
     }
 }

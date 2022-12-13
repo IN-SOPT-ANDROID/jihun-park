@@ -1,6 +1,7 @@
 package org.sopt.sample.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -8,11 +9,12 @@ import org.sopt.sample.R
 import org.sopt.sample.base.BindingFragment
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.adapter.HomeUserListAdapter
+import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.util.RecyclerDecorationHeight
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-//    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,16 +29,18 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     //load 성공 여부 observe 후 adapter로 userList 전달
     private fun addObserver(adapter: HomeUserListAdapter) {
-        viewModel.loadUserSuccess.observe(viewLifecycleOwner) {
-            if (it) {
-                viewModel.userList.value?.let { userList -> adapter.submitUserList(userList) }
-            }
-        }
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            if (it) {
-                showSampleData()
-            } else {
-                hideSampleData()
+        viewModel.homeState.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiState.Loading -> {
+                    showSampleData()
+                }
+                is UiState.Success -> {
+                    viewModel.userList.value?.let { userList -> adapter.submitUserList(userList) }
+                    hideSampleData()
+                }
+                else -> {
+                    hideSampleData()
+                }
             }
 
         }

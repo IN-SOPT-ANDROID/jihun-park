@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/signup_btn_border" android:state_enabled="true" />
-    <item android:drawable="@drawable/signup_btn_border_disable" android:state_enabled="false"/>
+    <item android:state_enabled="true">
+        <shape>
+            <solid android:color="@color/sign_btn" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/sign_btn_disable" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
 </selector>

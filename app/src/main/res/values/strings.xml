@@ -37,10 +37,18 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btm_menu_home">홈</string>
+    <string name="btm_menu_music">음악</string>
     <string name="btm_menu_gallery">갤러리</string>
     <string name="btm_menu_search">검색</string>
     <string name="home_repo_add_btn">Add Repo</string>
     <string name="home_repo_remove_btn">Remove Repo</string>
     <string name="gallery_remove_btn">Remove</string>
     <string name="home_desc_tv">자기소개: 98년생 안드로이드 개발자입니다. 반갑습니다😁</string>
+    <string name="dialog_add_music_title_input">노래 제목을 입력해주세요!</string>
+    <string name="dialog_add_music_singer_input">가수 이름을 입력해주세요!</string>
+    <string name="dialog_add_confirm">확인</string>
+    <string name="dialog_add_cancel">취소</string>
+    <string name="fail_to_upload_music">음악을 생성하지 못했습니다.</string>
+    <string name="success_to_upload_music">음악을 생성 성공!.</string>
+
 </resources>

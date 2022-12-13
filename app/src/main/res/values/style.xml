@@ -5,13 +5,28 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="dialog_btn_text">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
-    <style name="SignEtLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="input_layout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <!--        focused/unfocused color-->
         <item name="boxStrokeColor">@color/sign_et_text_input_layout</item>
         <item name="boxStrokeErrorColor">@color/red600</item>
         <!--        상단에 있을 때 hint color-->
         <item name="hintTextColor">@color/white</item>
+        <!--        Et에 있을 때 hint color-->
+        <item name="android:textColorHint">@color/gray500</item>
+    </style>
+
+    <style name="dialog_input_layout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!--        focused/unfocused color-->
+        <item name="boxStrokeColor">@color/sign_et_text_input_layout</item>
+        <item name="boxStrokeErrorColor">@color/red600</item>
+        <!--        상단에 있을 때 hint color-->
+        <item name="hintTextColor">@color/black</item>
         <!--        Et에 있을 때 hint color-->
         <item name="android:textColorHint">@color/gray500</item>
     </style>

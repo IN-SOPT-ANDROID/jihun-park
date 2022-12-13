@@ -4,15 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.sopt.sample.R
 import org.sopt.sample.base.BindingActivity
 import org.sopt.sample.databinding.ActivitySplashBinding
 import org.sopt.sample.presentation.MainActivity
-import org.sopt.sample.presentation.login.signin.SignInActivity
-import org.sopt.sample.util.EventObserver
+import org.sopt.sample.presentation.sign.signin.SignInActivity
 import org.sopt.sample.util.extensions.showToast
 
 class SplashActivity : BindingActivity<ActivitySplashBinding>(R.layout.activity_splash) {
